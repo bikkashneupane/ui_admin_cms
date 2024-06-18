@@ -19,3 +19,12 @@ export const postLoginAdmin = (obj) => {
     data: obj,
   });
 };
+
+// check if user is verified
+export const verifyUserLink = (obj) => {
+  return apiProcessor({
+    url: userEP + "/user-verification",
+    method: "POST",
+    data: obj,
+  });
+};

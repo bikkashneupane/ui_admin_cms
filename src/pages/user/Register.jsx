@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const initialState = {
   firstName: "",
   lastName: "",
-  phone: "",
+  phone: null,
   email: "",
   password: "",
   confirmPassword: "",

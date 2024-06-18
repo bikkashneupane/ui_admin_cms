@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import { Dashboard } from "./pages/dashboard/Dashboard";
 import { Register } from "./pages/user/Register";
 import { Login } from "./pages/user/Login";
+import { UserVerification } from "./pages/user/UserVerification";
 
 function App() {
   return (
@@ -14,8 +15,12 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Dashboard />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/verify-user" element={<UserVerification />} />
+
+        {/* private path */}
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="/admin/new" element={<Register />} />
       </Routes>
       <ToastContainer />
     </>

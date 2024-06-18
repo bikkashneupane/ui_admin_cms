@@ -1,4 +1,4 @@
-import { postLoginAdmin, postNewAdmin } from "./userAxios";
+import { postLoginAdmin, postNewAdmin, verifyUserLink } from "./userAxios";
 import { toast } from "react-toastify";
 
 // global pending toast
@@ -24,4 +24,9 @@ export const loginAdminAction = async (obj) => {
   const { status, message } = await apiProcessWithToast(postLoginAdmin, obj);
   console.log(status, message);
   //TODO
+};
+
+// login user action
+export const verifyUserLinkAction = async (obj) => {
+  return await apiProcessWithToast(verifyUserLink, obj);
 };
