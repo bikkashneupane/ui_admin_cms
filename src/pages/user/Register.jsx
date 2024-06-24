@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
-import { createNewAdminAction } from "../../features/user/userAction";
+import { createUserAction } from "../../features/user/userAction";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -24,7 +24,7 @@ export const Register = () => {
       return toast.error("Password Not Matched");
     }
 
-    createNewAdminAction(rest);
+    createUserAction(rest);
   };
 
   const inputs = [
@@ -74,11 +74,8 @@ export const Register = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 ">
       <div className="" style={{ width: "450px" }}>
-        <Form
-          className="shadow-lg p-4 rounded m-auto"
-          onSubmit={handleOnSubmit}
-        >
-          <h3>Admin Registeration</h3>
+        <Form className="shadow-lg p-4 rounded " onSubmit={handleOnSubmit}>
+          <h3 className="text-center">Admin Registeration</h3>
           {inputs.map((item) => (
             <CustomInput key={item.name} {...item} onChange={handleOnChange} />
           ))}

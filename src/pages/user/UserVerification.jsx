@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Alert, Spinner } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
-import { verifyUserLinkAction } from "../../features/user/userAction";
+import { verifyUserAction } from "../../features/user/userAction";
 
 export const UserVerification = () => {
   const [response, setResponse] = useState();
@@ -14,7 +14,7 @@ export const UserVerification = () => {
 
   useEffect(() => {
     const getServerResponse = async () => {
-      const data = await verifyUserLinkAction({ c, e });
+      const data = await verifyUserAction({ c, e });
       console.log(data);
       setResponse(data);
     };
