@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const Register = () => {
-  const { form, setForm, handleOnChange } = useForm(initialState);
+  const { form, handleOnChange } = useForm(initialState);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();

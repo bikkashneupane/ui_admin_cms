@@ -48,9 +48,19 @@ export const renewAccessJwt = async () => {
     method: "GET",
     isPrivate: true,
     isRefreshJwt: true,
-    showToast: true,
   });
 
-  sessionStorage.setItem("accessJWT", accessJWT);
+  accessJWT && sessionStorage.setItem("accessJWT", accessJWT);
   return accessJWT;
+};
+
+// logout user
+export const logoutUser = async () => {
+  return apiProcessor({
+    url: userEP,
+    method: "DELETE",
+    isPrivate: true,
+    isRefreshJwt: true,
+    showToast: true,
+  });
 };
