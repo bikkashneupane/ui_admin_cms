@@ -1,13 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
-import {
-  fetchUserAction,
-  loginUserAction,
-} from "../../features/user/userAction";
+import { loginUserAction } from "../../features/user/userAction";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -19,7 +16,6 @@ export const Login = () => {
   const { user } = useSelector((state) => state.userInfo);
 
   useEffect(() => {
-    // dispatch(fetchUserAction());
     user?._id && navigate("/admin/dashboard");
   }, [user?._id, dispatch, navigate]);
 
@@ -65,7 +61,11 @@ export const Login = () => {
           <Button className="w-100 mt-2" variant="primary" type="submit">
             Login
           </Button>
-          <div className="mt-3 text-end">Forget Password?</div>
+
+          <div className="mt-3 text-end">
+            Forget Password?
+            <Link to={"/forget-password"}> Reset Password!</Link>
+          </div>
         </Form>
       </div>
     </div>

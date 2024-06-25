@@ -64,3 +64,21 @@ export const logoutUser = async () => {
     showToast: true,
   });
 };
+
+// request OTP
+export const requestOTP = async (data) => {
+  return apiProcessor({
+    url: userEP + "/otp",
+    method: "POST",
+    data,
+  });
+};
+
+// reset Password
+export const resetPasswordAxios = async (data) => {
+  return apiProcessor({
+    url: userEP + "/password/reset",
+    method: "POST",
+    data,
+  });
+};
