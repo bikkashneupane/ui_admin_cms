@@ -25,7 +25,7 @@ export const ResetPassword = ({ handleOnPasswordReset }) => {
       label: "OTP",
       name: "otp",
       type: "number",
-      placeholder: "",
+      placeholder: "345678",
       required: true,
       inputRef: otpRef,
     },

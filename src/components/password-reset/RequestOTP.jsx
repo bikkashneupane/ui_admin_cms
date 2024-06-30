@@ -31,10 +31,6 @@ export const RequestOTP = ({ handleOnOTPRequest }) => {
       <Button className="w-100 mt-2" variant="primary" type="submit">
         Request Now
       </Button>
-
-      <div className="mt-3 text-end">
-        <Link to={"/"}>Login Now!</Link>
-      </div>
     </Form>
   );
 };
