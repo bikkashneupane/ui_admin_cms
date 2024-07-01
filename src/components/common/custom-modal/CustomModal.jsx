@@ -1,11 +1,7 @@
 import { Modal } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "../../../redux-store/system-slice/systemSlice";
-import { useModal } from "../../../hooks/useModal";
+import { useDispatch } from "react-redux";
 
 export const CustomModal = ({ show, hideModal, title, children, ...rest }) => {
-  const dispatch = useDispatch();
-
   return (
     <div>
       <Modal

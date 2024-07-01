@@ -1,17 +1,42 @@
-import { setShowModal } from "../../../redux-store/system-slice/systemSlice";
-import { getCategory, postCategory } from "./categoryAxios";
+import {
+  deleteCategory,
+  editCategory,
+  getCategory,
+  postCategory,
+} from "./categoryAxios";
 import { setCategory } from "./categorySlice";
-
-export const postCategoryAction = (obj) => async (dispatch) => {
-  const { status } = await postCategory(obj);
-
-  if (status === "success") {
-    dispatch(getCategoryAction());
-    dispatch(setShowModal(false));
-  }
-};
 
 export const getCategoryAction = () => async (dispatch) => {
   const { category } = await getCategory();
   dispatch(setCategory(category));
+};
+
+export const postCategoryAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await postCategory(obj);
+
+    if (status === "success") {
+      dispatch(getCategoryAction());
+      hideModal();
+      navigate("/admin/categories");
+    }
+  };
+
+export const editCategoryAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await editCategory(obj);
+
+    if (status === "success") {
+      dispatch(getCategoryAction());
+      hideModal();
+      navigate("/admin/categories");
+    }
+  };
+
+export const deleteCategoryAction = (_id) => async (dispatch) => {
+  const { status } = await deleteCategory(_id);
+
+  if (status === "success") {
+    dispatch(getCategoryAction());
+  }
 };

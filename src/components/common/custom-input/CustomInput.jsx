@@ -1,4 +1,3 @@
-import React from "react";
 import { Form } from "react-bootstrap";
 
 export const CustomInput = ({ label, inputRef, ...rest }) => {
@@ -13,20 +12,17 @@ export const CustomInput = ({ label, inputRef, ...rest }) => {
 };
 
 export const CustomSelect = ({ label, options, ...rest }) => {
-  console.log(options);
+  options?.map((item) => {
+    return item?.value;
+  });
   return (
     <>
       <Form.Group className="mb-3">
         {label && <Form.Label>{label}</Form.Label>}
 
         <Form.Select {...rest}>
-          <option value="select">-- Select --</option>
           {options?.map((item) => (
-            <option
-              key={item?.value}
-              value={item?.value}
-              selected={item?.value}
-            >
+            <option key={item?.value} value={item?.value}>
               {item?.text}
             </option>
           ))}

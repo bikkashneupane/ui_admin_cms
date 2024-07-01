@@ -1,12 +1,9 @@
 import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
-import { useDispatch } from "react-redux";
-import { postCategoryAction } from "../../features/user/category/categoryAction";
 
-export const AddNewCategory = () => {
+export const AddNewCategory = ({ postCategory }) => {
   const titleRef = useRef("");
-  const dispatch = useDispatch();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +12,7 @@ export const AddNewCategory = () => {
     if (!title) {
       return alert("Must fill all the form first");
     }
-    dispatch(postCategoryAction({ title }));
+    postCategory(title);
   };
 
   const inputs = [

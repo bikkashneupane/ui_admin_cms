@@ -1,20 +1,27 @@
 import { Button } from "react-bootstrap";
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "../../redux-store/system-slice/systemSlice";
-import { getCategoryAction } from "../../features/user/category/categoryAction";
+import { useDispatch } from "react-redux";
+import {
+  getCategoryAction,
+  postCategoryAction,
+} from "../../features/user/category/categoryAction";
 import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
 
 export const Categories = () => {
   const dispatch = useDispatch();
-  const { show, handleOnShow, handleOnHide } = useModal(false);
+  const navigate = useNavigate();
+  const { show, showModal, hideModal } = useModal();
 
   useEffect(() => {
     dispatch(getCategoryAction());
   }, [dispatch]);
+
+  const postCategory = (title) =>
+    dispatch(postCategoryAction({ title }, hideModal, navigate));
 
   return (
     <div>
@@ -24,7 +31,7 @@ export const Categories = () => {
         <Button
           className="btn-primary"
           onClick={() => {
-            handleOnShow();
+            showModal();
           }}
         >
           Add New Category
@@ -37,9 +44,9 @@ export const Categories = () => {
         <CustomModal
           title={"Add New Category"}
           show={show}
-          handleOnHide={handleOnHide}
+          hideModal={hideModal}
         >
-          <AddNewCategory />
+          <AddNewCategory postCategory={postCategory} />
         </CustomModal>
       )}
     </div>

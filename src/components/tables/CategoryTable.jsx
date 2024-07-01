@@ -1,26 +1,34 @@
-import { Button, Table } from "react-bootstrap";
+import { Button, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { EditCategory } from "../form/EditCategory";
 import { useModal } from "../../hooks/useModal";
 import { useState } from "react";
 import { CustomModal } from "../common/custom-modal/CustomModal";
+import {
+  deleteCategoryAction,
+  editCategoryAction,
+} from "../../features/user/category/categoryAction";
+import { useNavigate } from "react-router-dom";
 
 export const CategoryTable = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { show, showModal, hideModal } = useModal();
   const [selectedCategory, setSelectedCategory] = useState({});
-  const { show, showModal, hideModal } = useModal(false);
   const { category } = useSelector((state) => state.categoryInfo);
 
-  const handleOnEdit = (item) => {
-    setSelectedCategory(item);
-    showModal();
+  const handleOnEditCategory = (obj) => {
+    dispatch(editCategoryAction(obj, hideModal, navigate));
   };
 
   return (
     <div>
       {show && (
         <CustomModal title={"Edit Category"} show={show} hideModal={hideModal}>
-          <EditCategory selectedCategory={selectedCategory} />
+          <EditCategory
+            selectedCategory={selectedCategory}
+            handleOnEditCategory={handleOnEditCategory}
+          />
         </CustomModal>
       )}
 
@@ -47,18 +55,47 @@ export const CategoryTable = () => {
                       : "text-danger fw-bold"
                   }
                 >
-                  {item?.status?.toUpperCase()}
+                  <Form.Group>
+                    <Form.Check
+                      name="status"
+                      type="switch"
+                      id="custom-switch"
+                      checked={item?.status === "active"}
+                      label={item?.status?.toUpperCase()}
+                      onClick={() => {
+                        handleOnEditCategory({
+                          ...item,
+                          status:
+                            item?.status === "active" ? "inactive" : "active",
+                        });
+                      }}
+                      className={
+                        item?.status === "active"
+                          ? "text-success mb-3"
+                          : "text-danger mb-3"
+                      }
+                    />
+                  </Form.Group>
                 </td>
                 <td>{item?.title}</td>
                 <td>{item?.slug}</td>
-                <td>
+                <td className="d-flex gap-1">
                   <Button
                     variant="warning w-50"
                     onClick={() => {
-                      handleOnEdit(item);
+                      setSelectedCategory(item);
+                      showModal();
                     }}
                   >
                     Edit
+                  </Button>
+                  <Button
+                    variant="danger w-50"
+                    onClick={() => {
+                      dispatch(deleteCategoryAction(item?._id));
+                    }}
+                  >
+                    Delete
                   </Button>
                 </td>
               </tr>
