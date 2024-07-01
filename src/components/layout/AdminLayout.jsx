@@ -1,10 +1,10 @@
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { Outlet } from "./Outlet";
 import { Sidebar } from "./Sidebar";
 import { AuthComponent } from "../Auth/AuthComponent";
+import { Outlet } from "react-router-dom";
 
-export const AdminLayoyt = () => {
+export const AdminLayout = () => {
   return (
     <AuthComponent>
       <div className="d-flex">

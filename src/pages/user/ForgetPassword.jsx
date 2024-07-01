@@ -3,7 +3,6 @@ import { RequestOTP } from "../../components/password-reset/RequestOTP";
 import { ResetPassword } from "../../components/password-reset/ResetPassword";
 import { requestOTP, resetPasswordAxios } from "../../features/user/userAxios";
 import { Alert, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export const ForgetPassword = () => {
   const [showForm, setShowForm] = useState("otp");

@@ -7,7 +7,6 @@ import { Dashboard } from "./pages/dashboard/Dashboard";
 import { Register } from "./pages/user/Register";
 import { Login } from "./pages/user/Login";
 import { UserVerification } from "./pages/user/UserVerification";
-import { AdminLayoyt } from "./components/layout/AdminLayoyt";
 import { Categories } from "./pages/category/Categories";
 import { Products } from "./pages/product/Products";
 import { Admins } from "./pages/user/Admins";
@@ -19,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { autoLoginAction } from "./features/user/userAction";
 import { ForgetPassword } from "./pages/user/ForgetPassword";
+import { AdminLayout } from "./components/layout/AdminLayout";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function App() {
         <Route path="/forget-password" element={<ForgetPassword />} />
 
         {/* private path */}
-        <Route path="/" element={<AdminLayoyt />}>
+        <Route path="/" element={<AdminLayout />}>
           <Route path="admin/new" element={<Register />} />
           <Route path="admin/dashboard" element={<Dashboard />} />
           <Route path="admin/categories" element={<Categories />} />
