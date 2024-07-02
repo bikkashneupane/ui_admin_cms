@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUserAction } from "../../features/user/userAction";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,7 @@ export const Header = () => {
           <Nav className="ms-auto">
             <NavDropdown title={<FaUserAlt />} id="basic-nav-dropdown">
               {user?._id ? (
-                <NavDropdown.Item
-                  href="#action/3.1"
-                  onClick={() => dispatch(logoutUserAction())}
-                >
+                <NavDropdown.Item onClick={() => dispatch(logoutUserAction())}>
                   Logout
                 </NavDropdown.Item>
               ) : (
@@ -30,7 +28,10 @@ export const Header = () => {
               )}
 
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.1">Profile </NavDropdown.Item>
+
+              <NavDropdown.Item as={Link} to={"/admin/profile"}>
+                Profile
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

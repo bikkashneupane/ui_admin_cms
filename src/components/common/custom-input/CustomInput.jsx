@@ -11,10 +11,13 @@ export const CustomInput = ({ label, inputRef, ...rest }) => {
   );
 };
 
-export const CustomSelect = ({ label, options, ...rest }) => {
-  options?.map((item) => {
-    return item?.value;
-  });
+export const CustomSelect = ({ label, options, selectedProduct, ...rest }) => {
+  console.log(
+    options?.map((item) => {
+      return item;
+    })
+  );
+
   return (
     <>
       <Form.Group className="mb-3">
@@ -22,7 +25,11 @@ export const CustomSelect = ({ label, options, ...rest }) => {
 
         <Form.Select {...rest}>
           {options?.map((item) => (
-            <option key={item?.value} value={item?.value}>
+            <option
+              key={item?.value}
+              value={item?.value}
+              selected={item[item?.value]}
+            >
               {item?.text}
             </option>
           ))}

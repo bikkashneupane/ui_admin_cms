@@ -1,51 +1,60 @@
 import { Button, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { EditCategory } from "../form/EditCategory";
 import { useModal } from "../../hooks/useModal";
 import { useState } from "react";
-import { CustomModal } from "../common/custom-modal/CustomModal";
-import {
-  deleteCategoryAction,
-  editCategoryAction,
-} from "../../features/user/category/categoryAction";
 import { useNavigate } from "react-router-dom";
+import {
+  deleteProductAction,
+  editProductAction,
+} from "../../features/product/productAction";
+import { CustomModal } from "../common/custom-modal/CustomModal";
+import { EditProduct } from "../form/EditProduct";
 
-export const CategoryTable = () => {
+export const ProductTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { show, showModal, hideModal } = useModal();
-  const [selectedCategory, setSelectedCategory] = useState({});
-  const { category } = useSelector((state) => state.categoryInfo);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  const { product } = useSelector((state) => state.productInfo);
 
-  const handleOnEditCategory = (obj) => {
-    dispatch(editCategoryAction(obj, hideModal, navigate));
+  const handleOnEditProduct = (obj) => {
+    dispatch(editProductAction(obj, hideModal, navigate));
   };
 
   return (
     <div>
       {show && (
-        <CustomModal title={"Edit Category"} show={show} hideModal={hideModal}>
-          <EditCategory
-            selectedCategory={selectedCategory}
-            handleOnEditCategory={handleOnEditCategory}
+        <CustomModal title={"Edit Product"} show={show} hideModal={hideModal}>
+          <EditProduct
+            selectedProduct={selectedProduct}
+            handleOnEditProduct={handleOnEditProduct}
           />
         </CustomModal>
       )}
 
-      <div>{category?.length || 0} Categories found</div>
+      <div>{product?.length || 0} Product(s) found</div>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
             <th>Status</th>
-            <th>Title</th>
+            <th>Name</th>
+            <th>SKU</th>
             <th>Slug</th>
-            <th>Edit</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Product</th>
+            <th>Sales Price</th>
+            <th>Sales Start</th>
+            <th>Sales End</th>
+            <th>Description</th>
+            <th>Images</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {category &&
-            category.map((item, i) => (
+          {product &&
+            product.map((item, i) => (
               <tr key={item?._id}>
                 <td>{i + 1}</td>
                 <td
@@ -63,7 +72,7 @@ export const CategoryTable = () => {
                       checked={item?.status === "active"}
                       label={item?.status?.toUpperCase()}
                       onChange={() => {
-                        handleOnEditCategory({
+                        handleOnEditProduct({
                           ...item,
                           status:
                             item?.status === "active" ? "inactive" : "active",
@@ -78,12 +87,23 @@ export const CategoryTable = () => {
                   </Form.Group>
                 </td>
                 <td>{item?.title}</td>
+                <td>{item?.sku}</td>
                 <td>{item?.slug}</td>
+                <td>${item?.price}</td>
+                <td>{item?.quantity}</td>
+                <td>{item?.category}</td>
+                <td>{item?.salesPrice ? `$${item?.salesPrice}` : `-`}</td>
+                <td>{item?.salesStart?.slice(0, 10) || `-`}</td>
+                <td>{item?.salesEnd?.slice(0, 10) || `-`}</td>
+                <td>{item?.description?.slice(0, 30)}...</td>
+                <td>
+                  <img src={item?.images} alt="" style={{ width: "100px" }} />
+                </td>
                 <td className="d-flex gap-1">
                   <Button
                     variant="warning w-50"
                     onClick={() => {
-                      setSelectedCategory(item);
+                      setSelectedProduct(item);
                       showModal();
                     }}
                   >
@@ -92,7 +112,7 @@ export const CategoryTable = () => {
                   <Button
                     variant="danger w-50"
                     onClick={() => {
-                      dispatch(deleteCategoryAction(item?._id));
+                      dispatch(deleteProductAction(item?._id));
                     }}
                   >
                     Delete

@@ -45,7 +45,6 @@ function App() {
           <Route path="admin/reviews" element={<Reviews />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/admins" element={<Admins />} />
-
           <Route path="admin/profile" element={<Profile />} />
         </Route>
 
