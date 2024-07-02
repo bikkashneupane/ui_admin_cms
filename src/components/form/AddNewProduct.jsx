@@ -19,9 +19,10 @@ export const AddNewProduct = ({ postProduct }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
-
-    postProduct(form);
+    postProduct({
+      ...form,
+      images: form.images.split(", "),
+    });
   };
 
   const inputs = [
@@ -29,73 +30,72 @@ export const AddNewProduct = ({ postProduct }) => {
       label: "Title",
       name: "title",
       type: "text",
-      placeholder: "Phone",
       required: true,
     },
     {
       label: "SKU",
       name: "sku",
       type: "text",
-      placeholder: "111",
       required: true,
     },
     {
       label: "Price",
       name: "price",
       type: "number",
-      placeholder: "1234",
       required: true,
     },
     {
       label: "Quantity",
       name: "quantity",
       type: "number",
-      placeholder: "11",
       required: true,
     },
     {
       label: "Category",
-      name: "category",
+      name: "parentCategoryId",
       type: "text",
-      placeholder: "Phone",
       required: true,
-      options: category?.map((item) => ({
-        value: item?.slug,
-        name: item?.slug,
-        text: item?.title?.toUpperCase(),
-      })),
+      options: category
+        ?.filter((item) => item.status === "active")
+        ?.map((item) => ({
+          value: item?._id,
+          name: item?.slug,
+          text: item?.title?.toUpperCase(),
+        })),
     },
     {
       label: "Sales Price",
       name: "salesPrice",
       type: "number",
-      placeholder: "1111",
+      min: 1,
     },
     {
-      label: "Sales Start",
+      label: "Sales Start Date",
       name: "salesStart",
       type: "date",
-      placeholder: "1111",
     },
     {
-      label: "Sales End",
+      label: "Sales End Date",
       name: "salesEnd",
       type: "date",
-      placeholder: "1111",
     },
     {
       label: "Description",
       name: "description",
       as: "textarea",
       rows: 5,
-      placeholder: "Detailes Description",
+      required: true,
+    },
+    {
+      label: "Thumbnail",
+      name: "thumbnail",
+      type: "url",
       required: true,
     },
     {
       label: "Images",
       name: "images",
       type: "url",
-      placeholder: "Images",
       required: true,
     },
   ];
@@ -103,7 +103,6 @@ export const AddNewProduct = ({ postProduct }) => {
   return (
     <Form className="shadow-lg p-4 pt-0" onSubmit={handleOnSubmit}>
       {inputs.map((item) =>
-        // <CustomInput key={item.name} {...item} onChange={handleOnChange} />
         item.options ? (
           <CustomSelect key={item?.name} onChange={handleOnChange} {...item} />
         ) : (

@@ -1,4 +1,4 @@
-import { Button, Form, Table } from "react-bootstrap";
+import { Button, Form, Pagination, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../hooks/useModal";
 import { useState } from "react";
@@ -16,8 +16,10 @@ export const ProductTable = () => {
   const { show, showModal, hideModal } = useModal();
   const [selectedProduct, setSelectedProduct] = useState({});
   const { product } = useSelector((state) => state.productInfo);
+  const { category } = useSelector((state) => state.categoryInfo);
 
   const handleOnEditProduct = (obj) => {
+    console.log(obj);
     dispatch(editProductAction(obj, hideModal, navigate));
   };
 
@@ -38,17 +40,18 @@ export const ProductTable = () => {
           <tr>
             <th>#</th>
             <th>Status</th>
+            <th>Thumbnail</th>
+
             <th>Name</th>
             <th>SKU</th>
             <th>Slug</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Product</th>
+            <th>Category</th>
             <th>Sales Price</th>
             <th>Sales Start</th>
             <th>Sales End</th>
             <th>Description</th>
-            <th>Images</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -86,19 +89,28 @@ export const ProductTable = () => {
                     />
                   </Form.Group>
                 </td>
+                <td>
+                  <img
+                    src={item?.thumbnail}
+                    alt=""
+                    style={{ width: "100px" }}
+                  />
+                </td>
                 <td>{item?.title}</td>
                 <td>{item?.sku}</td>
                 <td>{item?.slug}</td>
                 <td>${item?.price}</td>
                 <td>{item?.quantity}</td>
-                <td>{item?.category}</td>
+                <td>
+                  {
+                    category.find((cat) => cat._id === item?.parentCategoryId)
+                      ?.title
+                  }
+                </td>
                 <td>{item?.salesPrice ? `$${item?.salesPrice}` : `-`}</td>
                 <td>{item?.salesStart?.slice(0, 10) || `-`}</td>
                 <td>{item?.salesEnd?.slice(0, 10) || `-`}</td>
                 <td>{item?.description?.slice(0, 30)}...</td>
-                <td>
-                  <img src={item?.images} alt="" style={{ width: "100px" }} />
-                </td>
                 <td className="d-flex gap-1">
                   <Button
                     variant="warning w-50"
@@ -122,6 +134,10 @@ export const ProductTable = () => {
             ))}
         </tbody>
       </Table>
+      <div className="pagination">
+        <Pagination>1</Pagination>
+        <br />
+      </div>
     </div>
   );
 };

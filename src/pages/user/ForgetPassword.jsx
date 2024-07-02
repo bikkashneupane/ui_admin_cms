@@ -8,7 +8,7 @@ export const ForgetPassword = () => {
   const [showForm, setShowForm] = useState("otp");
   const [response, setResponse] = useState({});
   const [email, setEmail] = useState("");
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(0);
 
   const handleOnOTPRequest = async (email) => {
     setTimer(60);
@@ -17,7 +17,7 @@ export const ForgetPassword = () => {
     const res = await requestOTP({ email });
     setResponse(res);
 
-    if (response.status === "success") {
+    if (res?.status === "success") {
       setShowForm("reset");
       countDown();
     }
@@ -56,11 +56,12 @@ export const ForgetPassword = () => {
             <div className="m-3">
               OTP not received? request otp agin{" "}
               <Button
-                variant="secondary"
+                variant={timer > 0 ? "warning" : "primary"}
                 disabled={timer > 0}
                 onClick={() => handleOnOTPRequest(email)}
+                className="mt-2"
               >
-                Request In {timer}s
+                {timer > 0 ? `Request In ${timer}s` : `Request Again`}
               </Button>
             </div>
           </>

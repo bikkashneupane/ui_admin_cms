@@ -52,17 +52,15 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
       label: "Quantity",
       name: "quantity",
       type: "number",
-      placeholder: "11",
       required: true,
     },
     {
       label: "Category",
-      name: "category",
+      name: "parentCategoryId",
       type: "text",
-      placeholder: "Phone",
       required: true,
       options: category?.map((item) => ({
-        value: item?.slug,
+        value: item?._id,
         text: item?.title?.toUpperCase(),
       })),
     },
@@ -70,33 +68,34 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
       label: "Sales Price",
       name: "salesPrice",
       type: "number",
-      placeholder: "1111",
     },
     {
-      label: "Sales Start",
+      label: "Sales Start Date",
       name: "salesStart",
       type: "date",
-      placeholder: "1111",
     },
     {
-      label: "Sales End",
+      label: "Sales End Date",
       name: "salesEnd",
       type: "date",
-      placeholder: "1111",
     },
     {
       label: "Description",
       name: "description",
       as: "textarea",
       rows: 5,
-      placeholder: "Detailes Description",
+      required: true,
+    },
+    {
+      label: "Thumbnil",
+      name: "thumbnail",
+      type: "url",
       required: true,
     },
     {
       label: "Images",
       name: "images",
       type: "url",
-      placeholder: "Images",
       required: true,
     },
   ];
@@ -123,7 +122,7 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
             key={item.name}
             onChange={handleOnChange}
             {...item}
-            selectedProduct={selectedProduct}
+            defaultValue={selectedProduct?.parentCategoryId}
           />
         ) : (
           <CustomInput
@@ -132,14 +131,6 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
             {...item}
             value={form[item?.name] || ""}
           />
-          // (
-          //   <CustomInput
-          //     onChange={handleOnChange}
-          //     key={item.name}
-          //     {...item}
-          //     value={form[item?.name] || ""}
-          //   />
-          // )
         )
       )}
 
