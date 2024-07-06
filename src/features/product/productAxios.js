@@ -7,6 +7,7 @@ export const getProduct = () =>
   apiProcessor({
     url: productEP,
     method: "GET",
+    isPrivate: true,
   });
 
 // post new product

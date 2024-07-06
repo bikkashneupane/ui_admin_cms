@@ -1,0 +1,10 @@
+.custom-sidenav {
+  text-decoration: none;
+  color: white;
+
+  transition: color 0.3s ease;
+}
+
+.custom-sidenav:hover {
+  color: orange;
+}

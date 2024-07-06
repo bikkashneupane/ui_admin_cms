@@ -4,18 +4,11 @@ import {
   CustomSelect,
 } from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getCategoryAction } from "../../features/category/categoryAction";
+import { useSelector } from "react-redux";
 
 export const AddNewProduct = ({ postProduct }) => {
-  const dispatch = useDispatch();
   const { form, setForm, handleOnChange } = useForm({});
   const { category } = useSelector((state) => state.categoryInfo);
-
-  useEffect(() => {
-    dispatch(getCategoryAction());
-  }, [dispatch]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();

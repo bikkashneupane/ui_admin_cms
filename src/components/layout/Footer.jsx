@@ -6,7 +6,7 @@ export const Footer = () => {
       className="d-flex align-items-center justify-content-center bg-dark text-light"
       style={{ minHeight: "15vh" }}
     >
-      Footer
+      &copy; All rights reserverd 2024 | Made by Bikash 🚀
     </div>
   );
 };

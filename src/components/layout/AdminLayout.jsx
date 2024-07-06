@@ -12,8 +12,10 @@ export const AdminLayout = () => {
           className="left bg-dark text-light px-3"
           style={{ width: "200px" }}
         >
-          <div className="py-3">Admin CMS</div>
-          <hr />
+          <div className="py-3 text-center">
+            Admin CMS
+            <hr />
+          </div>
           <Sidebar />
         </div>
         <div className="right flex-grow-1">

@@ -6,6 +6,7 @@ export const getCategory = () =>
   apiProcessor({
     url: categoryEP,
     method: "GET",
+    isPrivate: true,
   });
 
 // post new category

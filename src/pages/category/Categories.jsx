@@ -1,13 +1,9 @@
 import { Button } from "react-bootstrap";
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
-import { useEffect } from "react";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
-import {
-  getCategoryAction,
-  postCategoryAction,
-} from "../../features/user/category/categoryAction";
+import { postCategoryAction } from "../../features/user/category/categoryAction";
 import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 
@@ -15,10 +11,6 @@ export const Categories = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { show, showModal, hideModal } = useModal();
-
-  useEffect(() => {
-    dispatch(getCategoryAction());
-  }, [dispatch]);
 
   const postCategory = (title) =>
     dispatch(postCategoryAction({ title }, hideModal, navigate));

@@ -45,18 +45,20 @@ export const apiProcessor = async ({
     response = await pending;
     return response.data;
   } catch (error) {
+    console.log(error);
     if (error?.response?.data?.message?.includes("jwt expired")) {
       const accessJWT = await renewAccessJwt();
       if (accessJWT) {
         return await apiProcessor({ url, method, isPrivate, showToast });
       }
-
-      sessionStorage.removeItem("accessJWT");
-      localStorage.removeItem("refreshJWT");
     }
+
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("refreshJWT");
 
     showToast &&
       toast.error(error.response.data.message, { position: "bottom-right" });
+
     return error.response.data;
   }
 };
