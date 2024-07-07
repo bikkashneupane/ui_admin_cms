@@ -12,7 +12,6 @@ export const CustomInput = ({ label, inputRef, ...rest }) => {
 };
 
 export const CustomSelect = ({ label, options, defaultValue, ...rest }) => {
-  console.log(options?.map((item) => item.value));
   return (
     <>
       <Form.Group className="mb-3">

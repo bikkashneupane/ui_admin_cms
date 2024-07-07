@@ -19,9 +19,19 @@ export const ProductTable = () => {
   const { category } = useSelector((state) => state.categoryInfo);
 
   const handleOnEditProduct = (obj) => {
-    console.log(obj);
     dispatch(editProductAction(obj, hideModal, navigate));
   };
+
+  let active = 3;
+  let items = [];
+
+  for (let number = 1; number <= 5; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>
+    );
+  }
 
   return (
     <div>
@@ -48,9 +58,7 @@ export const ProductTable = () => {
             <th>Price</th>
             <th>Quantity</th>
             <th>Category</th>
-            <th>Sales Price</th>
-            <th>Sales Start</th>
-            <th>Sales End</th>
+            <th>Sales </th>
             <th>Description</th>
             <th>Actions</th>
           </tr>
@@ -107,10 +115,16 @@ export const ProductTable = () => {
                       ?.title
                   }
                 </td>
-                <td>{item?.salesPrice ? `$${item?.salesPrice}` : `-`}</td>
-                <td>{item?.salesStart?.slice(0, 10) || `-`}</td>
-                <td>{item?.salesEnd?.slice(0, 10) || `-`}</td>
-                <td>{item?.description?.slice(0, 30)}...</td>
+                <td>
+                  {item?.salesPrice ? `$${item?.salesPrice}` : `-`}
+                  <br />
+                  {item?.salesStart &&
+                    `${item?.salesStart?.slice(
+                      0,
+                      10
+                    )} TO ${item?.salesEnd?.slice(0, 10)}`}
+                </td>
+
                 <td className="d-flex gap-1">
                   <Button
                     variant="warning w-50"
@@ -134,9 +148,8 @@ export const ProductTable = () => {
             ))}
         </tbody>
       </Table>
-      <div className="pagination">
-        <Pagination>1</Pagination>
-        <br />
+      <div>
+        <Pagination>{items}</Pagination>
       </div>
     </div>
   );
