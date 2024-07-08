@@ -7,15 +7,27 @@ import { useForm } from "../../hooks/useForm";
 import { useSelector } from "react-redux";
 
 export const AddNewProduct = ({ postProduct }) => {
-  const { form, setForm, handleOnChange } = useForm({});
+  const { form, setForm, handleOnChange, handleOnImgChange, images } = useForm(
+    {}
+  );
   const { category } = useSelector((state) => state.categoryInfo);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    postProduct({
-      ...form,
-      images: form.images.split(", "),
-    });
+
+    //populate the form data
+    const formData = new FormData();
+    for (let key in form) {
+      formData.append(key, form[key]);
+    }
+
+    if (images?.length > 0) {
+      [...images]?.forEach((item) => {
+        formData.append("images", item);
+      });
+    }
+
+    postProduct(formData);
   };
 
   const inputs = [
@@ -80,16 +92,12 @@ export const AddNewProduct = ({ postProduct }) => {
       required: true,
     },
     {
-      label: "Thumbnail",
-      name: "thumbnail",
-      type: "url",
-      required: true,
-    },
-    {
-      label: "Images",
+      label: "Upload Images",
       name: "images",
-      type: "url",
+      type: "file",
       required: true,
+      multiple: true,
+      accept: ["image/png", "image/jpeg", "image/gif"],
     },
   ];
 
@@ -98,6 +106,12 @@ export const AddNewProduct = ({ postProduct }) => {
       {inputs.map((item) =>
         item.options ? (
           <CustomSelect key={item?.name} onChange={handleOnChange} {...item} />
+        ) : item.type === "file" ? (
+          <CustomInput
+            onChange={handleOnImgChange}
+            key={item?.name}
+            {...item}
+          />
         ) : (
           <CustomInput onChange={handleOnChange} key={item?.name} {...item} />
         )

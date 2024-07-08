@@ -18,6 +18,7 @@ export const CustomSelect = ({ label, options, defaultValue, ...rest }) => {
         {label && <Form.Label>{label}</Form.Label>}
 
         <Form.Select {...rest} defaultValue={defaultValue}>
+          <option>--Select--</option>
           {options?.map((item) => (
             <option key={item?.value} value={item?.value}>
               {item?.text}

@@ -7,8 +7,15 @@ import { getCategoryAction } from "../../features/category/categoryAction";
 
 export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
   const dispatch = useDispatch();
-  const { form, handleOnChange } = useForm(selectedProduct);
+  const { form, handleOnChange, handleOnImgChange } = useForm(selectedProduct);
   const { category } = useSelector((state) => state.categoryInfo);
+
+  const dateFormatter = (value) => {
+    const date = new Date(value);
+    value = date.toISOString().split("T")[0];
+
+    return value;
+  };
 
   useEffect(() => {
     dispatch(getCategoryAction());
@@ -16,6 +23,7 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
     handleOnEditProduct(form);
   };
 
@@ -86,20 +94,17 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
       rows: 5,
       required: true,
     },
-    {
-      label: "Thumbnil",
-      name: "thumbnail",
-      type: "url",
-      required: true,
-    },
-    {
-      label: "Images",
-      name: "images",
-      type: "url",
-      required: true,
-    },
+    // {
+    //   label: "Upload Images",
+    //   name: "images",
+    //   type: "file",
+    //   required: true,
+    //   multiple: true,
+    //   accept: ["image/png", "image/jpeg", "image/gif"],
+    // },
   ];
 
+  console.log(form?.images);
   return (
     <Form className="" onSubmit={handleOnSubmit}>
       <Form.Group>
@@ -124,6 +129,13 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
             {...item}
             defaultValue={selectedProduct?.parentCategoryId}
           />
+        ) : item?.type === "date" ? (
+          <CustomInput
+            onChange={handleOnChange}
+            key={item.name}
+            {...item}
+            value={dateFormatter(form[item?.name]) || ""}
+          />
         ) : (
           <CustomInput
             onChange={handleOnChange}
@@ -134,6 +146,26 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
         )
       )}
 
+      <Form.Group>
+        <Form.Control
+          name="images"
+          type="file"
+          label="Upload Images"
+          required
+          multiple
+          accept="image/png, image/jpeg, image/gif"
+          onChange={handleOnImgChange}
+        />
+      </Form.Group>
+
+      {form?.images?.map((item) => (
+        <img
+          key={item}
+          src={`http://localhost:8000/${item}`}
+          alt="..."
+          style={{ width: "100px" }}
+        />
+      ))}
       <div className="d-grid mt-3">
         <Button type="submit">Edit Product</Button>
       </div>

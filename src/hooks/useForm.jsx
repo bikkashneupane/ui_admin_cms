@@ -6,20 +6,29 @@ const handleOnChange = ({ e, form, setForm }) => {
     value = checked ? "active" : "inactive";
   }
 
-  if (type === "date") {
-    // Format date to 'yyyy-MM-dd'
-    const date = new Date(value);
-    value = date.toISOString().split("T")[0];
-  }
+  // if (type === "date") {
+  //   // Format date to 'yyyy-MM-dd'
+  //   const date = new Date(value);
+  //   value = date.toISOString().split("T")[0];
+  // }
 
   setForm({ ...form, [name]: value });
 };
 
+const handleOnImgChange = ({ e, setImages }) => {
+  const { files } = e.target;
+  setImages(files);
+};
+
 export const useForm = (initialState) => {
   const [form, setForm] = useState(initialState);
+  const [images, setImages] = useState([]);
+
   return {
     form,
+    images,
     setForm,
     handleOnChange: (e) => handleOnChange({ e, form, setForm }),
+    handleOnImgChange: (e) => handleOnImgChange({ e, setImages }),
   };
 };

@@ -59,7 +59,7 @@ export const ProductTable = () => {
             <th>Quantity</th>
             <th>Category</th>
             <th>Sales </th>
-            <th>Description</th>
+            <th>Description </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -99,7 +99,7 @@ export const ProductTable = () => {
                 </td>
                 <td>
                   <img
-                    src={item?.thumbnail}
+                    src={`http://localhost:8000/${item?.thumbnail}`}
                     alt=""
                     style={{ width: "100px" }}
                   />
@@ -125,6 +125,7 @@ export const ProductTable = () => {
                     )} TO ${item?.salesEnd?.slice(0, 10)}`}
                 </td>
 
+                <td>{item?.description?.slice(0, 50)}...</td>
                 <td className="d-flex gap-1">
                   <Button
                     variant="warning w-50"
