@@ -30,20 +30,28 @@ export const EditProduct = ({ selectedProduct, handleOnEditProduct }) => {
 
     // Append form data fields
     for (let key in form) {
-      formData.append(key, form[key] === null ? "" : form[key]);
+      if (key !== "images") {
+        formData.append(key, form[key] === null ? "" : form[key]);
+      }
     }
 
+    console.log(existingImages);
     // append existing images
     [...existingImages]?.forEach((image) => {
-      formData.append("existingImages[]", image);
+      formData.append("images[]", image);
     });
 
     // Append new images
     if (images?.length > 0) {
       [...images]?.forEach((item) => {
-        formData.append("images", item);
+        formData.append("new-images", item);
       });
     }
+
+    // // Read and log FormData
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ": " + pair[1]);
+    // }
 
     handleOnEditProduct(formData);
   };
