@@ -7,27 +7,14 @@ import { Outlet } from "react-router-dom";
 export const AdminLayout = () => {
   return (
     <AuthComponent>
-      <div className="d-flex">
-        <div
-          className="left bg-dark text-light px-3"
-          style={{ width: "200px" }}
-        >
-          <div className="py-3 text-center">
-            Admin CMS
-            <hr />
-          </div>
-          <Sidebar />
-        </div>
-        <div className="right flex-grow-1">
-          <Header />
-
-          <main className="main p-2" style={{ minHeight: "80vh" }}>
-            <Outlet />
-          </main>
-
-          <Footer />
+      <Header />
+      <div className="flex">
+        <Sidebar />
+        <div className="p-2 min-h-[70vh] w-full">
+          <Outlet />
         </div>
       </div>
+      <Footer />
     </AuthComponent>
   );
 };

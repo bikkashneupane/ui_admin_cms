@@ -1,8 +1,6 @@
-import { Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { TbSitemap } from "react-icons/tb";
-import { TbCube } from "react-icons/tb";
+import { TbSitemap, TbCube } from "react-icons/tb";
 import { PiUsersThree } from "react-icons/pi";
 import { FcSalesPerformance } from "react-icons/fc";
 import { FaUserSecret } from "react-icons/fa";
@@ -40,20 +38,25 @@ export const Sidebar = () => {
       to: "admin/reviews",
       icon: <AiOutlineMessage />,
     },
+    {
+      title: "Admins",
+      to: "admin/admins",
+      icon: <FaUserSecret />,
+    },
   ];
 
   return (
-    <Stack gap={3}>
+    <div className="space-y-4 bg-gray-800 text-gray-400 w-20 px-3 md:w-56">
       {inputs.map(({ to, icon, title }) => (
-        <Link key={title} className="p-2 custom-sidenav" to={to}>
-          {icon} &nbsp; {title}
+        <Link
+          key={title}
+          className="flex items-center p-2 rounded-lg tracking-wider hover:bg-gray-700 hover:text-orange-500 transition-colors"
+          to={to}
+        >
+          <span className="text-xl">{icon}</span>
+          <span className="ml-2 hidden md:inline">{title}</span>
         </Link>
       ))}
-
-      <hr />
-      <Link className="p-2  custom-sidenav" to={"admin/admins"}>
-        <FaUserSecret /> &nbsp; Admins
-      </Link>
-    </Stack>
+    </div>
   );
 };

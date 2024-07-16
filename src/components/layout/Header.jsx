@@ -1,41 +1,86 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUserAction } from "../../features/user/userAction";
 import { Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 export const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userInfo);
+  const [showProfile, setShowProfile] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleOnLogout = () => {
+    dispatch(logoutUserAction());
+    setShowProfile(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowProfile(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showProfile) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showProfile]);
 
   return (
-    <Navbar expand="md" className="bg-dark" variant="dark">
-      <Container>
-        {/* <Navbar.Brand href="#home">Online Store</Navbar.Brand> */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <NavDropdown title={<FaUserAlt />}>
-              {user?._id ? (
-                <NavDropdown.Item onClick={() => dispatch(logoutUserAction())}>
-                  Logout
-                </NavDropdown.Item>
-              ) : (
-                <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
-              )}
+    <>
+      <nav className="bg-gray-800 text-gray-300 shadow-md">
+        <div className="container mx-auto flex justify-between items-center px-4 py-4">
+          <div className="text-lg font-bold tracking-widest font-mono px-2">
+            Admin CMS
+          </div>
 
-              <NavDropdown.Divider />
+          <div className="relative flex items-center" ref={dropdownRef}>
+            <button
+              className="flex items-center focus:outline-none hover:text-orange-500"
+              onClick={() => setShowProfile(!showProfile)}
+            >
+              <FaUserAlt className="text-xl" />
+            </button>
 
-              <NavDropdown.Item as={Link} to={"/admin/profile"}>
-                Profile
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+            {showProfile && (
+              <div className="absolute top-3 right-0 mt-3 w-48 bg-gray-200 text-gray-800 rounded-lg shadow-lg z-10">
+                <div className="py-2">
+                  {user?._id ? (
+                    <button
+                      className="block px-4 py-2 text-sm w-full text-left hover:bg-gray-200 hover:text-orange-500"
+                      onClick={handleOnLogout}
+                    >
+                      Logout
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-orange-500"
+                      onClick={() => setShowProfile(false)}
+                    >
+                      Login
+                    </Link>
+                  )}
+                  <hr className="border-gray-200" />
+                  <Link
+                    to="/admin/profile"
+                    className="block px-4 py-2 text-sm hover:bg-gray-200 hover:text-orange-500"
+                    onClick={() => setShowProfile(false)}
+                  >
+                    Profile
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
