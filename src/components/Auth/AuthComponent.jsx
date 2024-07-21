@@ -1,10 +1,12 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const AuthComponent = ({ children }) => {
   const { user } = useSelector((state) => state.userInfo);
-  // const navigate = useNavigate()
+
+  // if (!user?._id) {
+  //   return <div>Loading...</div>;
+  // }
 
   return user?._id ? children : <Navigate to={"/"} />;
 };

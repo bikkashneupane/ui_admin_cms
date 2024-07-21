@@ -7,14 +7,16 @@ import { Outlet } from "react-router-dom";
 export const AdminLayout = () => {
   return (
     <AuthComponent>
-      <Header />
       <div className="flex">
         <Sidebar />
-        <div className="p-2 min-h-[70vh] w-full">
-          <Outlet />
+        <div className="w-full">
+          <Header />
+          <div className="p-2 min-h-[85vh] bg-gray-200 ml-16 md:ml-52">
+            <Outlet />
+          </div>
+          <Footer />
         </div>
       </div>
-      <Footer />
     </AuthComponent>
   );
 };

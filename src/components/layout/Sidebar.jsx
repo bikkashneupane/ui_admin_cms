@@ -46,17 +46,35 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="space-y-4 bg-gray-800 text-gray-400 w-20 px-3 md:w-56">
-      {inputs.map(({ to, icon, title }) => (
+    <div className="bg-gray-800 text-gray-400 px-3 w-16 md:min-w-52 pt-8 fixed top-0 min-h-screen">
+      <div className="h-full">
+        <div className="pb-10 text-center hidden md:block text-lg font-semibold">
+          ADMIN CMS
+        </div>
+
+        <div className="space-y-4">
+          <hr />
+          {inputs.map(({ to, icon, title }) => (
+            <Link
+              key={title}
+              className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3"
+              to={to}
+            >
+              <span className="text-xl">{icon}</span>
+              <span className="hidden md:inline">{title}</span>
+            </Link>
+          ))}
+        </div>
         <Link
-          key={title}
-          className="flex items-center p-2 rounded-lg tracking-wider hover:bg-gray-700 hover:text-orange-500 transition-colors"
-          to={to}
+          className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 mt-20"
+          to={"/admin/profile"}
         >
-          <span className="text-xl">{icon}</span>
-          <span className="ml-2 hidden md:inline">{title}</span>
+          <span className="text-xl">
+            <FaUserSecret />
+          </span>
+          <span className="hidden md:inline">Profile</span>
         </Link>
-      ))}
+      </div>
     </div>
   );
 };

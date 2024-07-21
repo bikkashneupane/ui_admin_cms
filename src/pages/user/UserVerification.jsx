@@ -26,23 +26,24 @@ export const UserVerification = () => {
   }, [c, e]);
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-light">
-      <div className="d-flex flex-column align-items-center">
-        <div className="mt-4">
-          {response?.message ? (
-            <Alert
-              className={response?.status === "success" ? "success" : "danger"}
-            >
-              {response?.message}
-            </Alert>
-          ) : (
-            <>
-              <Spinner variant="warning" className="fs-1" />
-              Please wait while we are verifying your link
-            </>
-          )}
-        </div>
-      </div>
-    </div>
+    // <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-light">
+    //   <div className="d-flex flex-column align-items-center">
+    //     <div className="mt-4">
+    //       {response?.message ? (
+    //         <Alert
+    //           className={response?.status === "success" ? "success" : "danger"}
+    //         >
+    //           {response?.message}
+    //         </Alert>
+    //       ) : (
+    //         <>
+    //           <Spinner variant="warning" className="fs-1" />
+    //           Please wait while we are verifying your link
+    //         </>
+    //       )}
+    //     </div>
+    //   </div>
+    // </div>
+    <>Cj</>
   );
 };

@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../common/custom-input/CustomInput";
 
 export const ResetPassword = ({ handleOnPasswordReset }) => {
@@ -48,15 +47,15 @@ export const ResetPassword = ({ handleOnPasswordReset }) => {
   ];
 
   return (
-    <Form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
+    <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
       <h3 className="text-center">Reset Password</h3>
       <hr />
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}
-      <Button className="w-100 mt-2" variant="primary" type="submit">
+      <button className="w-100 mt-2" type="submit">
         Reset Password
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };

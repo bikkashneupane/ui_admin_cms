@@ -34,11 +34,9 @@ export const Header = () => {
 
   return (
     <>
-      <nav className="bg-gray-800 text-gray-300 shadow-md">
+      <nav className="bg-gray-200 text-gray-700 shadow-md min-h-[5vh]">
         <div className="container mx-auto flex justify-between items-center px-4 py-4">
-          <div className="text-lg font-bold tracking-widest font-mono px-2">
-            Admin CMS
-          </div>
+          <div className="text-lg font-bold tracking-widest font-mono px-2"></div>
 
           <div className="relative flex items-center" ref={dropdownRef}>
             <button

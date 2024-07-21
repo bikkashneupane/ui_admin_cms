@@ -1,5 +1,3 @@
-import React from "react";
-import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
 import { createUserAction } from "../../features/user/userAction";
@@ -74,15 +72,15 @@ export const Register = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 ">
       <div className="" style={{ width: "450px" }}>
-        <Form className="shadow-lg p-4 rounded " onSubmit={handleOnSubmit}>
+        <form className="shadow-lg p-4 rounded " onSubmit={handleOnSubmit}>
           <h3 className="text-center">Admin Registeration</h3>
           {inputs.map((item) => (
             <CustomInput key={item.name} {...item} onChange={handleOnChange} />
           ))}
-          <Button className="w-100 mt-2" variant="primary" type="submit">
+          <button className="w-100 mt-2" type="submit">
             Register New Admin
-          </Button>
-        </Form>
+          </button>
+        </form>
       </div>
     </div>
   );

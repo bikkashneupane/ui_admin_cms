@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
 
 export const AddNewCategory = ({ postCategory }) => {
@@ -27,13 +26,16 @@ export const AddNewCategory = ({ postCategory }) => {
   ];
 
   return (
-    <Form className="shadow-lg p-4 pt-0" onSubmit={handleOnSubmit}>
+    <form className="shadow-lg p-4 pt-0" onSubmit={handleOnSubmit}>
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}
-      <Button className="w-100 mt-2" variant="primary" type="submit">
+      <button
+        className="w-100 mt-2 bg-teal-600 text-gray-100 py-2 rounded-lg"
+        type="submit"
+      >
         Submit
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };

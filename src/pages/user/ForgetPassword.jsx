@@ -2,7 +2,6 @@ import { useState } from "react";
 import { RequestOTP } from "../../components/password-reset/RequestOTP";
 import { ResetPassword } from "../../components/password-reset/ResetPassword";
 import { requestOTP, resetPasswordAxios } from "../../features/user/userAxios";
-import { Alert, Button } from "react-bootstrap";
 
 export const ForgetPassword = () => {
   const [showForm, setShowForm] = useState("otp");
@@ -47,11 +46,11 @@ export const ForgetPassword = () => {
       <div className="bg-light p-3 rounded" style={{ width: "450px" }}>
         {response?.message && (
           <>
-            <Alert
-              variant={response?.status === "success" ? "success" : "danger"}
+            <alert
+              className={response?.status === "success" ? "success" : "danger"}
             >
               {response?.message}
-            </Alert>
+            </alert>
 
             <div className="m-3">
               OTP not received? request otp agin{" "}
