@@ -1,4 +1,3 @@
-import { Button, Form } from "react-bootstrap";
 import {
   CustomInput,
   CustomSelect,
@@ -102,7 +101,7 @@ export const AddNewProduct = ({ postProduct }) => {
   ];
 
   return (
-    <Form className="shadow-lg p-4 pt-0" onSubmit={handleOnSubmit}>
+    <form className="shadow-md rounded-lg p-4" onSubmit={handleOnSubmit}>
       {inputs.map((item) =>
         item.options ? (
           <CustomSelect key={item?.name} onChange={handleOnChange} {...item} />
@@ -116,9 +115,12 @@ export const AddNewProduct = ({ postProduct }) => {
           <CustomInput onChange={handleOnChange} key={item?.name} {...item} />
         )
       )}
-      <Button className="w-100 mt-2" variant="primary" type="submit">
+      <button
+        className="w-full mt-2 bg-teal-600 text-white font-semibold py-2 rounded-md shadow-md"
+        type="submit"
+      >
         Submit
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };

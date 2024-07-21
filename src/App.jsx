@@ -34,10 +34,10 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/verify-user" element={<UserVerification />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/admin/new" element={<Register />} />
 
         {/* private path */}
         <Route path="/" element={<AdminLayout />}>
-          <Route path="admin/new" element={<Register />} />
           <Route path="admin/dashboard" element={<Dashboard />} />
           <Route path="admin/categories" element={<Categories />} />
           <Route path="admin/products" element={<Products />} />

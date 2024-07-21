@@ -1,4 +1,3 @@
-import { Button, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { EditCategory } from "../form/EditCategory";
 import { useModal } from "../../hooks/useModal";
@@ -22,7 +21,7 @@ export const CategoryTable = () => {
   };
 
   return (
-    <div>
+    <div className="">
       {show && (
         <CustomModal title={"Edit Category"} show={show} hideModal={hideModal}>
           <EditCategory
@@ -32,76 +31,90 @@ export const CategoryTable = () => {
         </CustomModal>
       )}
 
-      <div>{category?.length || 0} Categories found</div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Status</th>
-            <th>Title</th>
-            <th>Slug</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {category &&
-            category.map((item, i) => (
-              <tr key={item?._id}>
-                <td>{i + 1}</td>
-                <td
-                  className={
-                    item?.status === "success"
-                      ? "text-success fw-bold"
-                      : "text-danger fw-bold"
-                  }
-                >
-                  <Form.Group>
-                    <Form.Check
-                      name="status"
-                      type="switch"
-                      id="custom-switch"
-                      checked={item?.status === "active"}
-                      label={item?.status?.toUpperCase()}
-                      onChange={() => {
-                        handleOnEditCategory({
-                          ...item,
-                          status:
-                            item?.status === "active" ? "inactive" : "active",
-                        });
+      <div className="mb-4 text-gray-700">
+        {category?.length || 0} Categories found
+      </div>
+
+      <div className="overflow-x-scroll">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+          <thead>
+            <tr className="bg-gray-100 border-b border-gray-200">
+              <th className="py-2 px-4 text-left">#</th>
+              <th className="py-2 px-4 text-left">Status</th>
+              <th className="py-2 px-4 text-left">Title</th>
+              <th className="py-2 px-4 text-left">Slug</th>
+              <th className="py-2 px-4 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {category &&
+              category.map((item, i) => (
+                <tr key={item?._id} className="border-b border-gray-200">
+                  <td className="py-2 px-4">{i + 1}</td>
+                  <td
+                    className={`py-2 px-4 ${
+                      item?.status === "active"
+                        ? "text-green-600 font-bold"
+                        : "text-red-600 font-bold"
+                    }`}
+                  >
+                    <label className="inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={item?.status === "active"}
+                        onChange={() => {
+                          handleOnEditCategory({
+                            ...item,
+                            status:
+                              item?.status === "active" ? "inactive" : "active",
+                          });
+                        }}
+                        className="sr-only"
+                      />
+                      <span
+                        className={`relative inline-block w-12 h-4 rounded-full ${
+                          item?.status === "active"
+                            ? "bg-green-600"
+                            : "bg-red-400"
+                        }`}
+                      >
+                        <span
+                          className={`absolute left-0 top-0 w-6 h-4 transform rounded-full transition-transform ${
+                            item?.status === "active" ? "translate-x-6" : ""
+                          } bg-gray-100 border`}
+                        ></span>
+                      </span>
+                      <span className="ml-3">
+                        {item?.status?.toUpperCase()}
+                      </span>
+                    </label>
+                  </td>
+                  <td className="py-2 px-4">{item?.title}</td>
+                  <td className="py-2 px-4">{item?.slug}</td>
+                  <td className="py-2 px-4 flex gap-2">
+                    <button
+                      className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-yellow-600 transition"
+                      onClick={() => {
+                        setSelectedCategory(item);
+                        showModal();
                       }}
-                      className={
-                        item?.status === "active"
-                          ? "text-success mb-3"
-                          : "text-danger mb-3"
-                      }
-                    />
-                  </Form.Group>
-                </td>
-                <td>{item?.title}</td>
-                <td>{item?.slug}</td>
-                <td className="d-flex gap-1">
-                  <Button
-                    variant="warning w-50"
-                    onClick={() => {
-                      setSelectedCategory(item);
-                      showModal();
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="danger w-50"
-                    onClick={() => {
-                      dispatch(deleteCategoryAction(item?._id));
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
+                      onClick={() => {
+                        dispatch(deleteCategoryAction(item?._id));
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

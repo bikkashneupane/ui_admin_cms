@@ -48,12 +48,15 @@ export const ResetPassword = ({ handleOnPasswordReset }) => {
 
   return (
     <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
-      <h3 className="text-center">Reset Password</h3>
-      <hr />
+      <h3 className="text-center pb-2">Reset Password</h3>
+      <hr className="mb-4" />
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}
-      <button className="w-100 mt-2" type="submit">
+      <button
+        className="w-100 mt-2 bg-teal-600 text-white py-2 rounded-md shadow-lg"
+        type="submit"
+      >
         Reset Password
       </button>
     </form>

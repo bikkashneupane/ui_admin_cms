@@ -30,7 +30,7 @@ export const ForgetPassword = () => {
   const countDown = () => {
     const cd = setInterval(() => {
       setTimer((prevTimer) => {
-        prevTimer === 1 && clearInterval(cd);
+        if (prevTimer === 1) clearInterval(cd);
         return prevTimer - 1;
       });
     }, 1000);
@@ -42,34 +42,43 @@ export const ForgetPassword = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100  bg-dark">
-      <div className="bg-light p-3 rounded" style={{ width: "450px" }}>
+    <div className="flex justify-center items-center min-h-screen bg-gray-800">
+      <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
         {response?.message && (
           <>
-            <alert
-              className={response?.status === "success" ? "success" : "danger"}
+            <div
+              className={`p-4 mb-4 rounded ${
+                response?.status === "success"
+                  ? "bg-green-100 text-green-700"
+                  : "bg-red-100 text-red-700"
+              }`}
             >
               {response?.message}
-            </alert>
+            </div>
 
-            <div className="m-3">
-              OTP not received? request otp agin{" "}
-              <Button
-                variant={timer > 0 ? "warning" : "primary"}
+            <div className="mt-3 text-center">
+              OTP Not Received? Request OTP again
+              <button
+                className={`mt-2 mb-4 px-4 py-2 rounded ${
+                  timer > 0
+                    ? "bg-yellow-500 text-white"
+                    : "bg-teal-500 text-white"
+                }`}
                 disabled={timer > 0}
                 onClick={() => handleOnOTPRequest(email)}
-                className="mt-2"
               >
                 {timer > 0 ? `Request In ${timer}s` : `Request Again`}
-              </Button>
+              </button>
             </div>
           </>
         )}
 
         {forms[showForm]}
 
-        <div className="text-end mt-3">
-          <a href="/">Login Now</a>
+        <div className="text-right mt-3">
+          <a href="/" className="text-blue-600 hover:underline">
+            Login Now
+          </a>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export const AddNewCategory = ({ postCategory }) => {
   ];
 
   return (
-    <form className="shadow-lg p-4 pt-0" onSubmit={handleOnSubmit}>
+    <form className="shadow-md px-4 py-8 rounded-lg" onSubmit={handleOnSubmit}>
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}

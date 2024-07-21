@@ -1,4 +1,3 @@
-import { Button, Form } from "react-bootstrap";
 import {
   CustomInput,
   CustomSelect,
@@ -14,25 +13,6 @@ export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
   };
 
   const inputs = [
-    // {
-    //   label: "Status",
-    //   name: "status",
-    //   type: "text",
-    //   required: true,
-    //   options: [
-    //     {
-    //       value: "active",
-    //       text: "Active",
-    //       selected: form.status === "active",
-    //     },
-    //     {
-    //       value: "inactive",
-    //       text: "Inactive",
-    //       selected: form.status === "inactive",
-    //     },
-    //   ],
-    // },
-
     {
       label: "Title",
       name: "title",
@@ -52,35 +32,51 @@ export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
   ];
 
   return (
-    <Form className="" onSubmit={handleOnSubmit}>
-      <Form.Group>
-        <Form.Check
-          name="status"
-          type="switch"
-          id="custom-switch"
-          checked={form?.status === "active"}
-          label={form?.status?.toUpperCase()}
-          onChange={handleOnChange}
-          className={
-            form?.status === "active" ? "text-success mb-3" : "text-danger mb-3"
-          }
-        />
-      </Form.Group>
-
-      {inputs.map(
-        (item) => (
-          <CustomInput onChange={handleOnChange} key={item.name} {...item} />
-        )
-        // item.options ? (
-        //   <CustomSelect key={item.name} onChange={handleOnChange} {...item} />
-        // ) : (
-        //   <CustomInput onChange={handleOnChange} key={item.name} {...item} />
-        // )
-      )}
-
-      <div className="d-grid mt-3">
-        <Button type="submit">Edit Category</Button>
+    <form className="space-y-4" onSubmit={handleOnSubmit}>
+      <div className="flex items-center mb-4">
+        <label
+          htmlFor="status"
+          className={`flex items-center cursor-pointer ${
+            form?.status === "active" ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          <input
+            type="checkbox"
+            id="status"
+            name="status"
+            checked={form?.status === "active"}
+            onChange={handleOnChange}
+            className="sr-only"
+          />
+          <span
+            className={`relative inline-block w-16 h-6 rounded-full ${
+              form?.status === "active" ? "bg-green-600" : "bg-red-600"
+            }`}
+          >
+            <span
+              className={`absolute left-0 top-0 inline-block w-8 h-6 transform rounded-full transition-transform ${
+                form?.status === "active" ? "translate-x-8" : ""
+              } bg-gray-100`}
+            ></span>
+          </span>
+          <span className="ml-3 font-semibold">
+            {form?.status?.toUpperCase()}
+          </span>
+        </label>
       </div>
-    </Form>
+
+      {inputs.map((item) => (
+        <CustomInput key={item.name} onChange={handleOnChange} {...item} />
+      ))}
+
+      <div className="mt-4">
+        <button
+          type="submit"
+          className="w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-700 transition"
+        >
+          Edit Category
+        </button>
+      </div>
+    </form>
   );
 };

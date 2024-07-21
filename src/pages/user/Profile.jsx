@@ -59,7 +59,7 @@ export const Profile = () => {
             <CustomInput key={item.name} {...item} />
           ))}
           <button
-            className="w-100 mt-2 bg-gray-900 text-white py-3 rounded-lg "
+            className="w-100 mt-2 bg-teal-600 text-white py-3 rounded-lg "
             type="submit"
           >
             Update Profile
@@ -68,7 +68,6 @@ export const Profile = () => {
           <div className="mt-3 text-end">
             Forget Password?
             <Link to={"/forget-password"}>
-              {" "}
               <span className="font-medium text-teal-700">Reset Password!</span>
             </Link>
           </div>

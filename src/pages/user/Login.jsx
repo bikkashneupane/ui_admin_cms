@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Button, Form } from "react-bootstrap";
 import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { loginUserAction } from "../../features/user/userAction";
 import { toast } from "react-toastify";
@@ -53,20 +52,23 @@ export const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
       <div className="bg-light rounded" style={{ width: "450px" }}>
-        <Form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
+        <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
           <h3 className="text-center">Admin Login</h3>
           {inputs.map((item) => (
             <CustomInput key={item.name} {...item} />
           ))}
-          <Button className="w-100 mt-2" variant="primary" type="submit">
+          <button
+            className="w-100 mt-2 py-2 bg-teal-600 text-white rounded-md shadow-2xl"
+            type="submit"
+          >
             Login
-          </Button>
+          </button>
 
           <div className="mt-3 text-end">
             Forget Password?
             <Link to={"/forget-password"}> Reset Password!</Link>
           </div>
-        </Form>
+        </form>
       </div>
     </div>
   );

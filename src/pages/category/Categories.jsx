@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
@@ -16,18 +15,16 @@ export const Categories = () => {
     dispatch(postCategoryAction({ title }, hideModal, navigate));
 
   return (
-    <div>
-      <h2>Categories</h2>
-      <hr />
-      <div className="text-end mb-3">
-        <Button
-          className="btn-primary"
-          onClick={() => {
-            showModal();
-          }}
+    <div className="px-1">
+      <h2 className="text-2xl font-bold mb-2">Categories</h2>
+      <hr className="mb-2" />
+      <div className="text-right my-2">
+        <button
+          className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
+          onClick={showModal}
         >
           Add New Category
-        </Button>
+        </button>
       </div>
 
       <CategoryTable />
