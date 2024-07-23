@@ -96,7 +96,7 @@ export const AddNewProduct = ({ postProduct }) => {
       type: "file",
       required: true,
       multiple: true,
-      accept: ["image/png", "image/jpeg", "image/gif"],
+      accept: ["image/png", "image/jpeg", "image/gif", "image/webp"],
     },
   ];
 

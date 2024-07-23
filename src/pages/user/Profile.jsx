@@ -68,7 +68,9 @@ export const Profile = () => {
           <div className="mt-3 text-end">
             Forget Password?
             <Link to={"/forget-password"}>
-              <span className="font-medium text-teal-700">Reset Password!</span>
+              <span className="font-medium text-teal-700">
+                &nbsp;Reset Password!
+              </span>
             </Link>
           </div>
         </div>

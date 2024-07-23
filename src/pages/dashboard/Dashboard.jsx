@@ -11,6 +11,8 @@ export const Dashboard = () => {
 
   return (
     <div>
+      <h2 className="text-2xl font-bold mb-2">Dashboard</h2>
+      <hr className="mb-2" />
       Dashboard Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
       officia alias doloremque assumenda earum quasi culpa explicabo nulla.
       Illo, explicabo accusamus. Ab fugit consectetur omnis aut id consequuntur
@@ -116,7 +118,46 @@ export const Dashboard = () => {
       facilis quibusdam pariatur maiores voluptas est veritatis assumenda
       repudiandae, itaque nemo porro mollitia quasi quisquam earum nihil. Eius
       est porro dolorum quis velit ut, sunt voluptates dignissimos eos
-      laboriosam, facilis molestias ipsum corrupti nam dolor similique.
+      laboriosam, facilis molestias ipsum corrupti nam dolor similique. Lorem
+      ipsum, dolor sit amet consectetur adipisicing elit. Ullam deserunt
+      doloribus impedit consequatur tempora debitis perferendis, minus eos eaque
+      animi enim voluptatum recusandae delectus rerum aut suscipit maiores
+      explicabo facere, autem pariatur asperiores molestiae esse. Illum, fugit
+      rerum consequatur, maiores reiciendis magni dicta expedita iste earum est
+      provident, debitis incidunt? Quos ratione eveniet animi necessitatibus
+      eligendi? In quidem ad tempore debitis sit illo perferendis officiis
+      commodi voluptatum. Eum, a doloribus? Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. At suscipit necessitatibus dolor vitae
+      corporis repudiandae. Debitis harum blanditiis quidem corrupti nemo totam
+      aliquam nihil culpa, soluta veritatis accusantium cupiditate ullam minima
+      obcaecati illo consequatur at quisquam! Fugiat pariatur assumenda quis ex
+      expedita, fugit illum porro quasi, ducimus praesentium quia ipsam totam et
+      doloribus ipsa quaerat repellat. Deserunt error, ipsam expedita nisi, a
+      cupiditate sit architecto ab quo nostrum cum culpa magni non incidunt
+      accusamus dolorem rerum pariatur harum mollitia aspernatur numquam amet
+      consectetur exercitationem! Expedita dolorum a voluptatibus aperiam ipsa
+      totam obcaecati non eaque cupiditate! Commodi assumenda omnis magni
+      quaerat minus eius labore vitae unde modi officiis aperiam aut error
+      atque, itaque eum fugit debitis sed tempore magnam voluptate vero maxime
+      dolore! Aliquam reiciendis perspiciatis dicta, magni, amet magnam
+      repudiandae nemo eligendi totam molestiae obcaecati quisquam voluptates
+      expedita! Pariatur nulla sint esse quos alias. Cumque autem tempora,
+      numquam eveniet voluptate deleniti qui eum ullam ab assumenda dicta, porro
+      repellat velit consectetur beatae molestias provident eius rerum,
+      perspiciatis ex cum iure ipsam debitis. Accusamus, labore quam similique
+      nisi vero quos explicabo sequi consequuntur. Sequi libero eius optio sunt
+      consequatur ad voluptatum sit explicabo laborum! Magni officiis possimus,
+      dolores quae maiores, accusantium laborum eos eum in cum, id quia enim
+      perspiciatis reiciendis voluptatibus libero est atque sequi culpa
+      laboriosam? Earum id doloribus rerum nihil et veritatis quaerat ullam
+      tenetur sequi quia. Veritatis, corporis eaque id in facilis, laborum nihil
+      ab suscipit exercitationem illo, non quae adipisci a earum ut saepe
+      deleniti dicta provident. Quisquam, repellat, illum odit esse architecto
+      hic similique excepturi eveniet ullam nobis perferendis. Ratione autem
+      accusamus molestiae ad! Tenetur vitae mollitia omnis magni sunt animi illo
+      repellendus fugiat officiis provident ipsam quae, odio cumque aperiam
+      facilis est fuga doloribus quos pariatur. Tempore dolorum blanditiis autem
+      sapiente earum tenetur quos.
     </div>
   );
 };

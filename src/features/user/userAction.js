@@ -12,6 +12,8 @@ import { setUser } from "./userSlice";
 export const fetchUserAction = () => async (dispatch) => {
   const { status, user } = await fetchUserProfile();
   status === "success" && dispatch(setUser(user));
+
+  // get al users and update the store
 };
 
 // sign user action

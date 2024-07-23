@@ -75,8 +75,8 @@ export const ForgetPassword = () => {
 
         {forms[showForm]}
 
-        <div className="text-right mt-3">
-          <a href="/" className="text-blue-600 hover:underline">
+        <div className="text-right mt-3 pe-1">
+          <a href="/" className="text-teal-600 hover:underline">
             Login Now
           </a>
         </div>

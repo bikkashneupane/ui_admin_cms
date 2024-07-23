@@ -10,7 +10,7 @@ export const AdminLayout = () => {
       <div className="flex">
         <Sidebar />
         <div className="w-full">
-          <Header />
+          {/* <Header /> */}
           <div className="p-2 min-h-[85vh] bg-gray-200 ml-16 md:ml-52">
             <Outlet />
           </div>
