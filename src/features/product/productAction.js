@@ -22,16 +22,14 @@ export const postProductAction =
     }
   };
 
-export const editProductAction =
-  (obj, hideModal, navigate) => async (dispatch) => {
-    const { status } = await editProduct(obj);
+export const editProductAction = (obj, navigate) => async (dispatch) => {
+  const { status } = await editProduct(obj);
 
-    if (status === "success") {
-      dispatch(getProductAction());
-      hideModal();
-      navigate("/admin/products");
-    }
-  };
+  if (status === "success") {
+    dispatch(getProductAction());
+    navigate("/admin/products");
+  }
+};
 
 export const deleteProductAction = (_id) => async (dispatch) => {
   const { status } = await deleteProduct(_id);

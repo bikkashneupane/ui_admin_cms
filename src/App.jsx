@@ -19,6 +19,8 @@ import { useEffect } from "react";
 import { autoLoginAction } from "./features/user/userAction";
 import { ForgetPassword } from "./pages/user/ForgetPassword";
 import { AdminLayout } from "./components/layout/AdminLayout";
+import { EditProduct } from "./pages/product/EditProduct";
+import { AddNewProduct } from "./pages/product/AddNewProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,8 @@ function App() {
           <Route path="admin/dashboard" element={<Dashboard />} />
           <Route path="admin/categories" element={<Categories />} />
           <Route path="admin/products" element={<Products />} />
+          <Route path="admin/products/add" element={<AddNewProduct />} />
+          <Route path="admin/products/edit" element={<EditProduct />} />
           <Route path="admin/orders" element={<Orders />} />
           <Route path="admin/reviews" element={<Reviews />} />
           <Route path="admin/users" element={<Users />} />

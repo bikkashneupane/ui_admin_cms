@@ -72,14 +72,14 @@ export const CategoryTable = () => {
                         className="sr-only"
                       />
                       <span
-                        className={`relative inline-block w-12 h-4 rounded-full ${
+                        className={`relative inline-block w-12 h-6 rounded-full ${
                           item?.status === "active"
                             ? "bg-green-600"
                             : "bg-red-400"
                         }`}
                       >
                         <span
-                          className={`absolute left-0 top-0 w-6 h-4 transform rounded-full transition-transform ${
+                          className={`absolute left-0 top-0 w-6 h-6 transform rounded-full transition-transform ${
                             item?.status === "active" ? "translate-x-6" : ""
                           } bg-gray-100 border`}
                         ></span>

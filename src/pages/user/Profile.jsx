@@ -53,8 +53,8 @@ export const Profile = () => {
   return (
     <div className="flex justify-center items-center my-20">
       <div className="rounded w-full max-w-lg">
-        <div className="shadow-lg p-4">
-          <h3 className="text-center">Update User Profile</h3>
+        <form className="shadow-lg p-4 bg-white rounded-md">
+          <h3 className="text-center mb-4 font-bold">Update User Profile</h3>
           {inputs.map((item) => (
             <CustomInput key={item.name} {...item} />
           ))}
@@ -73,7 +73,7 @@ export const Profile = () => {
               </span>
             </Link>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
