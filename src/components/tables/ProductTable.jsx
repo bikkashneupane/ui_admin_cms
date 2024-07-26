@@ -12,6 +12,8 @@ export const ProductTable = () => {
   const { product } = useSelector((state) => state.productInfo);
   const { category } = useSelector((state) => state.categoryInfo);
 
+  console.log(product);
+
   const handleStatusChange = (obj) => {
     dispatch(editProductAction(obj, navigate));
   };
@@ -55,7 +57,7 @@ export const ProductTable = () => {
               <th className="px-4 py-2 border-b">Price</th>
               <th className="px-4 py-2 border-b">Quantity</th>
               <th className="px-4 py-2 border-b">Category</th>
-              <th className="px-4 py-2 border-b">Sales</th>
+              <th className="px-4 py-2 border-b min-w-80">Sales</th>
               <th className="px-4 py-2 border-b">Description</th>
               <th className="px-4 py-2 border-b">Actions</th>
             </tr>
@@ -112,13 +114,15 @@ export const ProductTable = () => {
                     }
                   </td>
                   <td className="px-4 py-2">
-                    {item?.salesPrice ? `$${item?.salesPrice}` : `-`}
+                    {item?.sales?.salesPrice
+                      ? `$${item?.sales?.salesPrice}`
+                      : `-`}
                     <br />
-                    {item?.salesStart &&
-                      `${item?.salesStart?.slice(
+                    {item?.sales?.salesStart &&
+                      `${item?.sales?.salesStart?.slice(
                         0,
                         10
-                      )} TO ${item?.salesEnd?.slice(0, 10)}`}
+                      )} TO ${item?.sales?.salesEnd?.slice(0, 10)}`}
                   </td>
                   <td className="px-4 py-2">
                     {item?.description?.slice(0, 50)}...

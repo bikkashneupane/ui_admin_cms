@@ -16,16 +16,28 @@ export const EditProduct = () => {
   const { category } = useSelector((state) => state.categoryInfo);
   const { selectedProduct } = useSelector((state) => state.productInfo);
 
-  const [existingImages, setExistingImages] = useState(selectedProduct?.images);
+  const [existingImages, setExistingImages] = useState(
+    selectedProduct?.images || []
+  );
   const [newImages, setNewImages] = useState([]);
   const [fileCount, setFileCount] = useState(0); // State to track the number of files
-  const { form, handleOnChange, handleOnImgChange } = useForm(
-    selectedProduct || {}
-  );
+  const { form, handleOnChange, setForm } = useForm(selectedProduct || {});
 
   useEffect(() => {
     dispatch(getCategoryAction());
-  }, [dispatch]);
+    if (selectedProduct) {
+      setForm(({ sales, ...prevForm }) => ({
+        ...prevForm,
+        salesPrice: selectedProduct.sales?.salesPrice || "",
+        salesStart: selectedProduct.sales?.salesStart
+          ? dateFormatter(selectedProduct.sales.salesStart)
+          : "",
+        salesEnd: selectedProduct.sales?.salesEnd
+          ? dateFormatter(selectedProduct.sales.salesEnd)
+          : "",
+      }));
+    }
+  }, [dispatch, selectedProduct, setForm]);
 
   const handleOnEditProduct = (obj) => {
     dispatch(editProductAction(obj, navigate));
@@ -33,6 +45,7 @@ export const EditProduct = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    console.log(form);
 
     const formData = new FormData();
     // Append form data fields
@@ -43,16 +56,14 @@ export const EditProduct = () => {
     }
 
     // Append existing images
-    [...existingImages]?.forEach((image) => {
+    existingImages.forEach((image) => {
       formData.append("images[]", image);
     });
 
     // Append new images
-    if (newImages?.length > 0) {
-      [...newImages]?.forEach((item) => {
-        formData.append("new-images", item);
-      });
-    }
+    newImages.forEach((item) => {
+      formData.append("new-images", item);
+    });
 
     handleOnEditProduct(formData);
   };
@@ -187,7 +198,7 @@ export const EditProduct = () => {
               onChange={handleOnChange}
               key={item.name}
               {...item}
-              defaultValue={dateFormatter(form[item.name]) || ""}
+              defaultValue={form[item.name] || ""}
             />
           ) : (
             <CustomInput
@@ -211,7 +222,7 @@ export const EditProduct = () => {
             name="new-images"
             type="file"
             multiple
-            accept="image/png, image/jpeg, image/gif"
+            accept="image/png, image/jpeg, image/gif, image/webp"
             onChange={handleNewImagesChange}
             className="hidden"
           />
@@ -237,7 +248,7 @@ export const EditProduct = () => {
           {newImages.length > 0 && (
             <div className="bg-purple-500 min-h-10px min-w-1"></div>
           )}
-          {newImages?.map((item, index) => (
+          {newImages.map((item, index) => (
             <div key={index} className="relative flex flex-col gap-1 m-3">
               <img
                 src={URL.createObjectURL(item)}

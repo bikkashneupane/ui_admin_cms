@@ -162,7 +162,7 @@ export const AddNewProduct = () => {
               <button
                 type="button"
                 onClick={() => handleRemoveImage(index)}
-                className="px-2 py-1 text-xs font-bold text-white bg-red-500 rounded-full absolute top-1 right-1"
+                className="px-2 py-1 text-xs font-bold text-white bg-red-500 rounded-full"
               >
                 Remove
               </button>
