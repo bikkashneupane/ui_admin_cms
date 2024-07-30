@@ -7,7 +7,7 @@ import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import { AddNewSubCategory } from "../../components/form/AddNewSubCategory";
 
-export const Categories = () => {
+export const SubCategories = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { show, showModal, hideModal } = useModal();
@@ -17,7 +17,7 @@ export const Categories = () => {
 
   return (
     <div className="px-1">
-      <h2 className="text-2xl font-bold mb-2">Categories</h2>
+      <h2 className="text-2xl font-bold mb-2">Sub Categories</h2>
       <hr className="mb-2" />
       <div className="text-right my-2">
         <button
@@ -32,7 +32,7 @@ export const Categories = () => {
 
       {show && (
         <CustomModal
-          title={"Add New Category"}
+          title={"Add New Sub-Category"}
           show={show}
           hideModal={hideModal}
         >

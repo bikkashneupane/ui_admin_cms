@@ -11,14 +11,14 @@ import { useState } from "react";
 export const AddNewProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { form, handleOnChange, handleOnImgChange } = useForm({});
+
+  const { form, handleOnChange } = useForm({});
   const { category } = useSelector((state) => state.categoryInfo);
 
   const [images, setImages] = useState([]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
     // Populate the form data
     const formData = new FormData();
     for (let key in form) {
@@ -47,8 +47,8 @@ export const AddNewProduct = () => {
 
   const inputs = [
     {
-      label: "Title",
-      name: "title",
+      label: "Name",
+      name: "name",
       type: "text",
       required: true,
     },
@@ -72,7 +72,7 @@ export const AddNewProduct = () => {
     },
     {
       label: "Category",
-      name: "parentCategoryId",
+      name: "categoryId",
       type: "text",
       required: true,
       options: category
@@ -82,6 +82,29 @@ export const AddNewProduct = () => {
           name: item?.slug,
           text: item?.title?.toUpperCase(),
         })),
+    },
+    {
+      label: "Gender",
+      name: "gender",
+      type: "text",
+      required: true,
+      options: [
+        {
+          value: "men",
+          name: "men",
+          text: "Men",
+        },
+        {
+          value: "women",
+          name: "women",
+          text: "Women",
+        },
+        {
+          value: "unisex",
+          name: "unisex",
+          text: "Unisex",
+        },
+      ],
     },
     {
       label: "Sales Price",
@@ -140,9 +163,9 @@ export const AddNewProduct = () => {
               <input
                 id={item.name}
                 name={item.name}
-                type="file"
+                type={item.type}
                 multiple
-                accept={item.accept.join(",")}
+                accept={item.accept}
                 onChange={handleNewImagesChange}
                 className="hidden"
               />

@@ -11,16 +11,14 @@ export const getProductAction = () => async (dispatch) => {
   dispatch(setProduct(product));
 };
 
-export const postProductAction =
-  (obj, hideModal, navigate) => async (dispatch) => {
-    const { status } = await postProduct(obj);
+export const postProductAction = (obj, navigate) => async (dispatch) => {
+  const { status } = await postProduct(obj);
 
-    if (status === "success") {
-      dispatch(getProductAction());
-      hideModal();
-      navigate("/admin/products");
-    }
-  };
+  if (status === "success") {
+    dispatch(getProductAction());
+    // navigate("/admin/products");
+  }
+};
 
 export const editProductAction = (obj, navigate) => async (dispatch) => {
   const { status } = await editProduct(obj);

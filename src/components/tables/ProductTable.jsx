@@ -12,8 +12,6 @@ export const ProductTable = () => {
   const { product } = useSelector((state) => state.productInfo);
   const { category } = useSelector((state) => state.categoryInfo);
 
-  console.log(product);
-
   const handleStatusChange = (obj) => {
     dispatch(editProductAction(obj, navigate));
   };
@@ -100,7 +98,7 @@ export const ProductTable = () => {
                     </label>
                   </td>
                   <td className="px-4 py-2">
-                    <img src={item?.thumbnail} alt="" className="" />
+                    <img src={item?.thumbnail} alt="" className="w-24" />
                   </td>
                   <td className="px-4 py-2">{item?.title}</td>
                   <td className="px-4 py-2">{item?.sku}</td>
@@ -109,7 +107,7 @@ export const ProductTable = () => {
                   <td className="px-4 py-2">{item?.quantity}</td>
                   <td className="px-4 py-2">
                     {
-                      category.find((cat) => cat._id === item?.parentCategoryId)
+                      category.find((cat) => cat._id === item?.categoryId)
                         ?.title
                     }
                   </td>

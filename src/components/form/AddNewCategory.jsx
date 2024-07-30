@@ -11,7 +11,8 @@ export const AddNewCategory = ({ postCategory }) => {
     if (!title) {
       return alert("Must fill all the form first");
     }
-    postCategory(title);
+
+    postCategory({ title });
   };
 
   const inputs = [
@@ -30,6 +31,7 @@ export const AddNewCategory = ({ postCategory }) => {
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}
+
       <button
         className="w-100 mt-2 bg-teal-600 text-gray-100 py-2 rounded-lg"
         type="submit"

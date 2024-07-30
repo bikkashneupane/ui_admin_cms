@@ -88,8 +88,8 @@ export const EditProduct = () => {
 
   const inputs = [
     {
-      label: "Title",
-      name: "title",
+      label: "Name",
+      name: "name",
       type: "text",
       placeholder: "Phone",
       required: true,
@@ -123,13 +123,19 @@ export const EditProduct = () => {
     },
     {
       label: "Category",
-      name: "parentCategoryId",
+      name: "categoryId",
       type: "text",
       required: true,
       options: category.map((item) => ({
         value: item._id,
         text: item.title.toUpperCase(),
       })),
+    },
+    {
+      label: "Gender",
+      name: "gender",
+      type: "text",
+      placeholder: "111",
     },
     {
       label: "Sales Price",
@@ -191,7 +197,7 @@ export const EditProduct = () => {
               key={item.name}
               onChange={handleOnChange}
               {...item}
-              defaultValue={selectedProduct.parentCategoryId}
+              defaultValue={selectedProduct.categoryId}
             />
           ) : item.type === "date" ? (
             <CustomInput
@@ -215,7 +221,7 @@ export const EditProduct = () => {
             htmlFor="new-images"
             className="block w-full text-sm cursor-pointer bg-teal-600 text-white border border-gray-300 rounded-lg px-4 py-2 hover:bg-teal-700 focus:outline-none"
           >
-            Choose Files ({fileCount} files selected)
+            Choose Files {fileCount.length && `${fileCount} files selected`}
           </label>
           <input
             id="new-images"

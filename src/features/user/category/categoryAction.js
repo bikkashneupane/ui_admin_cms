@@ -13,6 +13,7 @@ export const getCategoryAction = () => async (dispatch) => {
 
 export const postCategoryAction =
   (obj, hideModal, navigate) => async (dispatch) => {
+    console.log(obj);
     const { status } = await postCategory(obj);
 
     if (status === "success") {
