@@ -12,8 +12,8 @@ export const getCategoryAction = () => async (dispatch) => {
 };
 
 export const postCategoryAction =
-  (obj, hideModal, navigate) => async (dispatch) => {
-    console.log(obj);
+  (obj, hideModal, navigate, isSubCat) => async (dispatch) => {
+    // depending on subCat = true/false make necessary changes
     const { status } = await postCategory(obj);
 
     if (status === "success") {

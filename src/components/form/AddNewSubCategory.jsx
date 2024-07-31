@@ -1,26 +1,29 @@
 import { useRef } from "react";
 import {
   CustomCheck,
-  CustomInput,
   CustomSelect,
   DynamicInputField,
 } from "../common/custom-input/CustomInput";
 import { useSelector } from "react-redux";
 import { useForm } from "../../hooks/useForm";
-import CustomDynamicInputField from "../common/custom-input/CustomDynamicInputField";
 
-export const AddNewSubCategory = ({ postCategory }) => {
-  const { form, handleOnChange } = useForm({});
+const initialState = {
+  parentCategoryId: "",
+  gender: [],
+  brand: [""],
+  material: [""],
+};
+export const AddNewSubCategory = ({ postSubCategory }) => {
+  const { form, setForm, handleOnChange } = useForm(initialState);
 
   const { category } = useSelector((state) => state.categoryInfo);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (!form.gender || !form.gender.length) {
+    if (!form.parentCategoryId || !form.brand.length || !form.material.length) {
       return console.log("All field must be provided");
     }
-    console.log(form);
-    // postCategory({ title });
+    postSubCategory(form);
   };
 
   const inputs = [
@@ -41,7 +44,6 @@ export const AddNewSubCategory = ({ postCategory }) => {
       label: "Gender",
       name: "gender",
       type: "checkbox",
-      required: true,
       options: [
         { value: "male", text: "Male" },
         { value: "female", text: "Female" },
@@ -69,33 +71,26 @@ export const AddNewSubCategory = ({ postCategory }) => {
 
   return (
     <form className="shadow-md px-4 py-8 rounded-lg" onSubmit={handleOnSubmit}>
-      {dynamicInput.map((item) => {
-        return (
-          <DynamicInputField
-            key={item.name}
-            {...item}
-            value={form[item.name] || []}
-            onChange={handleOnChange}
-          />
-        );
-      })}
-
-      {/* {inputs.map((item) =>
+      {inputs.map((item) =>
         item.type === "checkbox" ? (
           <CustomCheck key={item.name} {...item} onChange={handleOnChange} />
         ) : (
           <CustomSelect key={item.name} {...item} onChange={handleOnChange} />
         )
-      )} */}
-      {/* {dynamicInput.map((item) => {
+      )}
+
+      {dynamicInput.map((item) => {
         return (
-          <CustomDynamicInputField
+          <DynamicInputField
             key={item.name}
             {...item}
+            form={form}
+            setForm={setForm}
             onChange={handleOnChange}
           />
         );
-      })} */}
+      })}
+
       <button
         className="w-100 mt-2 bg-teal-600 text-gray-100 py-2 rounded-lg"
         type="submit"

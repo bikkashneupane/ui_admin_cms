@@ -13,7 +13,7 @@ export const Products = () => {
   }, [dispatch]);
 
   return (
-    <div className="p-4">
+    <div className="mx-auto p-4 sm:px-6 md:px-8">
       <h2 className="text-2xl font-bold mb-4">Products</h2>
       <hr className="mb-4 " />
       <div className="text-right mb-4">

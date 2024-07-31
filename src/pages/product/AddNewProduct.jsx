@@ -174,8 +174,10 @@ export const AddNewProduct = () => {
             <CustomInput onChange={handleOnChange} key={item?.name} {...item} />
           )
         )}
+
+        {/* Display Uploaded Images */}
         <div className="flex flex-wrap mt-4">
-          {images.map((item, index) => (
+          {images?.map((item, index) => (
             <div key={index} className="relative flex flex-col gap-1 m-3">
               <img
                 src={URL.createObjectURL(item)}

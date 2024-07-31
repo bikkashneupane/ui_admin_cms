@@ -4,7 +4,7 @@ export const CustomInput = (props) => {
   const { label, inputRef, ...rest } = props;
 
   return (
-    <div className="mb-3">
+    <>
       {label && (
         <label className="block text-sm font-medium text-gray-700">
           {label}
@@ -13,9 +13,9 @@ export const CustomInput = (props) => {
       <input
         {...rest}
         ref={inputRef}
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       />
-    </div>
+    </>
   );
 };
 
@@ -24,9 +24,7 @@ export const CustomSelect = (props) => {
   return (
     <div className="mb-3">
       {label && (
-        <label className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <label className="block font-bold text-gray-700">{label}</label>
       )}
       <select
         {...rest}
@@ -49,11 +47,9 @@ export const CustomCheck = (props) => {
   return (
     <div className="mb-3">
       {label && (
-        <label className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <label className="block font-bold text-gray-700">{label}</label>
       )}
-      <div className="mt-1 flex gap-4 rounded-md shadow-lg p-2 border">
+      <div className="flex gap-4 justify-around rounded-md shadow-lg p-2 border">
         {options.map((option) => (
           <div key={option.value} className="flex items-center ">
             <input
@@ -78,42 +74,68 @@ export const CustomCheck = (props) => {
 };
 
 export const DynamicInputField = (props) => {
-  const { label, name, value, onChange } = props;
+  const { label, name, onChange, form, setForm, ...rest } = props;
 
-  const [fields, setFields] = useState(value || [""]);
-
+  // add new dynamic field
   const addField = () => {
-    const newFields = [...fields, ""];
-    setFields(newFields);
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: [...(prevForm[name] || []), ""],
+    }));
   };
 
-  const removeField = () => {};
+  //remove dynamic field
+  const removeField = (index) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: prevForm[name].filter((_, i) => i !== index),
+    }));
+  };
+
+  // dynamic field on change
+  const handleDynamicFieldChange = (e, index) => {
+    const { name, value } = e.target;
+    // check if form[name] has a value
+    // if has a value, add the value to next available index
+    const currentFields = Array.isArray(form[name]) ? form[name] : [];
+    currentFields[index] = value;
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: currentFields,
+    }));
+  };
 
   return (
     <div className="mb-3">
       {label && (
-        <label className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <label className="block font-bold text-gray-700">{label}</label>
       )}
-      {fields.map((item, index) => {
-        return (
-          <div className="" key={index}>
-            <CustomInput name={name} value={item.value} />
-            <button
-              type="button"
-              className="ml-2 text-red-600"
-              onClick={() => removeField(index)}
-              data-id={index}
-              data-action="remove"
-            >
-              &times;
-            </button>
+
+      <div className="flex flex-col gap-3">
+        {form[name]?.map((item, index) => (
+          <div className="flex gap-2 items-baseline justify-end" key={index}>
+            <div className="w-[90vw]">
+              <CustomInput
+                {...rest}
+                name={name}
+                value={item}
+                onChange={(e) => handleDynamicFieldChange(e, index)}
+              />
+            </div>
+
+            {form[name]?.length > 1 && (
+              <button
+                type="button"
+                className="text-red-600 text-xl font-bold"
+                onClick={() => removeField(index)}
+              >
+                x
+              </button>
+            )}
           </div>
-        );
-      })}
-      <div className="flex gap-4 items-center">
-        <input className="mt-1 block w-4/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        ))}
+
         <div
           className="text-teal-500 font-bold text-sm cursor-pointer"
           onClick={addField}

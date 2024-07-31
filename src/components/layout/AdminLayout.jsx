@@ -11,7 +11,7 @@ export const AdminLayout = () => {
         <Sidebar />
         <div className="w-full">
           {/* <Header /> */}
-          <div className="p-2 min-h-[85vh] bg-gray-200 ml-16 md:ml-52">
+          <div className="p-2 min-h-[85vh] bg-gray-100 ml-16 md:ml-52">
             <Outlet />
           </div>
           <Footer />

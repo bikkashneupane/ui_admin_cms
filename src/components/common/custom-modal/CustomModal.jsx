@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 
-export const CustomModal = ({ show, hideModal, title, children, ...rest }) => {
+export const CustomModal = ({
+  show,
+  hideModal,
+  setSubCat,
+  title,
+  children,
+  ...rest
+}) => {
   useEffect(() => {
     if (show) {
       document.body.style.overflow = "hidden";
@@ -18,7 +25,10 @@ export const CustomModal = ({ show, hideModal, title, children, ...rest }) => {
     <div className="fixed inset-0 z-50 overflow-y-auto" {...rest}>
       <div
         className="fixed inset-0 w-full h-full bg-black opacity-70"
-        onClick={hideModal}
+        onClick={() => {
+          hideModal();
+          setSubCat && setSubCat();
+        }}
       ></div>
 
       <div className="flex items-center min-h-screen px-4 py-8">
