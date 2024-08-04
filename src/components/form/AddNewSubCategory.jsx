@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import {
   CustomCheck,
   CustomSelect,
@@ -45,8 +44,8 @@ export const AddNewSubCategory = ({ postSubCategory }) => {
       name: "gender",
       type: "checkbox",
       options: [
-        { value: "male", text: "Male" },
-        { value: "female", text: "Female" },
+        { value: "men", text: "Men" },
+        { value: "women", text: "Women" },
         { value: "unisex", text: "Unisex" },
       ],
     },

@@ -1,19 +1,23 @@
-import { setCategory } from "./categorySlice";
 import {
   deleteCategory,
   editCategory,
   getCategory,
+  getSubCategory,
   postCategory,
-} from "../user/category/categoryAxios";
+} from "./categoryAxios";
+import { setCategory, setSubCategory } from "./categorySlice";
 
 export const getCategoryAction = () => async (dispatch) => {
   const { category } = await getCategory();
   dispatch(setCategory(category));
+
+  const { subCategory } = await getSubCategory();
+  dispatch(setSubCategory(subCategory));
 };
 
 export const postCategoryAction =
-  (obj, hideModal, navigate) => async (dispatch) => {
-    const { status } = await postCategory(obj);
+  (obj, hideModal, navigate, isSubCat) => async (dispatch) => {
+    const { status } = await postCategory(obj, isSubCat);
 
     if (status === "success") {
       dispatch(getCategoryAction());

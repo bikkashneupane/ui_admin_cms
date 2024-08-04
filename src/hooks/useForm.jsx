@@ -12,7 +12,6 @@ const handleOnChange = ({ e, form, setForm }) => {
       // if exist remove
       // if not add to form
       // make it array
-
       newValue = !currentValues.includes(value)
         ? [...currentValues, value]
         : currentValues;
@@ -23,11 +22,6 @@ const handleOnChange = ({ e, form, setForm }) => {
 
   if (name === "status") {
     newValue = checked ? "active" : "inactive";
-  }
-
-  if (name === "material") {
-    // make material an array
-    newValue = [value];
   }
 
   setForm({ ...form, [name]: newValue });

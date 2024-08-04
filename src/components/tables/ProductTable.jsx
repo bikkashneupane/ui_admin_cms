@@ -10,7 +10,7 @@ export const ProductTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { product } = useSelector((state) => state.productInfo);
-  const { category } = useSelector((state) => state.categoryInfo);
+  const { category, subCategory } = useSelector((state) => state.categoryInfo);
 
   const handleStatusChange = (obj) => {
     dispatch(editProductAction(obj, navigate));
@@ -42,25 +42,26 @@ export const ProductTable = () => {
       <div className="mb-4 text-lg font-semibold">
         {product?.length || 0} Product(s) found
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 overflow-scroll">
+      <div className="overflow-x-auto rounded-lg shadow-lg">
+        <table className="bg-white border border-gray-200 overflow-scroll">
           <thead>
-            <tr>
+            <tr className="border">
               <th className="px-4 py-2 border-b">#</th>
               <th className="px-4 py-2 border-b">Status</th>
               <th className="px-4 py-2 border-b">Thumbnail</th>
               <th className="px-4 py-2 border-b">Name</th>
               <th className="px-4 py-2 border-b">SKU</th>
-              <th className="px-4 py-2 border-b">Slug</th>
               <th className="px-4 py-2 border-b">Price</th>
               <th className="px-4 py-2 border-b">Quantity</th>
-              <th className="px-4 py-2 border-b">Category</th>
-              <th className="px-4 py-2 border-b min-w-80">Sales</th>
+              <th className="px-4 py-2 border-b min-w-[200px]">
+                Specification
+              </th>
+              <th className="px-4 py-2 border-b">Sales</th>
               <th className="px-4 py-2 border-b">Description</th>
               <th className="px-4 py-2 border-b">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border">
             {product &&
               product.map((item, i) => (
                 <tr key={item?._id} className="border-b">
@@ -100,27 +101,70 @@ export const ProductTable = () => {
                   <td className="px-4 py-2">
                     <img src={item?.thumbnail} alt="" className="w-24" />
                   </td>
-                  <td className="px-4 py-2">{item?.title}</td>
+                  <td className="px-4 py-2">{item?.name}</td>
                   <td className="px-4 py-2">{item?.sku}</td>
-                  <td className="px-4 py-2">{item?.slug}</td>
                   <td className="px-4 py-2">${item?.price}</td>
                   <td className="px-4 py-2">{item?.quantity}</td>
                   <td className="px-4 py-2">
-                    {
-                      category.find((cat) => cat._id === item?.categoryId)
-                        ?.title
-                    }
+                    <div className="flex flex-col gap-1 text-sm">
+                      <span className="grid grid-cols-2">
+                        <span className="font-semibold">Category</span>
+                        {
+                          category?.find((cat) => cat._id === item?.categoryId)
+                            ?.title
+                        }
+                      </span>
+                      <span className="grid grid-cols-2">
+                        <span className="font-semibold">Brand</span>
+                        {
+                          subCategory
+                            .find(
+                              (subCat) =>
+                                subCat.parentCategoryId ===
+                                category.find(
+                                  (cat) => cat._id === item.categoryId
+                                )._id
+                            )
+                            .brand.find((brn) => brn._id === item.brandId).name
+                        }
+                      </span>
+                      <span className="grid grid-cols-2">
+                        <span className="font-semibold">Material</span>
+                        {
+                          subCategory
+                            .find(
+                              (subCat) =>
+                                subCat.parentCategoryId ===
+                                category.find(
+                                  (cat) => cat._id === item.categoryId
+                                )._id
+                            )
+                            .material.find((mat) => mat._id === item.materialId)
+                            .name
+                        }
+                      </span>
+                      <span className="grid grid-cols-2">
+                        <span className="font-semibold">Gender</span>{" "}
+                        {item?.gender}
+                      </span>
+                    </div>
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-sm">
                     {item?.sales?.salesPrice
                       ? `$${item?.sales?.salesPrice}`
                       : `-`}
                     <br />
-                    {item?.sales?.salesStart &&
-                      `${item?.sales?.salesStart?.slice(
-                        0,
-                        10
-                      )} TO ${item?.sales?.salesEnd?.slice(0, 10)}`}
+                    {item?.sales?.salesStart && (
+                      <span className="font-semibold">
+                        {item?.sales?.salesStart
+                          ?.slice(0, 10)
+                          ?.replaceAll("-", "/")}{" "}
+                        - <br />
+                        {item?.sales?.salesEnd
+                          ?.slice(0, 10)
+                          .replaceAll("-", "/")}
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-2">
                     {item?.description?.slice(0, 50)}...

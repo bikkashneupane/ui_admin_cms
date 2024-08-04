@@ -2,7 +2,7 @@ import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
-import { postCategoryAction } from "../../features/user/category/categoryAction";
+import { postCategoryAction } from "../../features/category/categoryAction";
 import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import { AddNewSubCategory } from "../../components/form/AddNewSubCategory";
@@ -23,49 +23,47 @@ export const Categories = () => {
   };
 
   return (
-    <div className="">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 mt-20">
-        <h2 className="text-2xl font-bold mb-2">Categories</h2>
-        <hr className="mb-2" />
-        <div className="my-2 flex gap-2 justify-end">
-          <button
-            className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
-            onClick={showModal}
-          >
-            Add New Category
-          </button>
-          <button
-            className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-teal-800"
-            onClick={() => {
-              showModal();
-              setSubCat(true);
-            }}
-          >
-            Add New Sub Category
-          </button>
-        </div>
-
-        <CategoryTable />
-
-        {show && !subCat ? (
-          <CustomModal
-            title={"Add New Category"}
-            show={show}
-            hideModal={hideModal}
-          >
-            <AddNewCategory postCategory={postCategory} />
-          </CustomModal>
-        ) : (
-          <CustomModal
-            title={"Add New Sub Category"}
-            show={show}
-            setSubCat={setSubCat}
-            hideModal={hideModal}
-          >
-            <AddNewSubCategory postSubCategory={postSubCategory} />
-          </CustomModal>
-        )}
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 mt-12">
+      <h2 className="text-2xl font-bold mb-2">Categories</h2>
+      <hr />
+      <div className="my-10 flex gap-2 justify-end">
+        <button
+          className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
+          onClick={showModal}
+        >
+          Add New Category
+        </button>
+        <button
+          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-teal-800"
+          onClick={() => {
+            showModal();
+            setSubCat(true);
+          }}
+        >
+          Add New Sub Category
+        </button>
       </div>
+
+      <CategoryTable />
+
+      {show && !subCat ? (
+        <CustomModal
+          title={"Add New Category"}
+          show={show}
+          hideModal={hideModal}
+        >
+          <AddNewCategory postCategory={postCategory} />
+        </CustomModal>
+      ) : (
+        <CustomModal
+          title={"Add New Sub Category"}
+          show={show}
+          setSubCat={setSubCat}
+          hideModal={hideModal}
+        >
+          <AddNewSubCategory postSubCategory={postSubCategory} />
+        </CustomModal>
+      )}
     </div>
   );
 };

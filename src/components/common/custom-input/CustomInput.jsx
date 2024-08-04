@@ -1,14 +1,10 @@
-import { useState } from "react";
-
 export const CustomInput = (props) => {
   const { label, inputRef, ...rest } = props;
 
   return (
     <>
       {label && (
-        <label className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <label className="block text-sm font-bold text-gray-700">{label}</label>
       )}
       <input
         {...rest}
@@ -31,7 +27,7 @@ export const CustomSelect = (props) => {
         defaultValue={defaultValue}
         className="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       >
-        <option>--Select--</option>
+        <option value="">--Select--</option>
         {options?.map((item) => (
           <option key={item?.value} value={item?.value}>
             {item?.text}
@@ -43,20 +39,53 @@ export const CustomSelect = (props) => {
 };
 
 export const CustomCheck = (props) => {
-  const { label, name, options, onChange } = props;
+  const { label, name, options, onChange, form } = props;
   return (
     <div className="mb-3">
       {label && (
         <label className="block font-bold text-gray-700">{label}</label>
       )}
-      <div className="flex gap-4 justify-around rounded-md shadow-lg p-2 border">
-        {options.map((option) => (
-          <div key={option.value} className="flex items-center ">
+      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
+        {options?.map((option) => (
+          <div key={option.value}>
             <input
               type="checkbox"
               id={`${name}-${option.value}`}
               name={name}
               value={option.value}
+              checked={form[name]?.includes(option.value) || false}
+              onChange={onChange}
+              className="mr-2"
+            />
+            <label
+              htmlFor={`${name}-${option.value}`}
+              className="text-gray-700"
+            >
+              {option.text}
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const CustomRadio = (props) => {
+  const { label, name, options, onChange, form } = props;
+  return (
+    <div className="mb-3">
+      {label && (
+        <label className="block font-bold text-gray-700">{label}</label>
+      )}
+      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
+        {options?.map((option) => (
+          <div key={option.value}>
+            <input
+              type="radio"
+              id={`${name}-${option.value}`}
+              name={name}
+              value={option.value}
+              checked={form[name]?.includes(option.value) || false}
               onChange={onChange}
               className="mr-2"
             />

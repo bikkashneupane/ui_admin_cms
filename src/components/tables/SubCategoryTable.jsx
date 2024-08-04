@@ -6,7 +6,7 @@ import { CustomModal } from "../common/custom-modal/CustomModal";
 import {
   deleteCategoryAction,
   editCategoryAction,
-} from "../../features/category/categoryAction";
+} from "../../features/user/category/categoryAction";
 import { useNavigate } from "react-router-dom";
 
 export const CategoryTable = () => {

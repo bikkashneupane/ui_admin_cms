@@ -1,7 +1,4 @@
-import {
-  CustomInput,
-  CustomSelect,
-} from "../../components/common/custom-input/CustomInput";
+import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
 
 export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
@@ -48,17 +45,19 @@ export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
             onChange={handleOnChange}
             className="sr-only"
           />
+
           <span
-            className={`relative inline-block w-16 h-6 rounded-full ${
-              form?.status === "active" ? "bg-green-600" : "bg-red-600"
+            className={`relative inline-block w-12 h-6 rounded-full ${
+              form?.status === "active" ? "bg-green-600" : "bg-red-400"
             }`}
           >
             <span
-              className={`absolute left-0 top-0 inline-block w-8 h-6 transform rounded-full transition-transform ${
-                form?.status === "active" ? "translate-x-8" : ""
-              } bg-gray-100`}
+              className={`absolute left-0 top-0 w-6 h-6 transform rounded-full transition-transform ${
+                form?.status === "active" ? "translate-x-6" : ""
+              } bg-gray-100 border`}
             ></span>
           </span>
+
           <span className="ml-3 font-semibold">
             {form?.status?.toUpperCase()}
           </span>
