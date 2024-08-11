@@ -3,9 +3,15 @@ import {
   editCategory,
   getCategory,
   getSubCategory,
+  getSubCategoryAxios,
   postCategory,
 } from "./categoryAxios";
-import { setCategory, setSubCategory } from "./categorySlice";
+import {
+  setBrand,
+  setCategory,
+  setMaterial,
+  setSubCategory,
+} from "./categorySlice";
 
 export const getCategoryAction = () => async (dispatch) => {
   const { category } = await getCategory();
@@ -16,12 +22,13 @@ export const getCategoryAction = () => async (dispatch) => {
 };
 
 export const postCategoryAction =
-  (obj, hideModal, navigate, isSubCat) => async (dispatch) => {
+  ({ obj, hideModalType, navigate, isSubCat }) =>
+  async (dispatch) => {
     const { status } = await postCategory(obj, isSubCat);
 
     if (status === "success") {
       dispatch(getCategoryAction());
-      hideModal();
+      hideModalType();
       navigate("/admin/categories");
     }
   };
@@ -44,3 +51,15 @@ export const deleteCategoryAction = (_id) => async (dispatch) => {
     dispatch(getCategoryAction());
   }
 };
+
+//=======================================SUb-Category (Brand / Material) ========================
+// fetch all materials/ brands
+export const getSubCatAction = () => async (dispatch) => {
+  const { status, brands, materials } = await getSubCategoryAxios();
+  if (status === "success") {
+    dispatch(setBrand(brands));
+    dispatch(setMaterial(materials));
+  }
+};
+
+// fetch all brands

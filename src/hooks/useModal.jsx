@@ -1,10 +1,21 @@
 import { useState } from "react";
 
 export const useModal = () => {
-  const [show, setShow] = useState(false);
+  const [modalStates, setModalStates] = useState({});
+
+  const showModal = (modalName) => {
+    setModalStates((prev) => ({ ...prev, [modalName]: true }));
+  };
+
+  const hideModal = (modalName) => {
+    setModalStates((prev) => ({ ...prev, [modalName]: false }));
+  };
+
+  const isModalVisible = (modalName) => modalStates[modalName] || false;
+
   return {
-    show,
-    showModal: () => setShow(true),
-    hideModal: () => setShow(false),
+    showModal,
+    hideModal,
+    isModalVisible,
   };
 };

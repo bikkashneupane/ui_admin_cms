@@ -47,21 +47,21 @@ export const CustomCheck = (props) => {
       )}
       <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
         {options?.map((option) => (
-          <div key={option.value}>
+          <div key={option?.value}>
             <input
               type="checkbox"
-              id={`${name}-${option.value}`}
+              id={`${name}-${option?.value}`}
               name={name}
-              value={option.value}
-              checked={form[name]?.includes(option.value) || false}
+              value={option?.value}
+              // checked={form[name]?.includes(option?.value) || false}
               onChange={onChange}
               className="mr-2"
             />
             <label
-              htmlFor={`${name}-${option.value}`}
+              htmlFor={`${name}-${option?.value}`}
               className="text-gray-700"
             >
-              {option.text}
+              {option?.text}
             </label>
           </div>
         ))}
@@ -79,21 +79,21 @@ export const CustomRadio = (props) => {
       )}
       <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
         {options?.map((option) => (
-          <div key={option.value}>
+          <div key={option?.value}>
             <input
               type="radio"
-              id={`${name}-${option.value}`}
+              id={`${name}-${option?.value}`}
               name={name}
-              value={option.value}
-              checked={form[name]?.includes(option.value) || false}
+              value={option?.value}
+              checked={form[name]?.includes(option?.value) || false}
               onChange={onChange}
               className="mr-2"
             />
             <label
-              htmlFor={`${name}-${option.value}`}
+              htmlFor={`${name}-${option?.value}`}
               className="text-gray-700"
             >
-              {option.text}
+              {option?.text}
             </label>
           </div>
         ))}

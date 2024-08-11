@@ -53,9 +53,7 @@ export const ProductTable = () => {
               <th className="px-4 py-2 border-b">SKU</th>
               <th className="px-4 py-2 border-b">Price</th>
               <th className="px-4 py-2 border-b">Quantity</th>
-              <th className="px-4 py-2 border-b min-w-[200px]">
-                Specification
-              </th>
+              <th className="px-4 py-2 border-b min-w-[200px]">Category</th>
               <th className="px-4 py-2 border-b">Sales</th>
               <th className="px-4 py-2 border-b">Description</th>
               <th className="px-4 py-2 border-b">Actions</th>
@@ -107,46 +105,10 @@ export const ProductTable = () => {
                   <td className="px-4 py-2">{item?.quantity}</td>
                   <td className="px-4 py-2">
                     <div className="flex flex-col gap-1 text-sm">
-                      <span className="grid grid-cols-2">
-                        <span className="font-semibold">Category</span>
-                        {
-                          category?.find((cat) => cat._id === item?.categoryId)
-                            ?.title
-                        }
-                      </span>
-                      <span className="grid grid-cols-2">
-                        <span className="font-semibold">Brand</span>
-                        {
-                          subCategory
-                            .find(
-                              (subCat) =>
-                                subCat.parentCategoryId ===
-                                category.find(
-                                  (cat) => cat._id === item.categoryId
-                                )._id
-                            )
-                            .brand.find((brn) => brn._id === item.brandId).name
-                        }
-                      </span>
-                      <span className="grid grid-cols-2">
-                        <span className="font-semibold">Material</span>
-                        {
-                          subCategory
-                            .find(
-                              (subCat) =>
-                                subCat.parentCategoryId ===
-                                category.find(
-                                  (cat) => cat._id === item.categoryId
-                                )._id
-                            )
-                            .material.find((mat) => mat._id === item.materialId)
-                            .name
-                        }
-                      </span>
-                      <span className="grid grid-cols-2">
-                        <span className="font-semibold">Gender</span>{" "}
-                        {item?.gender}
-                      </span>
+                      {
+                        category?.find((cat) => cat._id === item?.categoryId)
+                          ?.title
+                      }
                     </div>
                   </td>
                   <td className="px-4 py-2 text-sm">

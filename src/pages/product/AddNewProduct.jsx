@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import {
-  CustomCheck,
   CustomInput,
   CustomRadio,
   CustomSelect,
@@ -15,8 +14,11 @@ export const AddNewProduct = () => {
   const dispatch = useDispatch();
 
   const { form, handleOnChange } = useForm({});
-  const { category, subCategory } = useSelector((state) => state.categoryInfo);
+  const { category, subCategory, brand, material } = useSelector(
+    (state) => state.categoryInfo
+  );
 
+  console.log(form);
   const [images, setImages] = useState([]);
 
   const handleOnSubmit = (e) => {
@@ -160,45 +162,46 @@ export const AddNewProduct = () => {
         )}
 
         {/* subCat part */}
-        {form?.categoryId !== "" && (
+        {form?.categoryId && (
           <>
             {/* brand */}
-            {subCategory
-              ?.filter(
-                (subCat) => subCat?.parentCategoryId === form?.categoryId
-              )
-              .map((item) => (
-                <CustomSelect
-                  key={item?.brand[0]?._id}
-                  label="Brand"
-                  name="brandId"
-                  onChange={handleOnChange}
-                  options={item?.brand?.map((itm) => ({
-                    value: itm?._id,
-                    text: itm?.slug.toUpperCase(),
-                    name: itm?.name,
-                  }))}
-                />
-              ))}
+            <CustomSelect
+              label="Brand"
+              name="brandId"
+              onChange={handleOnChange}
+              options={brand
+                ?.filter((item) => {
+                  const selectedCategory = category?.find(
+                    (cat) => cat._id === form?.categoryId
+                  );
+                  return selectedCategory?.brand?.includes(item._id);
+                })
+                ?.map((itm) => ({
+                  value: itm?._id,
+                  text: itm?.slug.toUpperCase(),
+                  name: itm?.name,
+                }))}
+            />
 
             {/* material */}
-            {subCategory
-              ?.filter(
-                (subCat) => subCat?.parentCategoryId === form?.categoryId
-              )
-              .map((item) => (
-                <CustomSelect
-                  key={item?.material[0]?._id}
-                  label="Material Type"
-                  name="materialId"
-                  onChange={handleOnChange}
-                  options={item?.material?.map((itm) => ({
-                    value: itm?._id,
-                    text: itm?.slug.toUpperCase(),
-                    name: itm?.name,
-                  }))}
-                />
-              ))}
+            <CustomSelect
+              label="Material"
+              name="materialId"
+              onChange={handleOnChange}
+              options={material
+                ?.filter((item) => {
+                  const selectedCategory = category?.find(
+                    (cat) => cat._id === form?.categoryId
+                  );
+                  return selectedCategory?.material?.includes(item._id);
+                })
+                ?.map((itm) => ({
+                  value: itm?._id,
+                  text: itm?.slug.toUpperCase(),
+                  name: itm?.name,
+                }))}
+            />
+
             {/* gender */}
             {subCategory
               ?.filter(

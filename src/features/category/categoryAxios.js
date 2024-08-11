@@ -1,5 +1,8 @@
-const categoryEP = import.meta.env.VITE_APP_SERVER_ROOT + "/api/v1/categories";
 import { apiProcessor } from "../../services/axiosHelper";
+
+const categoryEP = import.meta.env.VITE_APP_SERVER_ROOT + "/api/v1/categories";
+const subCategoryEP =
+  import.meta.env.VITE_APP_SERVER_ROOT + "/api/v1/sub-categories";
 
 // get category
 export const getCategory = () =>
@@ -10,14 +13,16 @@ export const getCategory = () =>
   });
 
 // post new category
-export const postCategory = (obj, isSubCat) =>
-  apiProcessor({
-    url: isSubCat ? categoryEP + "/sub-category" : categoryEP,
+export const postCategory = (obj, isSubCat) => {
+  console.log(obj, isSubCat);
+  return apiProcessor({
+    url: isSubCat ? subCategoryEP : categoryEP,
     method: "POST",
     data: obj,
     isPrivate: true,
     showToast: true,
   });
+};
 
 // edit category
 export const editCategory = (obj) =>
@@ -44,6 +49,14 @@ export const deleteCategory = (_id) =>
 export const getSubCategory = () =>
   apiProcessor({
     url: categoryEP + "/sub-category",
+    method: "GET",
+    isPrivate: true,
+  });
+
+// get brands/ materials
+export const getSubCategoryAxios = () =>
+  apiProcessor({
+    url: subCategoryEP,
     method: "GET",
     isPrivate: true,
   });

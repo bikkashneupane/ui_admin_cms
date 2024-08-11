@@ -1,25 +1,39 @@
+import { useEffect } from "react";
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
-import { postCategoryAction } from "../../features/category/categoryAction";
+import {
+  postCategoryAction,
+  getCategoryAction,
+  getSubCatAction,
+} from "../../features/category/categoryAction";
 import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
-import { AddNewSubCategory } from "../../components/form/AddNewSubCategory";
-import { useState } from "react";
+import { AddNewBrand } from "../../components/form/AddNewBrand";
+import { AddNewMaterial } from "../../components/form/AddNewMaterial";
 
 export const Categories = () => {
-  const [subCat, setSubCat] = useState(false);
+  const { showModal, hideModal, isModalVisible } = useModal();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { show, showModal, hideModal } = useModal();
 
-  const postCategory = (obj) => {
-    dispatch(postCategoryAction(obj, hideModal, navigate));
-  };
+  useEffect(() => {
+    dispatch(getCategoryAction());
+    dispatch(getSubCatAction());
+  }, [dispatch]);
 
-  const postSubCategory = (obj) => {
-    dispatch(postCategoryAction(obj, hideModal, navigate, { isSubCat: true }));
+  // common logic for category / brand / material
+  const postCategory = (obj, modalType, isSubCat) => {
+    console.log(modalType);
+    dispatch(
+      postCategoryAction({
+        obj,
+        hideModalType: () => hideModal(modalType),
+        navigate,
+        isSubCat,
+      })
+    );
   };
 
   return (
@@ -29,39 +43,56 @@ export const Categories = () => {
       <div className="my-10 flex gap-2 justify-end">
         <button
           className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
-          onClick={showModal}
+          onClick={() => showModal("addCategory")}
         >
           Add New Category
         </button>
         <button
-          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-teal-800"
-          onClick={() => {
-            showModal();
-            setSubCat(true);
-          }}
+          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800"
+          onClick={() => showModal("addBrand")}
         >
-          Add New Sub Category
+          Add New Brand
+        </button>
+        <button
+          className="bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-800"
+          onClick={() => showModal("addMaterial")}
+        >
+          Add New Material
         </button>
       </div>
 
       <CategoryTable />
 
-      {show && !subCat ? (
+      {/* Add New Category Modal */}
+      {isModalVisible("addCategory") && (
         <CustomModal
           title={"Add New Category"}
-          show={show}
-          hideModal={hideModal}
+          show={isModalVisible("addCategory")}
+          hideModal={() => hideModal("addCategory")}
         >
           <AddNewCategory postCategory={postCategory} />
         </CustomModal>
-      ) : (
+      )}
+
+      {/* Add New Brand Modal */}
+      {isModalVisible("addBrand") && (
         <CustomModal
-          title={"Add New Sub Category"}
-          show={show}
-          setSubCat={setSubCat}
-          hideModal={hideModal}
+          title={"Add New Brand"}
+          show={isModalVisible("addBrand")}
+          hideModal={() => hideModal("addBrand")}
         >
-          <AddNewSubCategory postSubCategory={postSubCategory} />
+          <AddNewBrand postCategory={postCategory} />
+        </CustomModal>
+      )}
+
+      {/* Add New Material Modal */}
+      {isModalVisible("addMaterial") && (
+        <CustomModal
+          title={"Add New Material"}
+          show={isModalVisible("addMaterial")}
+          hideModal={() => hideModal("addMaterial")}
+        >
+          <AddNewMaterial postCategory={postCategory} />
         </CustomModal>
       )}
     </div>
