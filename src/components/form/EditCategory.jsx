@@ -8,11 +8,9 @@ import { useForm } from "../../hooks/useForm";
 export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
   const { form, handleOnChange } = useForm(selectedCategory);
   const { brands, materials } = useSelector((state) => state.categoryInfo);
-  console.log(form);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    // console.log(form);
     handleOnEditCategory(form);
   };
 

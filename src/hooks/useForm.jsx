@@ -4,7 +4,7 @@ const handleOnChange = ({ e, form, setForm }) => {
   let { name, value, checked } = e.target;
   let newValue = value;
 
-  if (name === "gender" || name === "brand" || name === "material") {
+  if (name === "brand" || name === "material") {
     const currentValues = Array.isArray(form[name]) ? form[name] : [];
 
     if (checked) {

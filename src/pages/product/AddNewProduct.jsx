@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {
   CustomInput,
-  CustomRadio,
   CustomSelect,
 } from "../../components/common/custom-input/CustomInput";
 import { postProductAction } from "../../features/product/productAction";
@@ -14,10 +13,11 @@ export const AddNewProduct = () => {
   const dispatch = useDispatch();
 
   const { form, handleOnChange } = useForm({});
-  const { category, subCategory, brands, materials } = useSelector(
+  const [images, setImages] = useState([]);
+
+  const { category, brands, materials } = useSelector(
     (state) => state.categoryInfo
   );
-  const [images, setImages] = useState([]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -57,6 +57,7 @@ export const AddNewProduct = () => {
   // logic to make date picker appear when clicke anywhere on the input field
   const salesStartRef = useRef();
   const salesEndRef = useRef();
+
   const handleDatePicker = (e, currentRef) => {
     e.preventDefault();
     currentRef.current.showPicker();
@@ -109,6 +110,29 @@ export const AddNewProduct = () => {
       name: "salesEnd",
       type: "date",
       inputRef: salesEndRef,
+    },
+    {
+      label: "Gender",
+      name: "gender",
+      type: "text",
+      required: true,
+      options: [
+        {
+          value: "men",
+          name: "men",
+          text: "MEN",
+        },
+        {
+          value: "women",
+          name: "women",
+          text: "WOMEN",
+        },
+        {
+          value: "unisex",
+          name: "unisex",
+          text: "UNISEX",
+        },
+      ],
     },
     {
       label: "Description",
@@ -172,7 +196,7 @@ export const AddNewProduct = () => {
                   const selectedCategory = category?.find(
                     (cat) => cat._id === form?.categoryId
                   );
-                  return selectedCategory?.brands?.includes(item._id);
+                  return selectedCategory?.brand?.includes(item._id);
                 })
                 ?.map((itm) => ({
                   value: itm?._id,
@@ -191,7 +215,7 @@ export const AddNewProduct = () => {
                   const selectedCategory = category?.find(
                     (cat) => cat._id === form?.categoryId
                   );
-                  return selectedCategory?.materials?.includes(item._id);
+                  return selectedCategory?.material?.includes(item._id);
                 })
                 ?.map((itm) => ({
                   value: itm?._id,
@@ -199,26 +223,6 @@ export const AddNewProduct = () => {
                   name: itm?.name,
                 }))}
             />
-
-            {/* gender */}
-            {subCategory
-              ?.filter(
-                (subCat) => subCat?.parentCategoryId === form?.categoryId
-              )
-              .map((item, index) => (
-                <CustomRadio
-                  key={new Date() + "-" + index}
-                  label="Gender"
-                  name="product_gender"
-                  onChange={handleOnChange}
-                  form={form}
-                  options={item?.gender?.map((itm) => ({
-                    text: itm?.toUpperCase(),
-                    value: itm ?? null,
-                    name: itm ?? null,
-                  }))}
-                />
-              ))}
           </>
         )}
 

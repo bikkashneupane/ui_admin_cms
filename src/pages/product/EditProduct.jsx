@@ -13,7 +13,9 @@ import {
 export const EditProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { category } = useSelector((state) => state.categoryInfo);
+  const { category, brands, materials } = useSelector(
+    (state) => state.categoryInfo
+  );
   const { selectedProduct } = useSelector((state) => state.productInfo);
 
   const [existingImages, setExistingImages] = useState(
@@ -21,23 +23,13 @@ export const EditProduct = () => {
   );
   const [newImages, setNewImages] = useState([]);
   const [fileCount, setFileCount] = useState(0); // State to track the number of files
-  const { form, handleOnChange, setForm } = useForm(selectedProduct || {});
+  const { form, handleOnChange } = useForm(selectedProduct || {});
+
+  console.log(form);
 
   useEffect(() => {
     dispatch(getCategoryAction());
-    if (selectedProduct) {
-      setForm(({ sales, ...prevForm }) => ({
-        ...prevForm,
-        salesPrice: selectedProduct.sales?.salesPrice || "",
-        salesStart: selectedProduct.sales?.salesStart
-          ? dateFormatter(selectedProduct.sales.salesStart)
-          : "",
-        salesEnd: selectedProduct.sales?.salesEnd
-          ? dateFormatter(selectedProduct.sales.salesEnd)
-          : "",
-      }));
-    }
-  }, [dispatch, selectedProduct, setForm]);
+  }, [dispatch]);
 
   const handleOnEditProduct = (obj) => {
     dispatch(editProductAction(obj, navigate));
@@ -45,7 +37,6 @@ export const EditProduct = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
 
     const formData = new FormData();
     // Append form data fields
@@ -122,20 +113,27 @@ export const EditProduct = () => {
       required: true,
     },
     {
-      label: "Category",
-      name: "categoryId",
-      type: "text",
-      required: true,
-      options: category.map((item) => ({
-        value: item._id,
-        text: item.title.toUpperCase(),
-      })),
-    },
-    {
       label: "Gender",
       name: "gender",
       type: "text",
-      placeholder: "111",
+      required: true,
+      options: [
+        {
+          value: "men",
+          name: "men",
+          text: "MEN",
+        },
+        {
+          value: "women",
+          name: "women",
+          text: "WOMEN",
+        },
+        {
+          value: "unisex",
+          name: "unisex",
+          text: "UNISEX",
+        },
+      ],
     },
     {
       label: "Sales Price",
@@ -158,6 +156,16 @@ export const EditProduct = () => {
       as: "textarea",
       rows: 5,
       required: true,
+    },
+    {
+      label: "Category",
+      name: "categoryId",
+      type: "text",
+      required: true,
+      options: category.map((item) => ({
+        value: item._id,
+        text: item.title.toUpperCase(),
+      })),
     },
   ];
 
@@ -197,7 +205,7 @@ export const EditProduct = () => {
               key={item.name}
               onChange={handleOnChange}
               {...item}
-              defaultValue={selectedProduct.categoryId}
+              defaultValue={selectedProduct[item.name]}
             />
           ) : item.type === "date" ? (
             <CustomInput
@@ -216,6 +224,51 @@ export const EditProduct = () => {
           )
         )}
 
+        {/* subCat part */}
+        {form?.categoryId && (
+          <>
+            {/* brand */}
+            <CustomSelect
+              label="Brand"
+              name="brandId"
+              onChange={handleOnChange}
+              form={form}
+              defaultValue={selectedProduct.brandId}
+              options={brands
+                ?.filter((item) => {
+                  const selectedCategory = category?.find(
+                    (cat) => cat._id === form?.categoryId
+                  );
+                  return selectedCategory?.brand?.includes(item._id);
+                })
+                ?.map((itm) => ({
+                  value: itm?._id,
+                  text: itm?.slug.toUpperCase(),
+                  name: itm?.name,
+                }))}
+            />
+
+            {/* material */}
+            <CustomSelect
+              label="Material"
+              name="materialId"
+              onChange={handleOnChange}
+              defaultValue={selectedProduct.materialId}
+              options={materials
+                ?.filter((item) => {
+                  const selectedCategory = category?.find(
+                    (cat) => cat._id === form?.categoryId
+                  );
+                  return selectedCategory?.material?.includes(item._id);
+                })
+                ?.map((itm) => ({
+                  value: itm?._id,
+                  text: itm?.slug.toUpperCase(),
+                  name: itm?.name,
+                }))}
+            />
+          </>
+        )}
         <div>
           <label
             htmlFor="new-images"
