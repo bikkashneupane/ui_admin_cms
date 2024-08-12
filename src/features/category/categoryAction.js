@@ -17,8 +17,8 @@ export const getCategoryAction = () => async (dispatch) => {
   const { category } = await getCategory();
   dispatch(setCategory(category));
 
-  const { subCategory } = await getSubCategory();
-  dispatch(setSubCategory(subCategory));
+  // const { subCategory } = await getSubCategory();
+  // dispatch(setSubCategory(subCategory));
 };
 
 export const postCategoryAction =

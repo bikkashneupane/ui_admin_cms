@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   category: [],
   subCategory: [],
-  brand: [],
-  material: [],
+  brands: [],
+  materials: [],
 };
 
 const slice = createSlice({
@@ -18,10 +18,10 @@ const slice = createSlice({
       state.subCategory = action.payload;
     },
     setBrand: (state, action) => {
-      state.brand = action.payload;
+      state.brands = action.payload;
     },
     setMaterial: (state, action) => {
-      state.material = action.payload;
+      state.materials = action.payload;
     },
   },
 });

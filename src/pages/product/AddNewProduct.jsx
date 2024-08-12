@@ -14,11 +14,9 @@ export const AddNewProduct = () => {
   const dispatch = useDispatch();
 
   const { form, handleOnChange } = useForm({});
-  const { category, subCategory, brand, material } = useSelector(
+  const { category, subCategory, brands, materials } = useSelector(
     (state) => state.categoryInfo
   );
-
-  console.log(form);
   const [images, setImages] = useState([]);
 
   const handleOnSubmit = (e) => {
@@ -169,12 +167,12 @@ export const AddNewProduct = () => {
               label="Brand"
               name="brandId"
               onChange={handleOnChange}
-              options={brand
+              options={brands
                 ?.filter((item) => {
                   const selectedCategory = category?.find(
                     (cat) => cat._id === form?.categoryId
                   );
-                  return selectedCategory?.brand?.includes(item._id);
+                  return selectedCategory?.brands?.includes(item._id);
                 })
                 ?.map((itm) => ({
                   value: itm?._id,
@@ -188,12 +186,12 @@ export const AddNewProduct = () => {
               label="Material"
               name="materialId"
               onChange={handleOnChange}
-              options={material
+              options={materials
                 ?.filter((item) => {
                   const selectedCategory = category?.find(
                     (cat) => cat._id === form?.categoryId
                   );
-                  return selectedCategory?.material?.includes(item._id);
+                  return selectedCategory?.materials?.includes(item._id);
                 })
                 ?.map((itm) => ({
                   value: itm?._id,

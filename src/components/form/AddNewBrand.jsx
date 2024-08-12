@@ -9,7 +9,6 @@ export const AddNewBrand = ({ postCategory }) => {
     if (!form.brand.length) {
       return console.log("All field must be provided");
     }
-    console.log(form);
     postCategory(form, "addBrand", true);
   };
 

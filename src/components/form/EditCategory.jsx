@@ -1,11 +1,20 @@
-import { CustomInput } from "../../components/common/custom-input/CustomInput";
+import { useSelector } from "react-redux";
+import {
+  CustomCheck,
+  CustomInput,
+} from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
 
 export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
   const { form, handleOnChange } = useForm(selectedCategory);
+  const { brands, materials } = useSelector((state) => state.categoryInfo);
+
+  console.log("Form Brand: ", form.brand);
+  console.log(brands);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    // console.log(form);
     handleOnEditCategory(form);
   };
 
@@ -25,6 +34,30 @@ export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
       placeholder: "phones",
       disabled: true,
       value: form.slug,
+    },
+    {
+      label: "Brand",
+      name: "brand",
+      type: "text",
+      placeholder: "Casio",
+      required: true,
+      options: brands?.map((item) => ({
+        value: item?._id,
+        name: item?.slug,
+        text: item?.name?.toUpperCase(),
+      })),
+    },
+    {
+      label: "Material",
+      name: "material",
+      type: "text",
+      placeholder: "Quartz",
+      required: true,
+      options: materials?.map((item) => ({
+        value: item?._id,
+        name: item?.slug,
+        text: item?.name?.toUpperCase(),
+      })),
     },
   ];
 
@@ -64,9 +97,18 @@ export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {
         </label>
       </div>
 
-      {inputs.map((item) => (
-        <CustomInput key={item.name} onChange={handleOnChange} {...item} />
-      ))}
+      {inputs.map((item) => {
+        return item?.options ? (
+          <CustomCheck
+            key={item?.name}
+            onChange={handleOnChange}
+            {...item}
+            form={form}
+          />
+        ) : (
+          <CustomInput key={item?.name} onChange={handleOnChange} {...item} />
+        );
+      })}
 
       <div className="mt-4">
         <button

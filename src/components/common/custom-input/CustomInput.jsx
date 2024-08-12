@@ -45,7 +45,7 @@ export const CustomCheck = (props) => {
       {label && (
         <label className="block font-bold text-gray-700">{label}</label>
       )}
-      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
+      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border bg-gray-100">
         {options?.map((option) => (
           <div key={option?.value}>
             <input
@@ -53,7 +53,7 @@ export const CustomCheck = (props) => {
               id={`${name}-${option?.value}`}
               name={name}
               value={option?.value}
-              // checked={form[name]?.includes(option?.value) || false}
+              checked={form[name]?.includes(option?.value) || false}
               onChange={onChange}
               className="mr-2"
             />

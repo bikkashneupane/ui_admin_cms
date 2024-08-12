@@ -1,8 +1,6 @@
-import { useRef } from "react";
 import {
   CustomCheck,
   CustomInput,
-  CustomSelect,
 } from "../../components/common/custom-input/CustomInput";
 import { useSelector } from "react-redux";
 import { useForm } from "../../hooks/useForm";
@@ -14,13 +12,13 @@ const initialState = {
 };
 
 export const AddNewCategory = ({ postCategory }) => {
-  const { brand, material } = useSelector((state) => state.categoryInfo);
+  const { brands, materials } = useSelector((state) => state.categoryInfo);
 
   const { form, handleOnChange } = useForm(initialState);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    postCategory(form, "addCategory", true);
+    postCategory(form, "addCategory");
   };
 
   const inputs = [
@@ -37,7 +35,7 @@ export const AddNewCategory = ({ postCategory }) => {
       type: "text",
       placeholder: "Casio",
       required: true,
-      options: brand?.map((item) => ({
+      options: brands?.map((item) => ({
         value: item?._id,
         name: item?.slug,
         text: item?.name?.toUpperCase(),
@@ -49,7 +47,7 @@ export const AddNewCategory = ({ postCategory }) => {
       type: "text",
       placeholder: "Quartz",
       required: true,
-      options: material?.map((item) => ({
+      options: materials?.map((item) => ({
         value: item?._id,
         name: item?.slug,
         text: item?.name?.toUpperCase(),
@@ -64,7 +62,12 @@ export const AddNewCategory = ({ postCategory }) => {
     >
       {inputs.map((item) => {
         return !item?.options ? (
-          <CustomInput key={item?.name} {...item} onChange={handleOnChange} />
+          <CustomInput
+            key={item?.name}
+            {...item}
+            onChange={handleOnChange}
+            form={form}
+          />
         ) : item?.options?.length > 0 ? (
           <CustomCheck
             key={item.name}

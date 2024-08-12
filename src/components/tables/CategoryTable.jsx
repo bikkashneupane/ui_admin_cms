@@ -12,18 +12,24 @@ import { useNavigate } from "react-router-dom";
 export const CategoryTable = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { show, showModal, hideModal } = useModal();
+  const { showModal, hideModal, isModalVisible } = useModal();
   const [selectedCategory, setSelectedCategory] = useState({});
   const { category } = useSelector((state) => state.categoryInfo);
 
   const handleOnEditCategory = (obj) => {
-    dispatch(editCategoryAction(obj, hideModal, navigate));
+    dispatch(
+      editCategoryAction(obj, () => hideModal("editCategory"), navigate)
+    );
   };
 
   return (
     <div className="">
-      {show && (
-        <CustomModal title={"Edit Category"} show={show} hideModal={hideModal}>
+      {showModal && (
+        <CustomModal
+          title={"Edit Category"}
+          show={isModalVisible("editCategory")}
+          hideModal={() => hideModal("editCategory")}
+        >
           <EditCategory
             selectedCategory={selectedCategory}
             handleOnEditCategory={handleOnEditCategory}
@@ -97,7 +103,7 @@ export const CategoryTable = () => {
                       className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-yellow-600 transition"
                       onClick={() => {
                         setSelectedCategory(item);
-                        showModal();
+                        showModal("editCategory");
                       }}
                     >
                       Edit

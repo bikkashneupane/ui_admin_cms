@@ -25,7 +25,6 @@ export const Categories = () => {
 
   // common logic for category / brand / material
   const postCategory = (obj, modalType, isSubCat) => {
-    console.log(modalType);
     dispatch(
       postCategoryAction({
         obj,
