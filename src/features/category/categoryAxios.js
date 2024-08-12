@@ -60,3 +60,41 @@ export const getSubCategoryAxios = () =>
     method: "GET",
     isPrivate: true,
   });
+
+// Edit Brand
+export const editBrandAxios = (obj) =>
+  apiProcessor({
+    url: subCategoryEP + "/edit-brand",
+    method: "put",
+    data: obj,
+    isPrivate: true,
+    showToast: true,
+  });
+
+// Edit Material
+export const editMaterialAxios = (obj) =>
+  apiProcessor({
+    url: subCategoryEP + "/edit-material",
+    method: "put",
+    data: obj,
+    isPrivate: true,
+    showToast: true,
+  });
+
+// delete brand
+export const deleteBrandAxios = (_id) =>
+  apiProcessor({
+    url: subCategoryEP + "/delete-brand/" + _id,
+    method: "DELETE",
+    isPrivate: true,
+    showToast: true,
+  });
+
+// delete material
+export const deleteMaterialAxios = (_id) =>
+  apiProcessor({
+    url: subCategoryEP + "/delete-material/" + _id,
+    method: "DELETE",
+    isPrivate: true,
+    showToast: true,
+  });

@@ -1,6 +1,10 @@
 import {
+  deleteBrandAxios,
   deleteCategory,
+  deleteMaterialAxios,
+  editBrandAxios,
   editCategory,
+  editMaterialAxios,
   getCategory,
   getSubCategory,
   getSubCategoryAxios,
@@ -28,6 +32,7 @@ export const postCategoryAction =
 
     if (status === "success") {
       dispatch(getCategoryAction());
+      isSubCat && dispatch(getSubCatAction());
       hideModalType();
       navigate("/admin/categories");
     }
@@ -62,4 +67,42 @@ export const getSubCatAction = () => async (dispatch) => {
   }
 };
 
-// fetch all brands
+// edit brand
+export const editBrandAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await editBrandAxios(obj);
+    if (status === "success") {
+      dispatch(getSubCatAction());
+      hideModal();
+      navigate("/admin/categories");
+    }
+  };
+
+// edit material
+export const editMaterialAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await editMaterialAxios(obj);
+    if (status === "success") {
+      dispatch(getSubCatAction());
+      hideModal();
+      navigate("/admin/categories");
+    }
+  };
+
+// delete brand
+export const deleteBrandAction = (_id) => async (dispatch) => {
+  const { status } = await deleteBrandAxios(_id);
+
+  if (status === "success") {
+    dispatch(getSubCatAction());
+  }
+};
+
+// delete material
+export const deleteMaterialAction = (_id) => async (dispatch) => {
+  const { status } = await deleteMaterialAxios(_id);
+
+  if (status === "success") {
+    dispatch(getSubCatAction());
+  }
+};
