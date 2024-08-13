@@ -21,12 +21,18 @@ import { ForgetPassword } from "./pages/user/ForgetPassword";
 import { AdminLayout } from "./components/layout/AdminLayout";
 import { EditProduct } from "./pages/product/EditProduct";
 import { AddNewProduct } from "./pages/product/AddNewProduct";
+import {
+  getCategoryAction,
+  getSubCatAction,
+} from "./features/category/categoryAction";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(autoLoginAction());
+    dispatch(getCategoryAction());
+    dispatch(getSubCatAction());
   }, [dispatch]);
 
   return (
@@ -55,7 +61,7 @@ function App() {
         {/* 404 Path Not Found */}
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer stacked />
     </>
   );
 }

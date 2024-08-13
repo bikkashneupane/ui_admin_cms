@@ -1,13 +1,8 @@
-import { useEffect } from "react";
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
-import {
-  postCategoryAction,
-  getCategoryAction,
-  getSubCatAction,
-} from "../../features/category/categoryAction";
+import { postCategoryAction } from "../../features/category/categoryAction";
 import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import { AddNewBrand } from "../../components/form/AddNewBrand";
@@ -17,11 +12,6 @@ export const Categories = () => {
   const { showModal, hideModal, isModalVisible } = useModal();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getCategoryAction());
-    dispatch(getSubCatAction());
-  }, [dispatch]);
 
   // common logic for category / brand / material
   const postCategory = (obj, modalType, isSubCat) => {

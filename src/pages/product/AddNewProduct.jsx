@@ -13,6 +13,7 @@ export const AddNewProduct = () => {
   const dispatch = useDispatch();
 
   const { form, handleOnChange } = useForm({});
+  console.log(form);
   const [images, setImages] = useState([]);
 
   const { category, brands, materials } = useSelector(

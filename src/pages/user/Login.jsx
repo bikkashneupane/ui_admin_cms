@@ -50,7 +50,12 @@ export const Login = () => {
   ];
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-dark">
+    <div className="d-flex justify-content-center align-items-center flex-col vh-100 bg-dark">
+      <div className="mb-8 text-sm text-red-400 text-left">
+        <h1>Email: admin@gmail.com</h1>
+        <h1>Password: 11</h1>
+      </div>
+
       <div className="bg-light rounded" style={{ width: "450px" }}>
         <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
           <h3 className="text-center">Admin Login</h3>
@@ -64,7 +69,7 @@ export const Login = () => {
             Login
           </button>
 
-          <div className="mt-3 text-end">
+          <div className="mt-3 text-end text-sm">
             Forget Password?
             <Link to={"/forget-password"}> Reset Password!</Link>
           </div>
