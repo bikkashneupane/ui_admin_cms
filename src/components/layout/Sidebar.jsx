@@ -38,11 +38,6 @@ export const Sidebar = () => {
       to: "admin/reviews",
       icon: <AiOutlineMessage />,
     },
-    {
-      title: "Admins",
-      to: "admin/admins",
-      icon: <FaUserSecret />,
-    },
   ];
 
   return (

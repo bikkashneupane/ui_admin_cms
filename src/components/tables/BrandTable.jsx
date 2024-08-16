@@ -6,13 +6,13 @@ const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
   const { brands } = useSelector((state) => state.categoryInfo);
 
   return (
-    <div>
+    <div className="">
       <div className="mt-4 mb-2 px-1 text-gray-700">
         <span className="font-bold">{brands?.length || 0}</span> Brand(s) found
       </div>
 
       <div className="overflow-x-scroll rounded-2xl shadow-lg mb-6">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md ">
           <thead>
             <tr className="bg-gray-100 border-b border-gray-200">
               <th className="py-2 px-4 text-left">#</th>
@@ -24,7 +24,10 @@ const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
           <tbody>
             {brands &&
               brands?.map((item, i) => (
-                <tr key={item?._id} className="border-b border-gray-200">
+                <tr
+                  key={item?._id}
+                  className="border-b border-gray-200 font-medium"
+                >
                   <td className="p-3">{i + 1}</td>
                   <td className="p-3">{item?.name}</td>
                   <td className="p-3">{item?.slug}</td>

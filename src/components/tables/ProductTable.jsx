@@ -5,11 +5,17 @@ import {
   editProductAction,
 } from "../../features/product/productAction";
 import { setSelectedProduct } from "../../features/product/productSlice";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-export const ProductTable = () => {
+export const ProductTable = ({
+  totalPage,
+  currentPage,
+  setCurrentPage,
+  pageProducts,
+  totalProducts,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { product } = useSelector((state) => state.productInfo);
   const { category, brands, materials } = useSelector(
     (state) => state.categoryInfo
   );
@@ -23,16 +29,19 @@ export const ProductTable = () => {
     navigate("/admin/products/edit");
   };
 
-  let active = 3;
+  const active = currentPage;
   let items = [];
 
-  for (let number = 1; number <= 5; number++) {
+  for (let number = 1; number <= totalPage; number++) {
     items.push(
       <button
         key={number}
         className={`px-3 py-1 rounded-md ${
-          number === active ? "bg-teal-500 text-white" : "bg-gray-200"
+          number === active
+            ? "bg-teal-500 text-white"
+            : "bg-gray-200 hover:bg-teal-600 hover:text-white"
         }`}
+        onClick={() => setCurrentPage(number)}
       >
         {number}
       </button>
@@ -41,11 +50,11 @@ export const ProductTable = () => {
 
   return (
     <div>
-      <div className="mb-4 text-lg font-semibold">
-        {product?.length || 0} Product(s) found
+      <div className="mb-3 text-lg font-semibold">
+        {totalProducts || 0} Product(s) found
       </div>
 
-      {product?.length > 0 && (
+      {pageProducts?.length > 0 && (
         <>
           <div className="overflow-x-auto rounded-lg shadow-lg">
             <table className="w-full bg-white border border-gray-200 overflow-scroll">
@@ -65,8 +74,8 @@ export const ProductTable = () => {
                 </tr>
               </thead>
               <tbody className="border">
-                {product &&
-                  product.map((item, i) => (
+                {pageProducts &&
+                  pageProducts.map((item, i) => (
                     <tr key={item?._id} className="border-b">
                       <td className="px-4 py-2">{i + 1}</td>
                       <td className="px-4 py-2">
@@ -174,7 +183,24 @@ export const ProductTable = () => {
               </tbody>
             </table>
           </div>
-          <div className="mt-4 flex justify-center space-x-2">{items}</div>
+          <div className="mt-4 flex justify-center items-center gap-4">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 ring-inset ring-gray-300 hover:bg-teal-600 hover:text-white focus:z-20 focus:outline-offset-0"
+              disabled={currentPage === 1}
+            >
+              <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
+            </button>
+            <div className="space-x-2">{items}</div>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 ring-inset ring-gray-300 hover:bg-teal-600 hover:text-white focus:z-20 focus:outline-offset-0"
+              disabled={currentPage === totalPage}
+            >
+              <span className="sr-only">Next</span>
+              <ChevronRightIcon aria-hidden="true" className="h-5 w-5" />
+            </button>
+          </div>
         </>
       )}
     </div>

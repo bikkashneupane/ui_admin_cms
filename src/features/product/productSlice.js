@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   product: [],
   selectedProduct: {},
+  pageProducts: [],
 };
 
 const slice = createSlice({
@@ -15,9 +16,12 @@ const slice = createSlice({
     setSelectedProduct: (state, action) => {
       state.selectedProduct = action.payload;
     },
+    setPageProducts: (state, action) => {
+      state.pageProducts = action.payload;
+    },
   },
 });
 
 const { reducer, actions } = slice;
-export const { setProduct, setSelectedProduct } = actions;
+export const { setProduct, setSelectedProduct, setPageProducts } = actions;
 export default reducer;

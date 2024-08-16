@@ -16,6 +16,11 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
 } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import EditBrand from "../form/EditBrand";
@@ -97,146 +102,129 @@ export const CategoryTable = () => {
         </CustomModal>
       )}
 
-      {/* Category Table */}
-      <Disclosure as="div" className="py-3 px-4 rounded-lg shadow-sm">
-        <DisclosureButton
-          as="button"
-          className="w-full group flex justify-between items-center gap-2"
+      <TabGroup>
+        <TabList
+          as="div"
+          className="bg-gradient-to-r from-purple-900 via-teal-900  to-lime-900 flex flex-col max-w-min lg:max-w-full lg:justify-center md:gap-16 lg:flex-row  px-2 py-2 rounded-md shadow-lg bg-opacity-90"
         >
-          <h1 className="font-bold text-lg text-center text-teal-400">
+          <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-bold text-lg px-6 py-2 rounded-md shadow-lg">
             Categories
-          </h1>
-          <ChevronDownIcon className="w-5 group-data-[open]:rotate-180 font-extrabold" />
-        </DisclosureButton>
-        <DisclosurePanel>
-          <div className="mt-4 mb-2 px-1 text-gray-700">
-            <span className="font-bold">{category?.length || 0}</span>{" "}
-            Categorie(s) found
-          </div>
-          <div className="overflow-x-scroll rounded-2xl shadow-lg mb-6">
-            <table className="min-w-full bg-white border border-gray-200">
-              <thead>
-                <tr className="bg-gray-100 border-b border-gray-200">
-                  <th className="py-2 px-4 text-left">#</th>
-                  <th className="py-2 px-4 text-left">Status</th>
-                  <th className="py-2 px-4 text-left">Title</th>
-                  <th className="py-2 px-4 text-left">Slug</th>
-                  <th className="py-2 px-4 text-left">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {category &&
-                  category.map((item, i) => (
-                    <tr key={item?._id} className="border-b border-gray-200">
-                      <td className="p-3">{i + 1}</td>
-                      <td
-                        className={`p-3 ${
-                          item?.status === "active"
-                            ? "text-green-600 font-bold"
-                            : "text-red-600 font-bold"
-                        }`}
-                      >
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={item?.status === "active"}
-                            onChange={() => {
-                              handleOnEditCategory({
-                                ...item,
-                                status:
-                                  item?.status === "active"
-                                    ? "inactive"
-                                    : "active",
-                              });
-                            }}
-                            className="sr-only"
-                          />
-                          <span
-                            className={`relative inline-block w-12 h-6 rounded-full ${
-                              item?.status === "active"
-                                ? "bg-green-600"
-                                : "bg-red-400"
-                            }`}
-                          >
-                            <span
-                              className={`absolute left-0 top-0 w-6 h-6 transform rounded-full transition-transform ${
-                                item?.status === "active" ? "translate-x-6" : ""
-                              } bg-gray-100 border`}
-                            ></span>
-                          </span>
-                          <span className="ml-3">
-                            {item?.status?.toUpperCase()}
-                          </span>
-                        </label>
-                      </td>
-                      <td className="p-3">{item?.title}</td>
-                      <td className="p-3">{item?.slug}</td>
-                      <td className="p-3 flex gap-2 items-center">
-                        <button
-                          className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-yellow-600 transition"
-                          onClick={() => {
-                            showModal(editCatModalName);
-                            setSelectedCategory(item);
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
-                          onClick={() => {
-                            dispatch(deleteCategoryAction(item?._id));
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-        </DisclosurePanel>
-      </Disclosure>
-
-      {/* Brand Table */}
-      <Disclosure as="div" className="mt-6 py-3 px-4 rounded-lg shadow-sm">
-        <DisclosureButton
-          as="button"
-          className="w-full group flex  justify-between items-center gap-2"
-        >
-          <h1 className="font-bold text-lg text-center text-purple-600">
+          </Tab>
+          <Tab className="text-purple-500 data-[selected]:bg-purple-700 data-[selected]:text-white font-bold text-lg px-6 py-2 rounded-md shadow-lg">
             Brands
-          </h1>
-          <ChevronDownIcon className="w-5 group-data-[open]:rotate-180" />
-        </DisclosureButton>
-        <DisclosurePanel>
-          <BrandTable
-            showModal={showModal}
-            setSelectedBrand={setSelectedBrand}
-            editBrandModalName={editBrandModalName}
-          />
-        </DisclosurePanel>
-      </Disclosure>
-
-      {/* Material Table */}
-      <Disclosure as="div" className="mt-6 py-3 px-4 rounded-lg shadow-sm">
-        <DisclosureButton
-          as="button"
-          className="w-full group flex  justify-between items-center gap-2"
-        >
-          <h1 className="font-bold text-lg text-center text-lime-600">
+          </Tab>
+          <Tab className="text-lime-500 data-[selected]:bg-lime-700 data-[selected]:text-white font-bold text-lg px-6 py-2 rounded-md shadow-lg">
             Materials
-          </h1>
-          <ChevronDownIcon className="w-5 group-data-[open]:rotate-180" />
-        </DisclosureButton>
-        <DisclosurePanel>
-          <MaterialTable
-            showModal={showModal}
-            setSelectedMaterial={setSelectedMaterial}
-            editMaterialModalName={editMaterialModalName}
-          />
-        </DisclosurePanel>
-      </Disclosure>
+          </Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            <div className="mt-4 mb-2 px-1 text-gray-700">
+              <span className="font-bold">{category?.length || 0}</span>{" "}
+              Categorie(s) found
+            </div>
+            <div className="overflow-x-scroll rounded-2xl shadow-lg mb-6">
+              <table className="min-w-full bg-white border border-gray-200 font-medium">
+                <thead>
+                  <tr className="bg-gray-100 border-b border-gray-200">
+                    <th className="py-2 px-4 text-left">#</th>
+                    <th className="py-2 px-4 text-left">Status</th>
+                    <th className="py-2 px-4 text-left">Title</th>
+                    <th className="py-2 px-4 text-left">Slug</th>
+                    <th className="py-2 px-4 text-left w-1/5">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {category &&
+                    category.map((item, i) => (
+                      <tr key={item?._id} className="border-b border-gray-200">
+                        <td className="p-3">{i + 1}</td>
+                        <td
+                          className={`p-3 ${
+                            item?.status === "active"
+                              ? "text-green-600 font-bold"
+                              : "text-red-600 font-bold"
+                          }`}
+                        >
+                          <label className="inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={item?.status === "active"}
+                              onChange={() => {
+                                handleOnEditCategory({
+                                  ...item,
+                                  status:
+                                    item?.status === "active"
+                                      ? "inactive"
+                                      : "active",
+                                });
+                              }}
+                              className="sr-only"
+                            />
+                            <span
+                              className={`relative inline-block w-12 h-6 rounded-full ${
+                                item?.status === "active"
+                                  ? "bg-green-600"
+                                  : "bg-red-400"
+                              }`}
+                            >
+                              <span
+                                className={`absolute left-0 top-0 w-6 h-6 transform rounded-full transition-transform ${
+                                  item?.status === "active"
+                                    ? "translate-x-6"
+                                    : ""
+                                } bg-gray-100 border`}
+                              ></span>
+                            </span>
+                            <span className="ml-3">
+                              {item?.status?.toUpperCase()}
+                            </span>
+                          </label>
+                        </td>
+                        <td className="p-3">{item?.title}</td>
+                        <td className="p-3">{item?.slug}</td>
+                        <td className="p-3 flex gap-2 items-center">
+                          <button
+                            className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-yellow-600 transition"
+                            onClick={() => {
+                              showModal(editCatModalName);
+                              setSelectedCategory(item);
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition"
+                            onClick={() => {
+                              dispatch(deleteCategoryAction(item?._id));
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <BrandTable
+              showModal={showModal}
+              setSelectedBrand={setSelectedBrand}
+              editBrandModalName={editBrandModalName}
+            />
+          </TabPanel>
+          <TabPanel>
+            <MaterialTable
+              showModal={showModal}
+              setSelectedMaterial={setSelectedMaterial}
+              editMaterialModalName={editMaterialModalName}
+            />
+          </TabPanel>
+        </TabPanels>
+      </TabGroup>
     </div>
   );
 };

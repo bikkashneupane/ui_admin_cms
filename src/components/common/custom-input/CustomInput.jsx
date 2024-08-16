@@ -1,18 +1,27 @@
 export const CustomInput = (props) => {
-  const { label, inputRef, rows, ...rest } = props;
+  const { label, inputRef, as, rows, ...rest } = props;
 
   return (
     <>
       {label && (
         <label className="block text-sm font-bold text-gray-700">{label}</label>
       )}
-      <input
-        {...rest}
-        // defaultValue={value}
-        ref={inputRef}
-        rows={rows}
-        className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-      />
+      {as === "textarea" ? (
+        <textarea
+          {...rest}
+          // defaultValue={value}
+          ref={inputRef}
+          rows={rows}
+          className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      ) : (
+        <input
+          {...rest}
+          // defaultValue={value}
+          ref={inputRef}
+          className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      )}
     </>
   );
 };

@@ -9,7 +9,6 @@ import { Login } from "./pages/user/Login";
 import { UserVerification } from "./pages/user/UserVerification";
 import { Categories } from "./pages/category/Categories";
 import { Products } from "./pages/product/Products";
-import { Admins } from "./pages/user/Admins";
 import { Reviews } from "./pages/review/Reviews";
 import { Profile } from "./pages/user/Profile";
 import { Orders } from "./pages/order/Orders";
@@ -54,7 +53,6 @@ function App() {
           <Route path="admin/orders" element={<Orders />} />
           <Route path="admin/reviews" element={<Reviews />} />
           <Route path="admin/users" element={<Users />} />
-          <Route path="admin/admins" element={<Admins />} />
           <Route path="admin/profile" element={<Profile />} />
         </Route>
 

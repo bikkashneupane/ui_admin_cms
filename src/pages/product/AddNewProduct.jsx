@@ -140,7 +140,7 @@ export const AddNewProduct = () => {
       name: "description",
       placeholder: "Product Detail, Specifications",
       as: "textarea",
-      rows: 5,
+      rows: 8,
       required: true,
     },
     {

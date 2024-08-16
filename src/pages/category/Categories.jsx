@@ -26,10 +26,10 @@ export const Categories = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 mt-12">
+    <div className="mx-auto max-w-7xl mt-6 px-4 sm:px-6 md:px-8 lg:px-10">
       <h2 className="text-2xl font-bold mb-2">Categories</h2>
       <hr />
-      <div className="my-10 flex gap-2 justify-end">
+      <div className="my-4 flex gap-2 justify-end">
         <button
           className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
           onClick={() => showModal("addCategory")}

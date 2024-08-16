@@ -17,7 +17,7 @@ const MaterialTable = ({
       </div>
 
       <div className="overflow-x-scroll rounded-2xl shadow-lg mb-6">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md font-medium">
           <thead>
             <tr className="bg-gray-100 border-b border-gray-200">
               <th className="py-2 px-4 text-left">#</th>
