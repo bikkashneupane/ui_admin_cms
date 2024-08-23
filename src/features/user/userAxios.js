@@ -91,3 +91,13 @@ export const resetPasswordAxios = async (data) => {
     data,
   });
 };
+
+// edit user role
+export const editRoleAxios = async (data) => {
+  return axiosProcessor({
+    url: userEP + "/edit-role",
+    method: "PUT",
+    data,
+    showToast: true,
+  });
+};

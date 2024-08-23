@@ -1,4 +1,5 @@
 import {
+  editRoleAxios,
   fetchAllUsers,
   fetchUserProfile,
   logoutUser,
@@ -14,7 +15,7 @@ export const fetchUserAction = () => async (dispatch) => {
   const { status, user } = await fetchUserProfile();
   status === "success" && dispatch(setUser(user));
 
-  // get al users and update the store
+  // get all users and update the store
   const { allUsers } = await fetchAllUsers();
   status === "success" && dispatch(setAllUser(allUsers));
 };
@@ -67,3 +68,16 @@ export const logoutUserAction = () => async (dispatch) => {
     sessionStorage.removeItem("accessJWT");
   }
 };
+
+// edit user role
+export const editRoleAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await editRoleAxios(obj);
+    if (status === "success") {
+      const { allUsers } = await fetchAllUsers();
+
+      status === "success" && dispatch(setAllUser(allUsers));
+      hideModal();
+      navigate("/admin/users");
+    }
+  };

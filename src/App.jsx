@@ -65,7 +65,14 @@ function App() {
         {/* 404 Path Not Found */}
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
-      <ToastContainer stacked />
+      <ToastContainer
+        position="bottom-right"
+        stacked
+        autoClose={3000}
+        hideProgressBar={true}
+        closeOnClick
+        newestOnTop={true}
+      />
     </>
   );
 }

@@ -33,13 +33,10 @@ export const axiosProcessor = async ({
     if (showToast) {
       toast.promise(pending, {
         pending: "Please Wait...",
-        // position: "bottom-right",
       });
 
       response = await pending;
-      toast[response.data.status](response.data.message, {
-        // position: "bottom-right",
-      });
+      toast[response.data.status](response.data.message);
     }
 
     response = await pending;
@@ -61,8 +58,7 @@ export const axiosProcessor = async ({
       localStorage.removeItem("refreshJWT");
     }
 
-    showToast &&
-      toast.error(error.response.data.message, { position: "bottom-right" });
+    showToast && toast.error(error.response.data.message);
 
     return error.response.data;
   }

@@ -1,10 +1,23 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Stars from "../../components/common/Star";
+import { Switch } from "@headlessui/react";
+import { editReviewAction } from "../../features/review/reviewAction";
+import { useNavigate } from "react-router-dom";
 
 export const Reviews = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { reviews } = useSelector((state) => state.reviewInfo);
   const { product } = useSelector((state) => state.productInfo);
-  console.log(product);
+
+  const handleStatusChange = (review) => {
+    const { _id, status } = review;
+    const newStatus = status === "active" ? "inactive" : "active";
+    const updateObj = { _id, status: newStatus };
+
+    dispatch(editReviewAction(updateObj, navigate));
+  };
   return (
     <div className="overflow-x-scroll mt-4 rounded-lg text-sm">
       <div className="text-lg font-bold mb-4 text-center">
@@ -22,21 +35,30 @@ export const Reviews = () => {
             <th className="py-2 px-4 text-left">Ratings</th>
             <th className="py-2 px-4 text-left">Review</th>
             <th className="py-2 px-4 text-left">Placed Date</th>
-            <th className="py-2 px-4">Actions</th>
           </tr>
         </thead>
         <tbody>
           {reviews?.map((review, i) => (
             <tr key={i} className="border-b border-gray-200">
               <td className="py-2 px-4">{i + 1}</td>
-              <td
-                className={`py-2 px-4 ${
-                  review?.status === "active"
-                    ? "text-green-600"
-                    : "text-red-600"
-                }`}
-              >
-                {review?.status}
+              <td className="py-2 px-4">
+                <div
+                  className={`flex items-center gap-1 font-bold  ${
+                    review?.status === "active"
+                      ? "text-teal-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  <Switch
+                    className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-teal-600"
+                    name="review-status"
+                    checked={review?.status === "active"}
+                    onChange={() => handleStatusChange(review)}
+                  >
+                    <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+                  </Switch>
+                  {review?.status?.toUpperCase()}
+                </div>
               </td>
               <td className="py-2 px-4 space-y-2 text-xs flex flex-col justify-center items-center">
                 <img
@@ -62,14 +84,6 @@ export const Reviews = () => {
                 </div>
               </td>
               <td className="py-2 px-4">{review?.createdAt.slice(0, 10)}</td>
-              <td className="py-2 px-4 space-x-2">
-                <button className="bg-yellow-500 text-white py-2 px-8 rounded hover:bg-yellow-600 transition">
-                  Edit
-                </button>
-                <button className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition">
-                  Delete
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>
