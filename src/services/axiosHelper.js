@@ -49,7 +49,13 @@ export const axiosProcessor = async ({
     if (error?.response?.data?.message?.includes("jwt expired")) {
       const accessJWT = await renewAccessJwt();
       if (accessJWT) {
-        return await apiProcessor({ url, method, data, isPrivate, showToast });
+        return await axiosProcessor({
+          url,
+          method,
+          data,
+          isPrivate,
+          showToast,
+        });
       }
       sessionStorage.removeItem("accessJWT");
       localStorage.removeItem("refreshJWT");
