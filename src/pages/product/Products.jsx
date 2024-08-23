@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { ProductTable } from "../../components/tables/ProductTable";
-import { getProductAction } from "../../features/product/productAction";
 import Pagination from "../../components/common/Pagination";
 
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productInfo);
-
-  useEffect(() => {
-    dispatch(getProductAction());
-  }, [dispatch]);
 
   const productsPerPage = 5;
   const totalPage = Math.ceil(product?.length / productsPerPage) || 0;

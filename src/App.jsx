@@ -25,6 +25,8 @@ import {
   getCategoryAction,
   getSubCatAction,
 } from "./features/category/categoryAction";
+import { getReviewAction } from "./features/review/reviewAction";
+import { getProductAction } from "./features/product/productAction";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +35,9 @@ function App() {
     dispatch(autoLoginAction());
     dispatch(getCategoryAction());
     dispatch(getSubCatAction());
+    dispatch(getProductAction());
     dispatch(fetchAllOrdersAction());
+    dispatch(getReviewAction());
   }, [dispatch]);
 
   return (
