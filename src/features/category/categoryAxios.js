@@ -1,4 +1,4 @@
-import { apiProcessor } from "../../services/axiosHelper";
+import { axiosProcessor } from "../../services/axiosHelper";
 
 const categoryEP = import.meta.env.VITE_APP_SERVER_ROOT + "/api/v1/categories";
 const subCategoryEP =
@@ -6,7 +6,7 @@ const subCategoryEP =
 
 // get category
 export const getCategory = () =>
-  apiProcessor({
+  axiosProcessor({
     url: categoryEP,
     method: "GET",
     isPrivate: true,
@@ -15,7 +15,7 @@ export const getCategory = () =>
 // post new category
 export const postCategory = (obj, isSubCat) => {
   console.log(obj, isSubCat);
-  return apiProcessor({
+  return axiosProcessor({
     url: isSubCat ? subCategoryEP : categoryEP,
     method: "POST",
     data: obj,
@@ -26,7 +26,7 @@ export const postCategory = (obj, isSubCat) => {
 
 // edit category
 export const editCategory = (obj) =>
-  apiProcessor({
+  axiosProcessor({
     url: categoryEP,
     method: "PUT",
     data: obj,
@@ -36,7 +36,7 @@ export const editCategory = (obj) =>
 
 // delete category
 export const deleteCategory = (_id) =>
-  apiProcessor({
+  axiosProcessor({
     url: categoryEP + "/" + _id,
     method: "DELETE",
     isPrivate: true,
@@ -47,7 +47,7 @@ export const deleteCategory = (_id) =>
 // get subcategory
 // get category
 export const getSubCategory = () =>
-  apiProcessor({
+  axiosProcessor({
     url: categoryEP + "/sub-category",
     method: "GET",
     isPrivate: true,
@@ -55,7 +55,7 @@ export const getSubCategory = () =>
 
 // get brands/ materials
 export const getSubCategoryAxios = () =>
-  apiProcessor({
+  axiosProcessor({
     url: subCategoryEP,
     method: "GET",
     isPrivate: true,
@@ -63,7 +63,7 @@ export const getSubCategoryAxios = () =>
 
 // Edit Brand
 export const editBrandAxios = (obj) =>
-  apiProcessor({
+  axiosProcessor({
     url: subCategoryEP + "/edit-brand",
     method: "put",
     data: obj,
@@ -73,7 +73,7 @@ export const editBrandAxios = (obj) =>
 
 // Edit Material
 export const editMaterialAxios = (obj) =>
-  apiProcessor({
+  axiosProcessor({
     url: subCategoryEP + "/edit-material",
     method: "put",
     data: obj,
@@ -83,7 +83,7 @@ export const editMaterialAxios = (obj) =>
 
 // delete brand
 export const deleteBrandAxios = (_id) =>
-  apiProcessor({
+  axiosProcessor({
     url: subCategoryEP + "/delete-brand/" + _id,
     method: "DELETE",
     isPrivate: true,
@@ -92,7 +92,7 @@ export const deleteBrandAxios = (_id) =>
 
 // delete material
 export const deleteMaterialAxios = (_id) =>
-  apiProcessor({
+  axiosProcessor({
     url: subCategoryEP + "/delete-material/" + _id,
     method: "DELETE",
     isPrivate: true,

@@ -1,10 +1,10 @@
-import { apiProcessor } from "../../services/axiosHelper";
+import { axiosProcessor } from "../../services/axiosHelper";
 
 const productEP = import.meta.env.VITE_APP_SERVER_ROOT + "/api/v1/products";
 
 // get product
 export const getProduct = () =>
-  apiProcessor({
+  axiosProcessor({
     url: productEP,
     method: "GET",
     isPrivate: true,
@@ -12,7 +12,7 @@ export const getProduct = () =>
 
 // post new product
 export const postProduct = (obj) =>
-  apiProcessor({
+  axiosProcessor({
     url: productEP,
     method: "POST",
     data: obj,
@@ -22,7 +22,7 @@ export const postProduct = (obj) =>
 
 // edit product
 export const editProduct = (obj) =>
-  apiProcessor({
+  axiosProcessor({
     url: productEP,
     method: "PUT",
     data: obj,
@@ -32,7 +32,7 @@ export const editProduct = (obj) =>
 
 // delete product
 export const deleteProduct = (_id) =>
-  apiProcessor({
+  axiosProcessor({
     url: productEP + "/" + _id,
     method: "DELETE",
     isPrivate: true,

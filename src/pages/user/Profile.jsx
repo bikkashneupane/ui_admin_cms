@@ -1,4 +1,4 @@
-import { CustomInput } from "../../components/common/custom-input/CustomInput";
+import { CustomInput } from "../../components/common/CustomInput";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 

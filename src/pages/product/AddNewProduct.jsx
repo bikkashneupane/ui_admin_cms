@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  CustomInput,
-  CustomSelect,
-} from "../../components/common/custom-input/CustomInput";
+import { CustomInput, CustomSelect } from "../../components/common/CustomInput";
 import { postProductAction } from "../../features/product/productAction";
 import { useForm } from "../../hooks/useForm";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,9 +1,6 @@
 import { useRef } from "react";
 import { useForm } from "../../hooks/useForm";
-import {
-  CustomInput,
-  DynamicInputField,
-} from "../common/custom-input/CustomInput";
+import { CustomInput, DynamicInputField } from "../common/CustomInput";
 
 const EditBrand = ({ selectedBrand, handleOnEditBrand }) => {
   const brandRef = useRef();

@@ -10,7 +10,7 @@ const getAccessJwt = () => {
   return sessionStorage.getItem("accessJWT");
 };
 
-export const apiProcessor = async ({
+export const axiosProcessor = async ({
   url,
   method,
   data,

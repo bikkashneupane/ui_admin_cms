@@ -1,4 +1,4 @@
-import { DynamicInputField } from "../../components/common/custom-input/CustomInput";
+import { DynamicInputField } from "../common/CustomInput";
 import { useForm } from "../../hooks/useForm";
 
 export const AddNewMaterial = ({ postCategory }) => {

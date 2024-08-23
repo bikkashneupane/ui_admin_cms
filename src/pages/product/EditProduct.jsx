@@ -5,10 +5,7 @@ import { getCategoryAction } from "../../features/category/categoryAction";
 import { editProductAction } from "../../features/product/productAction";
 import { useForm } from "../../hooks/useForm";
 import { dateFormatter } from "../../helpers/dateFormatter";
-import {
-  CustomInput,
-  CustomSelect,
-} from "../../components/common/custom-input/CustomInput";
+import { CustomInput, CustomSelect } from "../../components/common/CustomInput";
 
 export const EditProduct = () => {
   const navigate = useNavigate();

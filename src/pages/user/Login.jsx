@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { loginUserAction } from "../../features/user/userAction";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { CustomInput } from "../../components/common/CustomInput";
 
 export const Login = () => {
   const dispatch = useDispatch();

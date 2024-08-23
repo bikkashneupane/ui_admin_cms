@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ProductTable } from "../../components/tables/ProductTable";
 import { getProductAction } from "../../features/product/productAction";
+import Pagination from "../../components/common/Pagination";
 
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,10 +39,16 @@ export const Products = () => {
 
       <ProductTable
         totalPage={totalPage}
-        currentPage={currentPage}
         pageProducts={pageProducts}
-        setCurrentPage={setCurrentPage}
         totalProducts={product?.length || 0}
+      />
+      <Pagination
+        totalPage={totalPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalResultsLength={product?.length || 0}
+        startIndex={startIndex + 1}
+        endIndex={endIndex}
       />
     </div>
   );

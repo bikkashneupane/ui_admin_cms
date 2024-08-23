@@ -1,7 +1,4 @@
-import {
-  CustomCheck,
-  CustomInput,
-} from "../../components/common/custom-input/CustomInput";
+import { CustomCheck, CustomInput } from "../common/CustomInput";
 import { useSelector } from "react-redux";
 import { useForm } from "../../hooks/useForm";
 

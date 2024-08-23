@@ -1,4 +1,5 @@
 import {
+  fetchAllUsers,
   fetchUserProfile,
   logoutUser,
   postLoginUser,
@@ -6,7 +7,7 @@ import {
   renewAccessJwt,
   verifyUserLink,
 } from "./userAxios";
-import { setUser } from "./userSlice";
+import { setAllUser, setUser } from "./userSlice";
 
 // fetch user profile action
 export const fetchUserAction = () => async (dispatch) => {
@@ -14,6 +15,8 @@ export const fetchUserAction = () => async (dispatch) => {
   status === "success" && dispatch(setUser(user));
 
   // get al users and update the store
+  const { allUsers } = await fetchAllUsers();
+  status === "success" && dispatch(setAllUser(allUsers));
 };
 
 // sign user action

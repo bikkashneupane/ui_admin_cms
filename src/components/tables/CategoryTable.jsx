@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { EditCategory } from "../form/EditCategory";
 import { useModal } from "../../hooks/useModal";
 import { useState } from "react";
-import { CustomModal } from "../common/custom-modal/CustomModal";
 import {
   deleteCategoryAction,
   editBrandAction,
@@ -12,19 +11,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import BrandTable from "./BrandTable";
 import MaterialTable from "./MaterialTable";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-  Tab,
-  TabGroup,
-  TabList,
-  TabPanel,
-  TabPanels,
-} from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import EditBrand from "../form/EditBrand";
 import EditMaterial from "../form/EditMaterial";
+import { CustomModal } from "../common/CustomModal";
 
 const editCatModalName = "editCategory";
 const editBrandModalName = "editBrand";

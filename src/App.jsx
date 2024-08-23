@@ -20,6 +20,7 @@ import { ForgetPassword } from "./pages/user/ForgetPassword";
 import { AdminLayout } from "./components/layout/AdminLayout";
 import { EditProduct } from "./pages/product/EditProduct";
 import { AddNewProduct } from "./pages/product/AddNewProduct";
+import { fetchAllOrdersAction } from "./features/order/orderAction";
 import {
   getCategoryAction,
   getSubCatAction,
@@ -32,6 +33,7 @@ function App() {
     dispatch(autoLoginAction());
     dispatch(getCategoryAction());
     dispatch(getSubCatAction());
+    dispatch(fetchAllOrdersAction());
   }, [dispatch]);
 
   return (

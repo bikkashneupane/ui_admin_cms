@@ -1,5 +1,5 @@
 import { CategoryTable } from "../../components/tables/CategoryTable";
-import { CustomModal } from "../../components/common/custom-modal/CustomModal";
+import { CustomModal } from "../../components/common/CustomModal";
 import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
 import { postCategoryAction } from "../../features/category/categoryAction";
@@ -50,8 +50,6 @@ export const Categories = () => {
         </button>
       </div>
 
-      <CategoryTable />
-
       {/* Add New Category Modal */}
       {isModalVisible("addCategory") && (
         <CustomModal
@@ -84,6 +82,8 @@ export const Categories = () => {
           <AddNewMaterial postCategory={postCategory} />
         </CustomModal>
       )}
+
+      <CategoryTable />
     </div>
   );
 };

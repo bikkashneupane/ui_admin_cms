@@ -1,8 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  CustomCheck,
-  CustomInput,
-} from "../../components/common/custom-input/CustomInput";
+import { CustomCheck, CustomInput } from "../common/CustomInput";
 import { useForm } from "../../hooks/useForm";
 
 export const EditCategory = ({ selectedCategory, handleOnEditCategory }) => {

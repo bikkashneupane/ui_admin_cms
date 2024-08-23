@@ -1,7 +1,8 @@
-import { CustomInput } from "../../components/common/custom-input/CustomInput";
 import { useForm } from "../../hooks/useForm";
 import { createUserAction } from "../../features/user/userAction";
 import { toast } from "react-toastify";
+import CustomDynamicInputField from "../../components/common/CustomDynamicInputField";
+import { CustomInput } from "../../components/common/CustomInput";
 
 const initialState = {
   firstName: "",
