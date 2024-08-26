@@ -22,8 +22,6 @@ export const EditProduct = () => {
   const [fileCount, setFileCount] = useState(0); // State to track the number of files
   const { form, handleOnChange } = useForm(selectedProduct || {});
 
-  console.log(form);
-
   useEffect(() => {
     dispatch(getCategoryAction());
   }, [dispatch]);

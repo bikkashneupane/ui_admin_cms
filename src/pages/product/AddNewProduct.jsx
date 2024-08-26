@@ -36,7 +36,6 @@ export const AddNewProduct = () => {
       });
     }
 
-    console.log(form);
     dispatch(postProductAction(formData, navigate));
   };
 

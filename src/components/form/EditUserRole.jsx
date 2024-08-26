@@ -3,7 +3,6 @@ import { useForm } from "../../hooks/useForm";
 
 export const EditUserRole = ({ selectedUser, handleUserRoleChange }) => {
   const { form, handleOnChange } = useForm(selectedUser);
-  console.log(form);
   const handleOnSubmit = (e) => {
     e.preventDefault();
     handleUserRoleChange(form);

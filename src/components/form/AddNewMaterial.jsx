@@ -9,7 +9,6 @@ export const AddNewMaterial = ({ postCategory }) => {
     if (!form.material.length) {
       return console.log("All field must be provided");
     }
-    console.log(form);
     postCategory(form, "addMaterial", true);
   };
 

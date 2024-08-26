@@ -14,7 +14,6 @@ export const getCategory = () =>
 
 // post new category
 export const postCategory = (obj, isSubCat) => {
-  console.log(obj, isSubCat);
   return axiosProcessor({
     url: isSubCat ? subCategoryEP : categoryEP,
     method: "POST",

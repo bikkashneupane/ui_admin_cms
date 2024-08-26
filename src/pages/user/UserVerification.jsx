@@ -15,7 +15,6 @@ export const UserVerification = () => {
   useEffect(() => {
     const getServerResponse = async () => {
       const data = await verifyUserAction({ c, e });
-      console.log(data);
       setResponse(data);
     };
 
