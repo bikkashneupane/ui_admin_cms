@@ -66,10 +66,10 @@ function App() {
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         stacked
         autoClose={3000}
-        hideProgressBar={true}
+        hideProgressBar={false}
         closeOnClick
         newestOnTop={true}
       />

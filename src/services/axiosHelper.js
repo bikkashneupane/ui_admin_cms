@@ -51,14 +51,17 @@ export const axiosProcessor = async ({
           method,
           data,
           isPrivate,
+          isRefreshJwt: false,
           showToast,
         });
       }
       sessionStorage.removeItem("accessJWT");
       localStorage.removeItem("refreshJWT");
-    }
 
-    showToast && toast.error(error.response.data.message);
+      toast.error("Session expired. Please log in again.");
+    } else {
+      showToast && toast.error(error.response.data.message);
+    }
 
     return error.response.data;
   }

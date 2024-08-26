@@ -16,7 +16,7 @@ export const postProductAction = (obj, navigate) => async (dispatch) => {
 
   if (status === "success") {
     dispatch(getProductAction());
-    // navigate("/admin/products");
+    navigate("/admin/products");
   }
 };
 
