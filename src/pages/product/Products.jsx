@@ -25,7 +25,7 @@ export const Products = () => {
         <Link
           to={"/admin/products/add"}
           onClick={() => {}}
-          className="px-4 py-2 bg-teal-600 text-white font-semibold rounded-lg shadow hover:bg-teal-700 focus:outline-none"
+          className="px-4 py-3 bg-gray-900 text-teal-500 hover:text-white font-semibold rounded-lg shadow hover:bg-teal-700 focus:outline-none"
         >
           Add New Product
         </Link>
@@ -35,13 +35,14 @@ export const Products = () => {
         totalPage={totalPage}
         pageProducts={pageProducts}
         totalProducts={product?.length || 0}
+        startIndex={startIndex}
       />
       <Pagination
         totalPage={totalPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         totalResultsLength={product?.length || 0}
-        startIndex={startIndex + 1}
+        startIndex={startIndex}
         endIndex={endIndex}
       />
     </div>

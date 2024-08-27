@@ -98,6 +98,7 @@ export const editRoleAxios = async (data) => {
     url: userEP + "/edit-role",
     method: "PUT",
     data,
+    isPrivate: true,
     showToast: true,
   });
 };

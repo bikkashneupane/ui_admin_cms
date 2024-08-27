@@ -1,6 +1,5 @@
 import { CategoryTable } from "../../components/tables/CategoryTable";
 import { CustomModal } from "../../components/common/custom-modal/CustomModal";
-import { AddNewCategory } from "../../components/form/AddNewCategory";
 import { useDispatch } from "react-redux";
 import { postCategoryAction } from "../../features/user/category/categoryAction";
 import { useModal } from "../../hooks/useModal";

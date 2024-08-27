@@ -5,8 +5,9 @@ import {
   editProductAction,
 } from "../../features/product/productAction";
 import { setSelectedProduct } from "../../features/product/productSlice";
+import { Switch } from "@headlessui/react";
 
-export const ProductTable = ({ pageProducts, totalProducts }) => {
+export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { category, brands, materials } = useSelector(
@@ -24,38 +25,45 @@ export const ProductTable = ({ pageProducts, totalProducts }) => {
 
   return (
     <div>
-      <div className="mb-3 text-lg font-semibold">
+      <div className="mb-3 font-semibold">
         {totalProducts || 0} Product(s) found
       </div>
 
       {pageProducts?.length > 0 && (
         <>
-          <div className="overflow-x-auto rounded-lg shadow-lg">
-            <table className="w-full bg-white border border-gray-200 overflow-scroll">
+          <div className="overflow-x-scroll mb-6 rounded-md">
+            <table className="min-w-full bg-gray-700 rounded-md">
               <thead>
-                <tr className="border">
-                  <th className="px-4 py-2 border-b">#</th>
-                  <th className="px-4 py-2 border-b">Status</th>
-                  <th className="px-4 py-2 border-b">Thumbnail</th>
-                  <th className="px-4 py-2 border-b">Name</th>
-                  <th className="px-4 py-2 border-b">SKU</th>
-                  <th className="px-4 py-2 border-b">Price</th>
-                  <th className="px-4 py-2 border-b">Quantity</th>
-                  <th className="px-4 py-2 border-b min-w-[200px]">Category</th>
-                  <th className="px-4 py-2 border-b">Sales</th>
-                  <th className="px-4 py-2 border-b">Description</th>
-                  <th className="px-4 py-2 border-b">Actions</th>
+                <tr className="bg-gray-900 border-b border-gray-600">
+                  <th className="px-4 py-2">#</th>
+                  <th className="px-4 py-2">Status</th>
+                  <th className="px-4 py-2">Thumbnail</th>
+                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2">SKU</th>
+                  <th className="px-4 py-2">Price</th>
+                  <th className="px-4 py-2">Quantity</th>
+                  <th className="px-4 py-2 min-w-[200px]">Category</th>
+                  <th className="px-4 py-2">Sales</th>
+                  <th className="px-4 py-2">Description</th>
+                  <th className="px-4 py-2">Actions</th>
                 </tr>
               </thead>
-              <tbody className="border">
+              <tbody className="">
                 {pageProducts &&
                   pageProducts.map((item, i) => (
-                    <tr key={item?._id} className="border-b">
-                      <td className="px-4 py-2">{i + 1}</td>
-                      <td className="px-4 py-2">
-                        <label className="inline-flex items-center cursor-pointer">
-                          <input
-                            type="checkbox"
+                    <tr key={item?._id} className="border-b border-gray-600">
+                      <td className="px-4 py-2">{startIndex + i + 1}</td>
+
+                      <td>
+                        <div
+                          className={`flex items-center gap-1 font-bold  ${
+                            item?.status === "active"
+                              ? "text-teal-600"
+                              : "text-red-600"
+                          }`}
+                        >
+                          <Switch
+                            className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-600 transition data-[checked]:bg-teal-600"
                             checked={item?.status === "active"}
                             onChange={() => {
                               handleStatusChange({
@@ -66,26 +74,15 @@ export const ProductTable = ({ pageProducts, totalProducts }) => {
                                     : "active",
                               });
                             }}
-                            className="sr-only"
-                          />
-                          <span
-                            className={`relative inline-block w-12 h-6 rounded-full ${
-                              item?.status === "active"
-                                ? "bg-green-600"
-                                : "bg-red-400"
-                            }`}
                           >
-                            <span
-                              className={`absolute left-0 top-0 w-6 h-6 transform rounded-full transition-transform ${
-                                item?.status === "active" ? "translate-x-6" : ""
-                              } bg-gray-100 border`}
-                            ></span>
-                          </span>
-                          <span className="ml-3">
+                            <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+                          </Switch>
+                          <span className="w-[50px]">
                             {item?.status?.toUpperCase()}
                           </span>
-                        </label>
+                        </div>
                       </td>
+
                       <td className="px-4 py-2">
                         <img src={item?.thumbnail} alt="" className="w-24" />
                       </td>
@@ -134,12 +131,12 @@ export const ProductTable = ({ pageProducts, totalProducts }) => {
                       <td className="px-4 py-2">
                         {item?.description?.slice(0, 50)}...
                       </td>
-                      <td className="px-4 py-2 flex space-x-2">
+                      <td className="px-4 py-2 flex gap-1">
                         <button
                           onClick={() => {
                             handleOnEditProduct(item);
                           }}
-                          className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                          className="px-6 py-1 bg-gray-800 text-yellow-500 hover:text-white rounded hover:bg-yellow-600"
                         >
                           Edit
                         </button>
@@ -147,7 +144,7 @@ export const ProductTable = ({ pageProducts, totalProducts }) => {
                           onClick={() => {
                             dispatch(deleteProductAction(item?._id));
                           }}
-                          className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                          className="px-3 py-1 bg-gray-800 hover:bg-red-500 hover:text-white rounded text-red-600"
                         >
                           Delete
                         </button>

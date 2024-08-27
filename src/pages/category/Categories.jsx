@@ -31,19 +31,19 @@ export const Categories = () => {
       <hr />
       <div className="my-4 flex gap-2 justify-end">
         <button
-          className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-800"
+          className="bg-gray-900 text-teal-500 px-4 py-3 rounded hover:bg-teal-800 hover:text-white"
           onClick={() => showModal("addCategory")}
         >
           Add New Category
         </button>
         <button
-          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-800"
+          className="bg-gray-900 text-purple-500  px-4 py-3 rounded hover:bg-purple-800 hover:text-white"
           onClick={() => showModal("addBrand")}
         >
           Add New Brand
         </button>
         <button
-          className="bg-lime-600 text-white px-4 py-2 rounded hover:bg-lime-800"
+          className="bg-gray-900 text-lime-500  px-4 py-3 rounded hover:bg-lime-800 hover:text-white"
           onClick={() => showModal("addMaterial")}
         >
           Add New Material

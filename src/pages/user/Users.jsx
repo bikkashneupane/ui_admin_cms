@@ -16,12 +16,12 @@ export const Users = () => {
       <TabGroup>
         <TabList
           as="div"
-          className="bg-gradient-to-r bg-gray-800 flex flex-col max-w-min lg:max-w-full lg:justify-center md:gap-6 lg:flex-row  px-2 py-2 rounded-md shadow-lg bg-opacity-90"
+          className="bg-gray-900 flex flex-col max-w-min lg:max-w-full lg:justify-center md:gap-6 lg:flex-row  px-2 py-2 rounded-md shadow-lg bg-opacity-90"
         >
-          <Tab className="text-purple-500 data-[selected]:bg-purple-700 data-[selected]:text-white font-bold text-lg px-10 py-2 rounded-md shadow-lg">
+          <Tab className="text-purple-500 data-[selected]:bg-purple-700 data-[selected]:text-white font-bold text-base px-10 py-1 rounded-md shadow-lg">
             Admin
           </Tab>
-          <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-bold text-lg px-6 py-2 rounded-md shadow-lg">
+          <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-bold text-base px-6 py-1 rounded-md shadow-lg">
             Customers
           </Tab>
         </TabList>

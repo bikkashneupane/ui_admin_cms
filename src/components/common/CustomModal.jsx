@@ -32,15 +32,13 @@ export const CustomModal = ({
       ></div>
 
       <div className="flex items-center min-h-screen px-4 py-8">
-        <div className="relative w-full max-w-lg p-6 mx-auto bg-white rounded-lg shadow-lg">
+        <div className="relative w-full max-w-lg p-6 mx-auto bg-gray-800 rounded-lg shadow-lg">
           <div className="flex justify-between items-center pb-3 border-b">
-            <h3 className="text-lg font-medium text-gray-900 text-center w-full">
-              {title}
-            </h3>
+            <h3 className="text-lg font-medium text-center w-full">{title}</h3>
 
             <button
               onClick={hideModal}
-              className="text-gray-500 hover:text-gray-700"
+              className="hover:bg-gray-700 p-2 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

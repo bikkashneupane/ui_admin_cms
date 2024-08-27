@@ -17,7 +17,7 @@ const Pagination = ({
         className={`px-3 py-1 rounded-md ${
           number === currentPage
             ? "bg-teal-500 text-white"
-            : "bg-gray-200 hover:bg-teal-600 hover:text-white"
+            : "bg-gray-700 hover:bg-teal-600 hover:text-white"
         }`}
         onClick={() => setCurrentPage(number)}
       >

@@ -3,23 +3,21 @@ export const CustomInput = (props) => {
 
   return (
     <>
-      {label && (
-        <label className="block text-sm font-bold text-gray-700">{label}</label>
-      )}
+      {label && <label className="block font-bold">{label}</label>}
       {as === "textarea" ? (
         <textarea
           {...rest}
           // defaultValue={value}
           ref={inputRef}
           rows={rows}
-          className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-gray-700"
         />
       ) : (
         <input
           {...rest}
           // defaultValue={value}
           ref={inputRef}
-          className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-gray-700"
         />
       )}
     </>
@@ -30,13 +28,11 @@ export const CustomSelect = (props) => {
   const { label, options, defaultValue, form = [], ...rest } = props;
   return (
     <div className="mb-3">
-      {label && (
-        <label className="block font-bold text-gray-700">{label}</label>
-      )}
+      {label && <label className="block font-bold ">{label}</label>}
       <select
         {...rest}
         defaultValue={defaultValue}
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        className="mt-1 block w-full px-2 py-2 bg-gray-700 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500"
       >
         <option value="">--Select--</option>
         {options?.map((item) => (
@@ -53,10 +49,8 @@ export const CustomCheck = (props) => {
   const { label, name, options, onChange, form } = props;
   return (
     <div className="mb-3">
-      {label && (
-        <label className="block font-bold text-gray-700">{label}</label>
-      )}
-      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border bg-gray-100">
+      {label && <label className="block font-bold ">{label}</label>}
+      <div className="flex flex-col gap-2 rounded-md shadow-lg p-3  bg-gray-700">
         {options?.map((option) => (
           <div key={option?.value}>
             <input
@@ -68,10 +62,7 @@ export const CustomCheck = (props) => {
               onChange={onChange}
               className="mr-2"
             />
-            <label
-              htmlFor={`${name}-${option?.value}`}
-              className="text-gray-700"
-            >
+            <label htmlFor={`${name}-${option?.value}`} className="">
               {option?.text}
             </label>
           </div>
@@ -81,37 +72,32 @@ export const CustomCheck = (props) => {
   );
 };
 
-export const CustomRadio = (props) => {
-  const { label, name, options, onChange, form } = props;
-  return (
-    <div className="mb-3">
-      {label && (
-        <label className="block font-bold text-gray-700">{label}</label>
-      )}
-      <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
-        {options?.map((option) => (
-          <div key={option?.value}>
-            <input
-              type="radio"
-              id={`${name}-${option?.value}`}
-              name={name}
-              value={option?.value}
-              checked={form[name]?.includes(option?.value) || false}
-              onChange={onChange}
-              className="mr-2"
-            />
-            <label
-              htmlFor={`${name}-${option?.value}`}
-              className="text-gray-700"
-            >
-              {option?.text}
-            </label>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+// export const CustomRadio = (props) => {
+//   const { label, name, options, onChange, form } = props;
+//   return (
+//     <div className="mb-3">
+//       {label && <label className="block font-bold">{label}</label>}
+//       <div className="flex flex-col gap-2 rounded-md shadow-lg p-2 border">
+//         {options?.map((option) => (
+//           <div key={option?.value}>
+//             <input
+//               type="radio"
+//               id={`${name}-${option?.value}`}
+//               name={name}
+//               value={option?.value}
+//               checked={form[name]?.includes(option?.value) || false}
+//               onChange={onChange}
+//               className="mr-2"
+//             />
+//             <label htmlFor={`${name}-${option?.value}`} className="">
+//               {option?.text}
+//             </label>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 export const DynamicInputField = (props) => {
   const { label, name, onChange, form, setForm, ...rest } = props;
@@ -148,9 +134,7 @@ export const DynamicInputField = (props) => {
 
   return (
     <div className="mb-3">
-      {label && (
-        <label className="block font-bold text-gray-700">{label}</label>
-      )}
+      {label && <label className="block font-bold ">{label}</label>}
 
       <div className="flex flex-col gap-3">
         {form[name]?.map((item, index) => (

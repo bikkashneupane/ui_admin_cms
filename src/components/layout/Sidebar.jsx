@@ -41,18 +41,21 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-gray-400 px-3 w-16 md:min-w-52 pt-8 fixed top-0 min-h-screen">
+    <div className="bg-gray-900 text-gray-400 px-3 w-16 md:min-w-52 pt-8 fixed top-0 min-h-screen">
       <div className="h-full">
-        <div className="pb-10 text-center hidden md:block text-lg font-semibold">
+        <Link
+          to={"/"}
+          className="pb-10 text-center hidden md:block text-lg font-semibold"
+        >
           ADMIN CMS
-        </div>
+        </Link>
 
         <div className="space-y-4">
           <hr />
           {inputs.map(({ to, icon, title }) => (
             <Link
               key={title}
-              className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3"
+              className="flex items-center p-2 rounded-lg hover:bg-gray-800 hover:text-orange-500 transition-colors gap-3"
               to={to}
             >
               <span className="text-xl">{icon}</span>
@@ -61,7 +64,7 @@ export const Sidebar = () => {
           ))}
         </div>
         <Link
-          className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 mt-20"
+          className="flex items-center p-2 rounded-lg hover:bg-gray-800 hover:text-orange-500 transition-colors gap-3 mt-20"
           to={"/admin/profile"}
         >
           <span className="text-xl">
