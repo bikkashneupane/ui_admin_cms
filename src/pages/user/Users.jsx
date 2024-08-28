@@ -9,8 +9,8 @@ export const Users = () => {
   const customers = allUsers?.filter((item) => item?.role === "user");
 
   return (
-    <div className="mx-auto mt-6 px-4 sm:px-6 md:px-8 lg:px-10">
-      <h2 className="text-2xl font-bold mb-2">Users</h2>
+    <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+      <h2 className="text-xl font-bold mb-2">Users</h2>
       <hr className="mb-10" />
 
       <TabGroup>

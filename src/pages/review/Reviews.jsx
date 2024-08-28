@@ -21,8 +21,8 @@ export const Reviews = () => {
     dispatch(editReviewAction(updateObj, navigate));
   };
   return (
-    <div className="mx-auto px-6 py-1">
-      <h2 className="text-2xl font-bold mb-2">Reviews</h2>
+    <div className="mx-auto px-6">
+      <h2 className="text-xl font-bold mb-2">Reviews</h2>
       <hr className="mb-10 " />
 
       <div className="mb-3 font-semibold">

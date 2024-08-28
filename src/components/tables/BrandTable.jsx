@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBrandAction } from "../../features/category/categoryAction";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
   const dispatch = useDispatch();
@@ -33,21 +34,21 @@ const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
                   <td className="py-2 px-4">{item?.slug}</td>
                   <td className="py-2 px-4 flex gap-2 items-center">
                     <button
-                      className="bg-gray-900 text-yellow-500 py-2 px-8 rounded hover:bg-yellow-600 hover:text-white transition"
+                      className="bg-gray-900 text-yellow-500 p-2 rounded hover:bg-yellow-600 hover:text-white transition"
                       onClick={() => {
                         setSelectedBrand(item);
                         showModal(editBrandModalName);
                       }}
                     >
-                      Edit
+                      <PencilIcon className="w-5 h-5" />
                     </button>
                     <button
-                      className="bg-gray-900 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition"
+                      className="bg-gray-900 text-red-500 hover:text-white p-2 rounded hover:bg-red-600 transition"
                       onClick={() => {
                         dispatch(deleteBrandAction(item?._id));
                       }}
                     >
-                      Delete
+                      <TrashIcon className="w-5 h-5" />
                     </button>
                   </td>
                 </tr>

@@ -9,6 +9,9 @@ import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
 import { CustomModal } from "../../components/common/CustomModal";
 import { EditOrderStatus } from "../../components/form/EditOrderStatus";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { FaDeleteLeft } from "react-icons/fa6";
+import { FaRemoveFormat } from "react-icons/fa";
 
 const editOrderModalName = "editOrderModal";
 
@@ -56,8 +59,8 @@ export const Orders = () => {
   };
 
   return (
-    <div className="mx-auto px-6 py-1">
-      <h2 className="text-2xl font-bold mb-2">Order History</h2>
+    <div className="mx-auto px-6">
+      <h2 className="text-xl font-bold mb-2">Order History</h2>
       <hr className="mb-10 " />
       <div className="mb-3 font-semibold">
         {allOrders?.length || 0} Orders(s) found
@@ -87,7 +90,7 @@ export const Orders = () => {
               <th className="py-2 px-4 text-left">Amount</th>
               <th className="py-2 px-4 text-left">Placed Date</th>
               <th className="py-2 px-4 text-left">Delivery Status</th>
-              <th className="py-2 px-4 text-left w-1/6">Actions</th>
+              <th className="py-2 px-4 text-left w-1/8">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -154,22 +157,24 @@ export const Orders = () => {
                       {order?.orderStatus?.toUpperCase()}
                     </h1>
                   </td>
-                  <td className="py-2 px-4 flex gap-2">
-                    <button
-                      onClick={() => {
-                        showModal(editOrderModalName);
-                        setSelectedOrder(order);
-                      }}
-                      className="px-6 py-2 bg-gray-900 text-yellow-600 hover:text-white rounded hover:bg-yellow-800"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="px-3 py-2 bg-gray-900 hover:bg-red-800 hover:text-white rounded text-red-600"
-                      onClick={() => dispatch(deleteOrderAction(order?._id))}
-                    >
-                      Delete
-                    </button>
+                  <td className="py-2 px-4">
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => {
+                          showModal(editOrderModalName);
+                          setSelectedOrder(order);
+                        }}
+                        className="p-2 bg-gray-900 text-yellow-600 hover:text-white rounded hover:bg-yellow-800"
+                      >
+                        <PencilIcon className="w-5 h-5" />
+                      </button>
+                      <button
+                        className="p-2 bg-gray-900 hover:bg-red-800 hover:text-white rounded text-red-600"
+                        onClick={() => dispatch(deleteOrderAction(order?._id))}
+                      >
+                        <TrashIcon className="w-5 h-5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

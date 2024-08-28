@@ -6,6 +6,7 @@ import {
 } from "../../features/product/productAction";
 import { setSelectedProduct } from "../../features/product/productSlice";
 import { Switch } from "@headlessui/react";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
   const dispatch = useDispatch();
@@ -136,17 +137,18 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
                           onClick={() => {
                             handleOnEditProduct(item);
                           }}
-                          className="px-6 py-1 bg-gray-900 text-yellow-500 hover:text-white rounded hover:bg-yellow-600"
+                          className="p-2 bg-gray-900 text-yellow-500 hover:text-white rounded hover:bg-yellow-600"
                         >
-                          Edit
+                          <PencilIcon className="w-5 h-5" />
                         </button>
+
                         <button
                           onClick={() => {
                             dispatch(deleteProductAction(item?._id));
                           }}
-                          className="px-3 py-1 bg-gray-900 hover:bg-red-500 hover:text-white rounded text-red-600"
+                          className="p-2 bg-gray-900 hover:bg-red-500 hover:text-white rounded text-red-600"
                         >
-                          Delete
+                          <TrashIcon className="w-5 h-5" />
                         </button>
                       </td>
                     </tr>

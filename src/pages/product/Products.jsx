@@ -17,8 +17,8 @@ export const Products = () => {
   const pageProducts = product?.slice(startIndex, endIndex);
 
   return (
-    <div className="mx-auto p-4 sm:px-6 md:px-8">
-      <h2 className="text-2xl font-bold mb-4">Products</h2>
+    <div className="mx-auto px-4 sm:px-6 md:px-8">
+      <h2 className="text-xl font-bold mb-4">Products</h2>
       <hr className="mb-4 " />
       <div className="text-right">
         <Link

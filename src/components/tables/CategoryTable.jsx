@@ -22,6 +22,7 @@ import {
 import EditBrand from "../form/EditBrand";
 import EditMaterial from "../form/EditMaterial";
 import { CustomModal } from "../common/CustomModal";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 const editCatModalName = "editCategory";
 const editBrandModalName = "editBrand";
@@ -170,21 +171,22 @@ export const CategoryTable = () => {
                         <td className="py-2 px-4">{item?.slug}</td>
                         <td className="py-2 px-4 flex gap-2 items-center">
                           <button
-                            className="bg-gray-900 text-yellow-500 py-2 px-8 rounded hover:bg-yellow-600 hover:text-white transition"
+                            className="bg-gray-900 text-yellow-500 p-2 rounded hover:bg-yellow-600 hover:text-white transition"
                             onClick={() => {
                               showModal(editCatModalName);
                               setSelectedCategory(item);
                             }}
                           >
-                            Edit
+                            <PencilIcon className="w-5 h-5" />
                           </button>
+
                           <button
-                            className="bg-gray-900 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition"
+                            className="bg-gray-900 text-red-500 hover:text-white p-2 rounded hover:bg-red-600 transition"
                             onClick={() => {
                               dispatch(deleteCategoryAction(item?._id));
                             }}
                           >
-                            Delete
+                            <TrashIcon className="w-5 h-5" />
                           </button>
                         </td>
                       </tr>

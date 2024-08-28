@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { EditUserRole } from "../form/EditUserRole";
 import { useModal } from "../../hooks/useModal";
 import { editRoleAction } from "../../features/user/userAction";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 const editUserModalName = "editUserRoleModal";
 
@@ -67,8 +68,8 @@ const UsersTable = ({ users = [] }) => {
                 <td className="py-2 px-4">{user?.firstName}</td>
                 <td className="py-2 px-4">{user?.lastName}</td>
                 <td className="py-2 px-4 flex gap-2">
-                  <button className="bg-gray-900 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition">
-                    Delete
+                  <button className="p-2 bg-gray-900 hover:bg-red-800 hover:text-white rounded text-red-600">
+                    <TrashIcon className="w-5 h-5" />
                   </button>
                 </td>
               </tr>
