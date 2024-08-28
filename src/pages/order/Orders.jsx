@@ -12,6 +12,23 @@ import { EditOrderStatus } from "../../components/form/EditOrderStatus";
 
 const editOrderModalName = "editOrderModal";
 
+const getStatusBgColor = (status) => {
+  switch (status) {
+    case "pending":
+      return "bg-yellow-600";
+    case "confirmed":
+      return "bg-sky-600";
+    case "processing":
+      return "bg-orange-600";
+    case "shipped":
+      return "bg-teal-600";
+    case "delivered":
+      return "bg-green-600";
+    default:
+      return "bg-gray-600";
+  }
+};
+
 export const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrder, setSelectedOrder] = useState({});
@@ -40,7 +57,7 @@ export const Orders = () => {
 
   return (
     <div className="mx-auto px-6 py-1">
-      <h2 className="text-2xl font-bold mb-2">Orders</h2>
+      <h2 className="text-2xl font-bold mb-2">Order History</h2>
       <hr className="mb-10 " />
       <div className="mb-3 font-semibold">
         {allOrders?.length || 0} Orders(s) found
@@ -65,11 +82,11 @@ export const Orders = () => {
               <th className="py-2 px-4 text-left">#</th>
               <th className="py-2 px-4 text-left">Order Id</th>
               <th className="py-2 px-4 text-left">Payment Status</th>
-              <th className="py-2 px-4 text-left">Delivery Status</th>
               <th className="py-2 px-4 text-left">Customer</th>
               <th className="py-2 px-4 text-left">Products</th>
               <th className="py-2 px-4 text-left">Amount</th>
               <th className="py-2 px-4 text-left">Placed Date</th>
+              <th className="py-2 px-4 text-left">Delivery Status</th>
               <th className="py-2 px-4 text-left w-1/6">Actions</th>
             </tr>
           </thead>
@@ -79,35 +96,20 @@ export const Orders = () => {
                 <tr key={i} className="border-b border-gray-600">
                   <td className="py-2 px-4">{startIndex + i + 1}</td>
                   <td className="py-2 px-4">{order?.orderId}</td>
-                  <td
-                    className={`py-2 px-4 ${
-                      order?.paymentStatus === "pending"
-                        ? "text-yellow-600"
-                        : order?.paymentStatus === "Succeeded"
-                        ? "text-green-600"
-                        : "text-red-600"
-                    }`}
-                  >
-                    {order?.paymentStatus}
-                  </td>
-                  <td
-                    className={`py-2 px-4 flex items-center ${
-                      order?.orderStatus === "delivered"
-                        ? "text-green-600"
-                        : "text-yellow-600"
-                    }`}
-                  >
-                    <h1 className="w-[70px]"> {order?.orderStatus}</h1>
-                    <span
-                      className="px-2 py-1 rounded-md cursor-pointer bg-yellow-700 text-white"
-                      onClick={() => {
-                        showModal(editOrderModalName);
-                        setSelectedOrder(order);
-                      }}
+                  <td className="py-2 px-4">
+                    <h1
+                      className={`px-3 py-2 rounded-md text-xs font-semibold text-center text-white ${
+                        order?.paymentStatus === "pending"
+                          ? "bg-yellow-900"
+                          : order?.paymentStatus === "Succeeded"
+                          ? "bg-green-900"
+                          : "bg-red-900"
+                      }`}
                     >
-                      Change
-                    </span>
+                      {order?.paymentStatus?.toUpperCase()}
+                    </h1>
                   </td>
+
                   <td className="py-2 px-4">
                     <span>
                       {
@@ -143,8 +145,23 @@ export const Orders = () => {
                   </td>
                   <td className="py-2 px-4">${order?.amount}</td>
                   <td className="py-2 px-4">{order?.createdAt.slice(0, 10)}</td>
+                  <td className="py-2 px-4">
+                    <h1
+                      className={`min-w-[120px] rounded-md px-3 py-2 ${getStatusBgColor(
+                        order?.orderStatus
+                      )} text-xs font-semibold text-center text-white`}
+                    >
+                      {order?.orderStatus?.toUpperCase()}
+                    </h1>
+                  </td>
                   <td className="py-2 px-4 flex gap-2">
-                    <button className="px-6 py-2 bg-gray-900 text-yellow-600 hover:text-white rounded hover:bg-yellow-800">
+                    <button
+                      onClick={() => {
+                        showModal(editOrderModalName);
+                        setSelectedOrder(order);
+                      }}
+                      className="px-6 py-2 bg-gray-900 text-yellow-600 hover:text-white rounded hover:bg-yellow-800"
+                    >
                       Edit
                     </button>
                     <button

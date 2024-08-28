@@ -39,7 +39,7 @@ export const Reviews = () => {
               <th className="py-2 px-4 text-left">Customer</th>
               <th className="py-2 px-4 text-left">Ratings</th>
               <th className="py-2 px-4 text-left">Review</th>
-              <th className="py-2 px-4 text-left w-1/6">Order Placed</th>
+              <th className="py-2 px-4 text-left w-1/6">Review Placed</th>
             </tr>
           </thead>
           <tbody>
