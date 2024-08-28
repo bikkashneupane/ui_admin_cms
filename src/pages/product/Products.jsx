@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
 import { ProductTable } from "../../components/tables/ProductTable";
 import Pagination from "../../components/common/Pagination";
@@ -25,7 +24,7 @@ export const Products = () => {
         <Link
           to={"/admin/products/add"}
           onClick={() => {}}
-          className="px-4 py-3 bg-gray-900 text-teal-500 hover:text-white font-semibold rounded-lg shadow hover:bg-teal-700 focus:outline-none"
+          className="px-4 py-3 bg-teal-700 text-white font-semibold rounded-lg shadow hover:bg-teal-600 focus:outline-none"
         >
           Add New Product
         </Link>

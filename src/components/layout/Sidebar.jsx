@@ -41,11 +41,11 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-gray-900 text-gray-400 px-3 w-16 md:min-w-52 pt-8 fixed top-0 min-h-screen">
+    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-52 pt-8 fixed top-0 min-h-screen font-bold">
       <div className="h-full">
         <Link
           to={"/"}
-          className="pb-10 text-center hidden md:block text-lg font-semibold"
+          className="pb-7 pt-3 text-center hidden md:block text-lg"
         >
           ADMIN CMS
         </Link>

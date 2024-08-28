@@ -18,7 +18,7 @@ export const AdminLayout = () => {
         <Sidebar />
         <div className="w-full">
           {/* <Header /> */}
-          <div className="px-6 py-4 min-h-[90vh] ml-16 md:ml-52">
+          <div className="px-6 py-4 min-h-[100vh] ml-16 md:ml-52">
             <Outlet />
           </div>
           <Footer />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getCategoryAction } from "../../features/category/categoryAction";
 import { editProductAction } from "../../features/product/productAction";
 import { useForm } from "../../hooks/useForm";
@@ -171,8 +171,16 @@ export const EditProduct = () => {
       </h1>
       <form
         onSubmit={handleOnSubmit}
-        className="space-y-4 rounded-md shadow-lg p-10 bg-white"
+        className="space-y-4 rounded-md shadow-lg p-10 bg-gray-700"
       >
+        <div className="text-end">
+          <Link
+            to={"/admin/products"}
+            className="bg-gray-900 px-3 py-2 rounded-md"
+          >
+            X
+          </Link>
+        </div>
         <div className="flex items-center space-x-2">
           <label className="flex items-center space-x-2">
             <input

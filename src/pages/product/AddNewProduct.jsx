@@ -158,7 +158,7 @@ export const AddNewProduct = () => {
       <h1 className="text-center text-2xl font-bold mt-10 mb-4">Add Product</h1>
       <form
         onSubmit={handleOnSubmit}
-        className="space-y-4 rounded-md shadow-lg p-10 bg-white"
+        className="space-y-4 rounded-md shadow-lg p-10 bg-gray-700"
       >
         {inputs.map((item) =>
           item?.options ? (

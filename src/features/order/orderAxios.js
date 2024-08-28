@@ -12,3 +12,24 @@ export const fetchAllOrders = () => {
     isPrivate: true,
   });
 };
+
+// delete an order
+export const deleteOrderAxios = (_id) => {
+  return axiosProcessor({
+    url: orderEP + "/" + _id,
+    method: "delete",
+    isPrivate: true,
+    showToast: true,
+  });
+};
+
+// edit order status (for delivery)
+export const editOrderAxios = (data) => {
+  return axiosProcessor({
+    url: orderEP,
+    method: "put",
+    data,
+    isPrivate: true,
+    showToast: true,
+  });
+};

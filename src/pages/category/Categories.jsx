@@ -29,21 +29,21 @@ export const Categories = () => {
     <div className="mx-auto max-w-7xl mt-6 px-4 sm:px-6 md:px-8 lg:px-10">
       <h2 className="text-2xl font-bold mb-2">Categories</h2>
       <hr />
-      <div className="my-4 flex gap-2 justify-end">
+      <div className="my-4 flex gap-2 justify-end font-semibold">
         <button
-          className="bg-gray-900 text-teal-500 px-4 py-3 rounded hover:bg-teal-800 hover:text-white"
+          className="bg-gray-800 text-teal-500 px-4 py-3 rounded hover:bg-teal-800 hover:text-white"
           onClick={() => showModal("addCategory")}
         >
           Add New Category
         </button>
         <button
-          className="bg-gray-900 text-purple-500  px-4 py-3 rounded hover:bg-purple-800 hover:text-white"
+          className="bg-gray-800 text-purple-500  px-4 py-3 rounded hover:bg-purple-800 hover:text-white"
           onClick={() => showModal("addBrand")}
         >
           Add New Brand
         </button>
         <button
-          className="bg-gray-900 text-lime-500  px-4 py-3 rounded hover:bg-lime-800 hover:text-white"
+          className="bg-gray-800 text-lime-500  px-4 py-3 rounded hover:bg-lime-800 hover:text-white"
           onClick={() => showModal("addMaterial")}
         >
           Add New Material

@@ -102,15 +102,15 @@ export const CategoryTable = () => {
       <TabGroup>
         <TabList
           as="div"
-          className="bg-gray-900 flex flex-col max-w-min lg:max-w-full lg:justify-center md:gap-16 lg:flex-row  px-2 py-2 rounded-md bg-opacity-90"
+          className="bg-gray-800 flex max-w-min lg:max-w-full lg:justify-center md:gap-16 lg:flex-row  px-2 py-2 rounded-md bg-opacity-90"
         >
-          <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-bold text-base px-6 py-1 rounded-md">
+          <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-semibold px-6 py-2 rounded-md">
             Categories
           </Tab>
-          <Tab className="text-purple-500 data-[selected]:bg-purple-700 data-[selected]:text-white font-bold text-base px-6 py-1 rounded-md">
+          <Tab className="text-purple-500 data-[selected]:bg-purple-700 data-[selected]:text-white font-bold px-6 py-2 rounded-md">
             Brands
           </Tab>
-          <Tab className="text-lime-500 data-[selected]:bg-lime-700 data-[selected]:text-white font-bold text-base px-6 py-1 rounded-md">
+          <Tab className="text-lime-500 data-[selected]:bg-lime-700 data-[selected]:text-white font-bold px-6 py-2 rounded-md">
             Materials
           </Tab>
         </TabList>
@@ -122,9 +122,9 @@ export const CategoryTable = () => {
               Categorie(s) found
             </div>
             <div className="overflow-x-scroll mb-6 rounded-md">
-              <table className="min-w-full font-medium bg-gray-700 rounded-md">
+              <table className="min-w-full font-medium bg-gray-800 rounded-md">
                 <thead>
-                  <tr className="bg-gray-900 border-b border-gray-600">
+                  <tr className="bg-teal-800 border-b border-gray-600">
                     <th className="py-2 px-4 text-left">#</th>
                     <th className="py-2 px-4 text-left">Status</th>
                     <th className="py-2 px-4 text-left">Title</th>
@@ -170,7 +170,7 @@ export const CategoryTable = () => {
                         <td className="py-2 px-4">{item?.slug}</td>
                         <td className="py-2 px-4 flex gap-2 items-center">
                           <button
-                            className="bg-gray-800 text-yellow-500 py-2 px-8 rounded hover:bg-yellow-600 hover:text-white transition"
+                            className="bg-gray-900 text-yellow-500 py-2 px-8 rounded hover:bg-yellow-600 hover:text-white transition"
                             onClick={() => {
                               showModal(editCatModalName);
                               setSelectedCategory(item);
@@ -179,7 +179,7 @@ export const CategoryTable = () => {
                             Edit
                           </button>
                           <button
-                            className="bg-gray-800 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition"
+                            className="bg-gray-900 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition"
                             onClick={() => {
                               dispatch(deleteCategoryAction(item?._id));
                             }}

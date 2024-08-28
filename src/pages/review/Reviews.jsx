@@ -10,7 +10,9 @@ export const Reviews = () => {
 
   const { reviews } = useSelector((state) => state.reviewInfo);
   const { product } = useSelector((state) => state.productInfo);
+  const { allUsers } = useSelector((state) => state.userInfo);
 
+  console.log(reviews);
   const handleStatusChange = (review) => {
     const { _id, status } = review;
     const newStatus = status === "active" ? "inactive" : "active";
@@ -28,16 +30,16 @@ export const Reviews = () => {
       </div>
 
       <div className="overflow-x-scroll mb-6 rounded-md">
-        <table className="min-w-full bg-gray-700 rounded-md">
+        <table className="min-w-full bg-gray-800 rounded-md">
           <thead>
-            <tr className="bg-gray-900 border-b border-gray-600">
+            <tr className="bg-teal-800 border-b border-gray-600">
               <th className="py-2 px-4 text-left">#</th>
               <th className="py-2 px-4 text-left">Status</th>
               <th className="py-2 px-4 text-center">Product</th>
               <th className="py-2 px-4 text-left">Customer</th>
               <th className="py-2 px-4 text-left">Ratings</th>
               <th className="py-2 px-4 text-left">Review</th>
-              <th className="py-2 px-4 text-left">Placed Date</th>
+              <th className="py-2 px-4 text-left w-1/6">Order Placed</th>
             </tr>
           </thead>
           <tbody>
@@ -70,13 +72,18 @@ export const Reviews = () => {
                         ?.thumbnail
                     }`}
                     alt=""
-                    className="w-24"
+                    className="w-20"
                   />
                   <h1>
                     {product?.find((pr) => pr?._id === review?.productId)?.name}
                   </h1>
                 </td>
-                <td className="py-2 px-4">{review?.userName}</td>
+                <td className="py-2 px-4">
+                  {
+                    allUsers?.find((user) => user?._id === review?.userId)
+                      ?.email
+                  }
+                </td>
                 <td className="py-2 px-4">
                   <Stars stars={review?.ratings} />
                 </td>

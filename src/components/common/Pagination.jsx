@@ -26,7 +26,7 @@ const Pagination = ({
     );
   }
   return (
-    <div className="flex justify-between items-center px-2">
+    <div className="flex justify-between items-baseline px-2">
       <div>
         <p className="text-sm">
           Showing <span className="font-medium">{startIndex + 1}</span> to{" "}
@@ -44,7 +44,7 @@ const Pagination = ({
         >
           <ChevronLeftIcon aria-hidden="true" className="h-5 w-5" />
         </button>
-        <div className="space-x-2">{items}</div>
+        <div className="space-x-2 hidden md:block">{items}</div>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           className="relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 ring-inset ring-gray-300 hover:bg-teal-600 hover:text-white focus:z-20 focus:outline-offset-0"

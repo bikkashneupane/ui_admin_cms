@@ -32,9 +32,9 @@ const UsersTable = ({ users = [] }) => {
         </CustomModal>
       )}
 
-      <table className="min-w-full font-medium bg-gray-700 rounded-md">
+      <table className="min-w-full font-medium bg-gray-800 rounded-md">
         <thead>
-          <tr className="bg-gray-900 border-b border-gray-600">
+          <tr className="bg-teal-800 border-b border-gray-600">
             <th className="py-2 px-4 text-left w-1/6">#</th>
             <th className="py-2 px-4 text-left w-1/6">Role</th>
             <th className="py-2 px-4 text-left w-1/6">Email</th>
@@ -66,12 +66,7 @@ const UsersTable = ({ users = [] }) => {
                 <td className="py-2 px-4">{user?.firstName}</td>
                 <td className="py-2 px-4">{user?.lastName}</td>
                 <td className="py-2 px-4 flex gap-2">
-                  <button
-                    className="bg-gray-800 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition"
-                    //   onClick={() => {
-                    //     dispatch(deleteCategoryAction(item?._id));
-                    //   }}
-                  >
+                  <button className="bg-gray-900 text-red-500 hover:text-white py-2 px-4 rounded hover:bg-red-600 transition">
                     Delete
                   </button>
                 </td>

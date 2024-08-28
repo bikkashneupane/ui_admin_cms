@@ -32,9 +32,9 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
       {pageProducts?.length > 0 && (
         <>
           <div className="overflow-x-scroll mb-6 rounded-md">
-            <table className="min-w-full bg-gray-700 rounded-md">
+            <table className="min-w-full bg-gray-800 rounded-md">
               <thead>
-                <tr className="bg-gray-900 border-b border-gray-600">
+                <tr className="bg-teal-800 border-b border-gray-600">
                   <th className="px-4 py-2">#</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2">Thumbnail</th>
@@ -136,7 +136,7 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
                           onClick={() => {
                             handleOnEditProduct(item);
                           }}
-                          className="px-6 py-1 bg-gray-800 text-yellow-500 hover:text-white rounded hover:bg-yellow-600"
+                          className="px-6 py-1 bg-gray-900 text-yellow-500 hover:text-white rounded hover:bg-yellow-600"
                         >
                           Edit
                         </button>
@@ -144,7 +144,7 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
                           onClick={() => {
                             dispatch(deleteProductAction(item?._id));
                           }}
-                          className="px-3 py-1 bg-gray-800 hover:bg-red-500 hover:text-white rounded text-red-600"
+                          className="px-3 py-1 bg-gray-900 hover:bg-red-500 hover:text-white rounded text-red-600"
                         >
                           Delete
                         </button>

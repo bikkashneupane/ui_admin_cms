@@ -56,7 +56,7 @@ export const Login = () => {
         <h1>Password: 11</h1>
       </div>
 
-      <div className="bg-light rounded" style={{ width: "450px" }}>
+      <div className="bg-gray-800 rounded" style={{ width: "450px" }}>
         <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
           <h3 className="text-center">Admin Login</h3>
           {inputs.map((item) => (
