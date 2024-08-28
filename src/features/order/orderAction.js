@@ -8,12 +8,15 @@ export const fetchAllOrdersAction = () => async (dispatch) => {
 };
 
 // edit order status (delivery)
-export const editOrderStatusAction = (obj) => async (dispatch) => {
-  const { status } = await editOrderAxios(obj);
-  if (status === "success") {
-    dispatch(fetchAllOrdersAction());
-  }
-};
+export const editOrderStatusAction =
+  (obj, hideModal, navigate) => async (dispatch) => {
+    const { status } = await editOrderAxios(obj);
+    if (status === "success") {
+      dispatch(fetchAllOrdersAction());
+      hideModal();
+      navigate("/admin/orders");
+    }
+  };
 
 // delete order action
 export const deleteOrderAction = (_id) => async (dispatch) => {

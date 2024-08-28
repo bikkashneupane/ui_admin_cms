@@ -7,6 +7,7 @@ import { useModal } from "../../hooks/useModal";
 import { editRoleAction } from "../../features/user/userAction";
 
 const editUserModalName = "editUserRoleModal";
+
 const UsersTable = ({ users = [] }) => {
   const [selectedUser, setSelectedUser] = useState({});
   const { showModal, hideModal, isModalVisible } = useModal();

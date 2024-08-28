@@ -1,11 +1,25 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../../components/common/Pagination";
-import { deleteOrderAction } from "../../features/order/orderAction";
+import {
+  deleteOrderAction,
+  editOrderStatusAction,
+} from "../../features/order/orderAction";
+import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
+import { CustomModal } from "../../components/common/CustomModal";
+import { EditOrderStatus } from "../../components/form/EditOrderStatus";
+
+const editOrderModalName = "editOrderModal";
 
 export const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedOrder, setSelectedOrder] = useState({});
+
+  const { showModal, hideModal, isModalVisible } = useModal();
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { allOrders } = useSelector((state) => state.orderInfo);
   const { allUsers } = useSelector((state) => state.userInfo);
@@ -17,6 +31,13 @@ export const Orders = () => {
   const endIndex = startIndex + ordersPerPage;
   const pageOrders = allOrders?.slice(startIndex, endIndex);
 
+  const handleOrderChange = (obj) => {
+    console.log(obj);
+    dispatch(
+      editOrderStatusAction(obj, () => hideModal(editOrderModalName), navigate)
+    );
+  };
+
   return (
     <div className="mx-auto px-6 py-1">
       <h2 className="text-2xl font-bold mb-2">Orders</h2>
@@ -26,6 +47,18 @@ export const Orders = () => {
       </div>
 
       <div className="overflow-x-scroll mb-6 rounded-md">
+        {isModalVisible(editOrderModalName) && (
+          <CustomModal
+            title={"Edit User Role"}
+            show={isModalVisible(editOrderModalName)}
+            hideModal={() => hideModal(editOrderModalName)}
+          >
+            <EditOrderStatus
+              selectedOrder={selectedOrder}
+              handleOrderChange={handleOrderChange}
+            />
+          </CustomModal>
+        )}
         <table className="min-w-full bg-gray-800 rounded-md">
           <thead>
             <tr className="bg-teal-800 border-b border-gray-600">
@@ -58,13 +91,22 @@ export const Orders = () => {
                     {order?.paymentStatus}
                   </td>
                   <td
-                    className={`py-2 px-4 ${
+                    className={`py-2 px-4 flex items-center ${
                       order?.orderStatus === "delivered"
                         ? "text-green-600"
                         : "text-yellow-600"
                     }`}
                   >
-                    {order?.orderStatus}
+                    <h1 className="w-[70px]"> {order?.orderStatus}</h1>
+                    <span
+                      className="px-2 py-1 rounded-md cursor-pointer bg-yellow-700 text-white"
+                      onClick={() => {
+                        showModal(editOrderModalName);
+                        setSelectedOrder(order);
+                      }}
+                    >
+                      Change
+                    </span>
                   </td>
                   <td className="py-2 px-4">
                     <span>
