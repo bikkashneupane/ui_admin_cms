@@ -13,7 +13,6 @@ export const Sidebar = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  console.log(location);
 
   const handleSignOut = () => {
     dispatch(setUser({}));
@@ -55,7 +54,7 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-52 fixed h-screen top-0 font-bold flex flex-col">
+    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-52 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
       <Link
         to={"/"}
         className="hidden text-lg my-10 md:flex md:gap-2 md:items-center"
@@ -65,7 +64,7 @@ export const Sidebar = () => {
       </Link>
       <img src={watch_logo} alt="" className="mt-10 w-8 h-8 md:hidden" />
 
-      <div className="h-full flex flex-col justify-between pb-8 pt-16 md:pt-10">
+      <div className="h-full flex flex-col justify-between pb-8 gap-8">
         <div className="space-y-8">
           {inputs.map(({ to, icon, title }) => (
             <Link

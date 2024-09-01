@@ -10,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { CustomModal } from "../../components/common/CustomModal";
 import { EditOrderStatus } from "../../components/form/EditOrderStatus";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { FaDeleteLeft } from "react-icons/fa6";
-import { FaRemoveFormat } from "react-icons/fa";
 
 const editOrderModalName = "editOrderModal";
 

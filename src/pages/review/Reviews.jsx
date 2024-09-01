@@ -12,7 +12,6 @@ export const Reviews = () => {
   const { product } = useSelector((state) => state.productInfo);
   const { allUsers } = useSelector((state) => state.userInfo);
 
-  console.log(reviews);
   const handleStatusChange = (review) => {
     const { _id, status } = review;
     const newStatus = status === "active" ? "inactive" : "active";
