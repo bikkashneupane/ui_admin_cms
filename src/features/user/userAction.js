@@ -1,4 +1,5 @@
 import {
+  editProfileDetailAxios,
   editRoleAxios,
   fetchAllUsers,
   fetchUserProfile,
@@ -81,3 +82,15 @@ export const editRoleAction =
       navigate("/admin/users");
     }
   };
+
+// update profile
+export const editProfileDetail = (obj, name) => async (dispatch) => {
+  const { status } = await editProfileDetailAxios(obj, name);
+  if (status === "success") {
+    if (name === "password") {
+      logoutUserAction();
+      return;
+    }
+    dispatch(fetchUserAction());
+  }
+};

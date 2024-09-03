@@ -1,48 +1,72 @@
+import "./user-css/user.css";
+
+import { Link, useSearchParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { Alert, Spinner } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+
 import { verifyUserAction } from "../../features/user/userAction";
 
 export const UserVerification = () => {
-  const [response, setResponse] = useState();
-  const [searchParams] = useSearchParams();
+  const [searchParam] = useSearchParams();
+  const uniqueKey = searchParam.get("uk");
+  const email = searchParam.get("e");
 
-  const c = searchParams.get("c");
-  const e = searchParams.get("e");
-
-  let shouldCall = useRef(true);
+  console.log(uniqueKey, email);
+  const [response, setResponse] = useState({});
+  const [loading, setLoading] = useState(true);
+  const shouldCall = useRef(true);
 
   useEffect(() => {
-    const getServerResponse = async () => {
-      const data = await verifyUserAction({ c, e });
-      setResponse(data);
+    const verifyAcc = async () => {
+      try {
+        const res = await verifyUserAction({ uniqueKey, email });
+        setResponse(res);
+      } catch (error) {
+        setResponse({ status: "error", message: error.message });
+      } finally {
+        setLoading(false);
+      }
     };
 
-    if (shouldCall.current) {
-      getServerResponse();
+    if (shouldCall.current && uniqueKey && email) {
+      verifyAcc();
       shouldCall.current = false;
     }
-  }, [c, e]);
+  }, [uniqueKey, email]);
 
   return (
-    // <div className="d-flex justify-content-center align-items-center vh-100 bg-dark text-light">
-    //   <div className="d-flex flex-column align-items-center">
-    //     <div className="mt-4">
-    //       {response?.message ? (
-    //         <Alert
-    //           className={response?.status === "success" ? "success" : "danger"}
-    //         >
-    //           {response?.message}
-    //         </Alert>
-    //       ) : (
-    //         <>
-    //           <Spinner variant="warning" className="fs-1" />
-    //           Please wait while we are verifying your link
-    //         </>
-    //       )}
-    //     </div>
-    //   </div>
-    // </div>
-    <>Cj</>
+    <div className="relative text-white">
+      <div className="absolute bg-black bg-opacity-70 w-full h-full"></div>
+      <div className="relative flex min-h-screen flex-col px-6 lg:px-8 items-center">
+        {loading ? (
+          <div className="flex flex-col gap-4 justify-center items-center min-h-[50vh]">
+            <div className="animate-spin-slow w-12 h-12 border-4 border-dashed rounded-full border-yellow-500"></div>
+            <span className="font-bold tracking-wider text-xl">
+              Verifying Account...
+            </span>
+          </div>
+        ) : response?.status === "success" ? (
+          <div className="flex flex-col gap-4 justify-center items-center min-h-[50vh]">
+            <Link to="/" className="flex flex-col gap-2">
+              <span>{response?.message}</span>
+              <button className="px-8 py-2 bg-teal-600 text-white rounded-md shadow-lg font-bold hover:bg-teal-500">
+                Login Now
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-4 justify-center items-center min-h-[50vh]">
+            <span className="font-bold tracking-wider text-xl text-red-600">
+              {response?.message || "Verification failed. Please try again."}
+            </span>
+            <Link
+              to={"/forget-password"}
+              className="px-6 py-2 bg-purple-600 text-white rounded-md mt-4"
+            >
+              Request New OPT
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };

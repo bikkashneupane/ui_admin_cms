@@ -1,7 +1,15 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import MostPopular from "../../components/charts/MostPopular";
 import OrderChart from "../../components/charts/OrderChart";
+import { FaUser } from "react-icons/fa";
+import { FcSalesPerformance } from "react-icons/fc";
+import { SiCashapp } from "react-icons/si";
+import { TbCube } from "react-icons/tb";
+import { AiOutlineMessage } from "react-icons/ai";
+import OrderTable from "../../components/tables/OrderTable";
+import { Link } from "react-router-dom";
+import uselast7daysSales from "../../hooks/uselast7daysSales";
+import useOrderStatus from "../../hooks/useOrderStatus";
+import Last7DaysSale from "../../components/charts/Last7DaysSales";
 
 export const Dashboard = () => {
   const { product } = useSelector((state) => state.productInfo);
@@ -9,59 +17,112 @@ export const Dashboard = () => {
   const { allUsers } = useSelector((state) => state.userInfo);
   const { reviews } = useSelector((state) => state.reviewInfo);
 
-  let orderChartData = [];
+  const confirmedOrder = allOrders?.filter(
+    (item) => item?.paymentStatus !== "pending"
+  );
 
-  for (let i = 0; i < allOrders?.length; i++) {
-    const existingItem = orderChartData.find(
-      (item) => item.name === allOrders[i]?.orderStatus
-    );
-    if (existingItem) {
-      existingItem.total += 1;
-    } else {
-      orderChartData.push({ name: allOrders[i]?.orderStatus, total: 1 });
-    }
-  }
+  const totalSales = confirmedOrder?.reduce(
+    (acc, curr) => acc + curr?.amount,
+    0
+  );
+
+  const { last7DaysSalesdata } = uselast7daysSales(confirmedOrder);
+  const { orderChartData } = useOrderStatus(allOrders);
 
   return (
-    <div className="text-gray-200">
-      <h2 className="text-2xl font-bold mb-2">Dashboard</h2>
-      <hr className="mb-10" />
+    <div className="text-gray-300 ">
+      <h2 className="text-xl font-bold mb-4">Dashboard</h2>
 
-      <div className="grid grid-cols-4 gap-10">
+      <div className="grid grid-cols-5 bg-gray-800 rounded-lg">
         <Link
-          to={"/admin/products"}
-          className="h-[100px] bg-purple-600 rounded-2xl flex flex-col justify-center items-center font-bold text-lg p-2"
+          to="/admin/orders"
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <h1 className="text-3xl font-bold">{product?.length}</h1>
-          <p>Products</p>
+          <SiCashapp className="w-6 h-6 lg:w-7 lg:h-7 text-green-500" />
+          <div className="text-center ">
+            <h1 className="text-base lg:text-lg font-semibold">
+              $ {totalSales?.toLocaleString()}
+            </h1>
+            <p>Sales</p>
+          </div>
         </Link>
 
         <Link
           to={"/admin/orders"}
-          className="h-[100px] bg-teal-600 rounded-2xl flex flex-col justify-center items-center font-bold text-lg p-2"
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <h1 className="text-3xl font-bold">{allOrders?.length}</h1>
-          <p>Orders</p>
+          <FcSalesPerformance className="w-6 h-6 lg:w-8 lg:h-8" />
+          <div className="text-center">
+            <h1 className="text-base lg:text-lg font-semibold">
+              {confirmedOrder?.length?.toLocaleString()}
+            </h1>
+            <p>Orders</p>
+          </div>
+        </Link>
+
+        <Link
+          to={"/admin/products"}
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
+        >
+          <TbCube className="w-6 h-6 lg:w-8 lg:h-8 text-teal-500" />
+          <div className="text-center">
+            <h1 className="text-base lg:text-lg font-semibold">
+              {product?.length?.toLocaleString()}
+            </h1>
+            <p>Products</p>
+          </div>
         </Link>
 
         <Link
           to={"/admin/users"}
-          className="h-[100px] bg-amber-600 rounded-2xl flex flex-col justify-center items-center font-bold text-lg p-2"
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <h1 className="text-3xl font-bold">{allUsers?.length}</h1>
-          <p>Users</p>
+          <FaUser className="w-6 h-6 lg:w-9 lg:h-9 text-purple-500" />
+          <div className="text-center">
+            <h1 className="text-base lg:text-lg font-semibold">
+              {allUsers?.length?.toLocaleString()}
+            </h1>
+            <p>Users</p>
+          </div>
         </Link>
+
         <Link
           to={"/admin/reviews"}
-          className="h-[100px] bg-sky-600 rounded-2xl flex flex-col justify-center items-center font-bold text-lg p-2"
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2"
         >
-          <h1 className="text-3xl font-bold">{reviews?.length}</h1>
-          <p>Reviews</p>
+          <AiOutlineMessage className="w-6 h-6 lg:w-9 lg:h-9 text-green-500" />
+          <div className="text-center">
+            <h1 className="text-base lg:text-lg font-semibold">
+              {reviews?.length?.toLocaleString()}
+            </h1>
+            <p>Reviews</p>
+          </div>
         </Link>
       </div>
 
-      <MostPopular />
-      <OrderChart orderChartData={orderChartData} />
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 my-10">
+        <div className="lg:col-span-3">
+          <Last7DaysSale last7DaysSalesdata={last7DaysSalesdata} />
+        </div>
+        <div className="lg:col-span-2">
+          <OrderChart orderChartData={orderChartData} />
+        </div>
+      </div>
+
+      <div className="mt-16">
+        <hr />
+
+        <h1 className="text-2xl font-semibold my-4 text-center">
+          Recent Orders
+        </h1>
+        <OrderTable pageOrders={allOrders?.slice(0, 5)} startIndex={0} />
+        <Link
+          to={"/admin/orders"}
+          className="px-6 py-2 rounded-md bg-purple-600 hover:bg-purple-500"
+        >
+          Show More...
+        </Link>
+      </div>
     </div>
   );
 };

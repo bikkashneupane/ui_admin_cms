@@ -1,6 +1,7 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import UsersTable from "../../components/tables/UsersTable";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const Users = () => {
   const { allUsers } = useSelector((state) => state.userInfo);
@@ -10,7 +11,15 @@ export const Users = () => {
 
   return (
     <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
-      <h2 className="text-xl font-bold mb-2">Users</h2>
+      <div className="flex justify-between gap-4 mb-2">
+        <h2 className="text-xl font-bold">Users</h2>
+        <Link
+          to={"/admin/new"}
+          className="px-6 py-2 rounded-md bg-purple-600 hover:bg-purple-500"
+        >
+          Add New User
+        </Link>
+      </div>
       <hr className="mb-10" />
 
       <TabGroup>

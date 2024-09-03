@@ -70,8 +70,11 @@ export const Register = () => {
   ];
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 ">
-      <div className="" style={{ width: "450px" }}>
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <div
+        className="border border-gray-700 rounded-lg px-4 py-6"
+        style={{ width: "450px" }}
+      >
         <form className="shadow-lg p-4 rounded " onSubmit={handleOnSubmit}>
           <h3 className="text-center text-lg mb-4 font-semibold">
             Admin Registeration
@@ -80,7 +83,7 @@ export const Register = () => {
             <CustomInput key={item.name} {...item} onChange={handleOnChange} />
           ))}
           <button
-            className="w-100 mt-2 text-white bg-teal-600 py-2 rounded-md shadow-lg"
+            className="w-100 mt-6 text-white bg-teal-600 hover:bg-teal-500 py-2 rounded-md shadow-lg"
             type="submit"
           >
             Register New Admin

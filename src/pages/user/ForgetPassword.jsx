@@ -43,7 +43,7 @@ export const ForgetPassword = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
+      <div className="px-6 py-16 rounded shadow-md w-full max-w-md border-2 border-gray-700">
         {response?.message && (
           <>
             <div
@@ -57,9 +57,9 @@ export const ForgetPassword = () => {
             </div>
 
             <div className="mt-3 text-center">
-              OTP Not Received? Request OTP again
+              OTP Not Received? Request OTP again{" "}
               <button
-                className={`mt-2 mb-4 px-4 py-2 rounded ${
+                className={`mt-2 mb-4 px-10 py-2 rounded ${
                   timer > 0
                     ? "bg-yellow-500 text-white"
                     : "bg-teal-500 text-white"
@@ -76,7 +76,7 @@ export const ForgetPassword = () => {
         {forms[showForm]}
 
         <div className="text-right mt-3 pe-1">
-          <a href="/" className="text-teal-600 hover:underline">
+          <a href="/" className="text-teal-600 hover:underline font-bold">
             Login Now
           </a>
         </div>

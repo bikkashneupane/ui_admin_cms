@@ -45,9 +45,8 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Login />} />
-        <Route path="/verify-user" element={<UserVerification />} />
+        <Route path="/verify-account" element={<UserVerification />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
-        <Route path="/admin/new" element={<Register />} />
 
         {/* private path */}
         <Route path="/" element={<AdminLayout />}>
@@ -60,6 +59,7 @@ function App() {
           <Route path="admin/reviews" element={<Reviews />} />
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/profile" element={<Profile />} />
+          <Route path="admin/new" element={<Register />} />
         </Route>
 
         {/* 404 Path Not Found */}

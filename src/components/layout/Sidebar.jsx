@@ -23,46 +23,46 @@ export const Sidebar = () => {
   const inputs = [
     {
       title: "Dashboard",
-      to: "admin/dashboard",
+      to: "/admin/dashboard",
       icon: <LuLayoutDashboard />,
     },
     {
       title: "Categories",
-      to: "admin/categories",
+      to: "/admin/categories",
       icon: <TbSitemap />,
     },
     {
       title: "Products",
-      to: "admin/products",
+      to: "/admin/products",
       icon: <TbCube />,
     },
     {
       title: "Users",
-      to: "admin/users",
+      to: "/admin/users",
       icon: <PiUsersThree />,
     },
     {
       title: "Orders",
-      to: "admin/orders",
+      to: "/admin/orders",
       icon: <FcSalesPerformance />,
     },
     {
       title: "Reviews",
-      to: "admin/reviews",
+      to: "/admin/reviews",
       icon: <AiOutlineMessage />,
     },
   ];
 
+  console.log(location);
   return (
-    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-52 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
+    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-60 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
       <Link
         to={"/"}
-        className="hidden text-lg my-10 md:flex md:gap-2 md:items-center"
+        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center"
       >
-        <img src={watch_logo} alt="" className="w-10 h-10" />
-        <span>ADMIN CMS</span>
+        <img src={watch_logo} alt="" className="w-7 h-7" />
+        <span className="hidden md:inline">Admin CMS</span>
       </Link>
-      <img src={watch_logo} alt="" className="mt-10 w-8 h-8 md:hidden" />
 
       <div className="h-full flex flex-col justify-between pb-8 gap-8">
         <div className="space-y-8">
@@ -70,7 +70,7 @@ export const Sidebar = () => {
             <Link
               key={title}
               className={`flex p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 ${
-                location?.pathname === "/" + to ? "bg-gray-700" : ""
+                location?.pathname === to ? "bg-gray-700" : ""
               }`}
               to={to}
             >
@@ -81,7 +81,9 @@ export const Sidebar = () => {
         </div>
         <div className="space-y-8">
           <Link
-            className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3"
+            className={`flex p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 ${
+              location?.pathname === "/admin/profile" ? "bg-gray-700" : ""
+            }`}
             to={"/admin/profile"}
           >
             <span className="text-xl">

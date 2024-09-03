@@ -17,7 +17,7 @@ export const AdminLayout = () => {
       <div className="flex">
         <Sidebar />
         <div className="w-full">
-          <div className="px-6 py-10 min-h-[100vh] ml-16 md:ml-52">
+          <div className="px-6 py-4 min-h-[100vh] ml-16 md:ml-60">
             <Outlet />
           </div>
           <Footer />

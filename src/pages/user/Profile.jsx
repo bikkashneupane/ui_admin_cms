@@ -1,179 +1,170 @@
-import { useState } from "react";
 import { CustomInput } from "../../components/common/CustomInput";
-import { Link } from "react-router-dom";
+import { editProfileDetail } from "../../features/user/userAction";
 import { useForm } from "../../hooks/useForm";
-import {
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@headlessui/react";
-import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { useDispatch, useSelector } from "react-redux";
+
+const detailInput = [
+  {
+    placeholder: "First Name",
+    name: "firstName",
+    type: "text",
+    required: true,
+  },
+  {
+    placeholder: "Last Name",
+    name: "lastName",
+    type: "text",
+    required: true,
+  },
+  {
+    placeholder: "Phone",
+    name: "phone",
+    type: "number",
+    required: true,
+  },
+];
+
+const passwordInput = [
+  {
+    placeholder: "Current Password",
+    name: "currentPassword",
+    type: "password",
+    required: true,
+  },
+  {
+    placeholder: "New Password",
+    name: "newPassword",
+    type: "password",
+    required: true,
+  },
+  {
+    placeholder: "Confirm New Password",
+    name: "confirmPassword",
+    type: "password",
+    required: true,
+  },
+];
 
 export const Profile = () => {
-  const { form, handleOnChange } = useForm({});
-  const [openDisclosure, setOpenDisclosure] = useState(null);
+  const { user } = useSelector((state) => state.userInfo);
+  const { form, setForm, handleOnChange } = useForm({ ...user } || {});
+  const dispatch = useDispatch();
 
-  const detailInputs = [
-    {
-      label: "First Name",
-      name: "firstName",
-      type: "text",
-      placeholder: "Jon",
-      required: true,
-    },
-    {
-      label: "Last Name",
-      name: "lastName",
-      type: "text",
-      placeholder: "Doe",
-      required: true,
-    },
-    {
-      label: "Phone",
-      name: "phone",
-      type: "number",
-      placeholder: "555-5555-555",
-    },
-    {
-      label: "Email",
-      name: "email",
-      type: "email",
-      placeholder: "user@email.com",
-      required: true,
-      disabled: true,
-    },
-    {
-      label: "Password",
-      name: "password",
-      type: "password",
-      placeholder: "********",
-      required: true,
-    },
-  ];
+  // handle form submit
+  const handleProfileUpdate = (e) => {
+    e.preventDefault();
+    const { name } = e.target;
 
-  const passwordInputs = [
-    {
-      label: "Current Password",
-      name: "currentPassword",
-      type: "password",
-      placeholder: "********",
-      required: true,
-    },
-    {
-      label: "New Password",
-      name: "newPassword",
-      type: "password",
-      placeholder: "********",
-      required: true,
-    },
-  ];
+    let updateObj = {};
+    const {
+      firstName,
+      lastName,
+      phone,
+      email,
+      password,
+      currentPassword,
+      newPassword,
+      confirmPassword,
+    } = form;
 
-  const handleToggle = (id) => {
-    setOpenDisclosure(openDisclosure === id ? null : id);
+    switch (name) {
+      case "details":
+        updateObj = { firstName, lastName, phone, password };
+        break;
+      case "email":
+        updateObj = { email, password };
+        break;
+      case "password":
+        if (newPassword !== confirmPassword) {
+          return alert("New Password Must Match");
+        }
+        updateObj = { currentPassword, newPassword };
+        break;
+      default:
+        updateObj = {};
+    }
+
+    dispatch(editProfileDetail(updateObj, name));
+  };
+
+  // handle form reset
+  const resetForm = () => {
+    setForm({ ...user } || {});
   };
 
   return (
-    <div className="flex justify-center items-center my-20">
+    <div className="flex justify-center items-center mt-32">
       <div className="rounded w-full max-w-lg">
-        {/* Details Disclosure */}
-        <Disclosure as="div" className="border-b border-gray-200" defaultOpen>
-          <DisclosureButton
-            onClick={() => handleToggle(1)}
-            className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500"
-          >
-            <span className="font-medium text-gray-900">Details</span>
-            <span className="ml-6 flex items-center">
-              <PlusIcon
-                aria-hidden="true"
-                className={`h-5 w-5 ${
-                  openDisclosure === 1 ? "hidden" : "block"
-                }`}
-              />
-              <MinusIcon
-                aria-hidden="true"
-                className={`h-5 w-5 ${
-                  openDisclosure === 1 ? "block" : "hidden"
-                }`}
-              />
-            </span>
-          </DisclosureButton>
-          <DisclosurePanel
-            className={`pt-6 ${openDisclosure === 1 ? "block" : "hidden"}`}
-          >
-            <form className="shadow-lg p-4 bg-white rounded-md">
-              <h3 className="text-center mb-4 font-bold">
-                Update User Profile
-              </h3>
-              {detailInputs.map((item) => (
-                <CustomInput key={item.name} {...item} />
-              ))}
-              <button
-                className="w-100 mt-2 bg-teal-600 text-white py-3 rounded-lg "
-                type="submit"
+        <div className="w-full md:max-w-4xl mx-auto px-4 py-16 border-2 border-gray-700 rounded-lg">
+          <TabGroup as="div" className="py-2 px-6">
+            <TabList className="flex gap-2 justify-center border-b border-gray-700 p-2 rounded-md text-sm font-semibold">
+              <Tab
+                onClick={resetForm}
+                className="bg-gray-700 data-[selected]:bg-purple-700 data-[selected]:text-white px-9 py-3 rounded-md "
               >
-                Update Profile
-              </button>
-              <div className="mt-3 text-end">
-                Forget Password?
-                <Link to={"/forget-password"}>
-                  <span className="font-medium text-teal-700">
-                    &nbsp;Reset Password!
-                  </span>
-                </Link>
-              </div>
-            </form>
-          </DisclosurePanel>
-        </Disclosure>
+                Details
+              </Tab>
+              <Tab
+                as="button"
+                onClick={resetForm}
+                className="bg-gray-700 data-[selected]:bg-purple-700 data-[selected]:text-white px-9 py-3 rounded-md "
+              >
+                Password
+              </Tab>
+            </TabList>
 
-        {/* Password Disclosure */}
-        <Disclosure as="div" className="border-b border-gray-200">
-          <DisclosureButton
-            onClick={() => handleToggle(2)}
-            className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500"
-          >
-            <span className="font-medium text-gray-900">Password</span>
-            <span className="ml-6 flex items-center">
-              <PlusIcon
-                aria-hidden="true"
-                className={`h-5 w-5 ${
-                  openDisclosure === 2 ? "hidden" : "block"
-                }`}
-              />
-              <MinusIcon
-                aria-hidden="true"
-                className={`h-5 w-5 ${
-                  openDisclosure === 2 ? "block" : "hidden"
-                }`}
-              />
-            </span>
-          </DisclosureButton>
-          <DisclosurePanel
-            className={`pt-6 ${openDisclosure === 2 ? "block" : "hidden"}`}
-          >
-            <form className="shadow-lg p-4 bg-white rounded-md">
-              <h3 className="text-center mb-4 font-bold">
-                Update User Profile
-              </h3>
-              {passwordInputs.map((item) => (
-                <CustomInput key={item.name} {...item} />
-              ))}
-              <button
-                className="w-100 mt-2 bg-teal-600 text-white py-3 rounded-lg "
-                type="submit"
-              >
-                Update Profile
-              </button>
-              <div className="mt-3 text-end">
-                Forget Password?
-                <Link to={"/forget-password"}>
-                  <span className="font-medium text-teal-700">
-                    &nbsp;Reset Password!
-                  </span>
-                </Link>
-              </div>
-            </form>
-          </DisclosurePanel>
-        </Disclosure>
+            <TabPanels>
+              {/* Details Panel */}
+              <TabPanel className="pt-6">
+                <form
+                  className="space-y-4"
+                  onSubmit={handleProfileUpdate}
+                  name="details"
+                >
+                  {detailInput?.map((item, i) => (
+                    <CustomInput
+                      key={i}
+                      {...item}
+                      onChange={handleOnChange}
+                      value={form[item?.name] || ""}
+                    />
+                  ))}
+                  <button
+                    type="submit"
+                    className="mt-10 flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                  >
+                    Update Profile
+                  </button>
+                </form>
+              </TabPanel>
+
+              {/* Password Panel */}
+              <TabPanel className="pt-6">
+                <form
+                  className="space-y-4"
+                  onSubmit={handleProfileUpdate}
+                  name="password"
+                >
+                  {passwordInput?.map((item, i) => (
+                    <CustomInput
+                      key={i}
+                      {...item}
+                      onChange={handleOnChange}
+                      value={form[item?.name] || ""}
+                    />
+                  ))}
+                  <button
+                    type="submit"
+                    className="mt-10 flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                  >
+                    Update Password
+                  </button>
+                </form>
+              </TabPanel>
+            </TabPanels>
+          </TabGroup>
+        </div>
       </div>
     </div>
   );

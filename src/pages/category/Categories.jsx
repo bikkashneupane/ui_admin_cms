@@ -27,62 +27,61 @@ export const Categories = () => {
 
   return (
     <div className="mx-auto  px-4 sm:px-6 md:px-8 lg:px-10">
-      <h2 className="text-2xl font-bold mb-2">Categories</h2>
-      <hr />
-      <div className="my-4 flex gap-2 justify-end font-semibold">
-        <button
-          className="bg-gray-800 text-teal-500 px-4 py-3 rounded hover:bg-teal-800 hover:text-white"
-          onClick={() => showModal("addCategory")}
-        >
-          Add New Category
-        </button>
-        <button
-          className="bg-gray-800 text-purple-500  px-4 py-3 rounded hover:bg-purple-800 hover:text-white"
-          onClick={() => showModal("addBrand")}
-        >
-          Add New Brand
-        </button>
-        <button
-          className="bg-gray-800 text-lime-500  px-4 py-3 rounded hover:bg-lime-800 hover:text-white"
-          onClick={() => showModal("addMaterial")}
-        >
-          Add New Material
-        </button>
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold">Categories</h2>
+        <div className="flex gap-2 font-semibold">
+          <button
+            className="bg-teal-700 px-4 py-2 rounded hover:bg-teal-800"
+            onClick={() => showModal("addCategory")}
+          >
+            Add New Category
+          </button>
+          <button
+            className="bg-purple-700  px-4 py-2 rounded hover:bg-purple-800"
+            onClick={() => showModal("addBrand")}
+          >
+            Add New Brand
+          </button>
+          <button
+            className="bg-lime-700  px-4 py-2 rounded hover:bg-lime-800"
+            onClick={() => showModal("addMaterial")}
+          >
+            Add New Material
+          </button>
+        </div>
       </div>
 
+      <hr className="mb-12 mt-2" />
       {/* Add New Category Modal */}
       {isModalVisible("addCategory") && (
         <CustomModal
-          title={"Add New Category"}
+          title={"New Category"}
           show={isModalVisible("addCategory")}
           hideModal={() => hideModal("addCategory")}
         >
           <AddNewCategory postCategory={postCategory} />
         </CustomModal>
       )}
-
       {/* Add New Brand Modal */}
       {isModalVisible("addBrand") && (
         <CustomModal
-          title={"Add New Brand"}
+          title={"New Brand"}
           show={isModalVisible("addBrand")}
           hideModal={() => hideModal("addBrand")}
         >
           <AddNewBrand postCategory={postCategory} />
         </CustomModal>
       )}
-
       {/* Add New Material Modal */}
       {isModalVisible("addMaterial") && (
         <CustomModal
-          title={"Add New Material"}
+          title={"New Material"}
           show={isModalVisible("addMaterial")}
           hideModal={() => hideModal("addMaterial")}
         >
           <AddNewMaterial postCategory={postCategory} />
         </CustomModal>
       )}
-
       <CategoryTable />
     </div>
   );

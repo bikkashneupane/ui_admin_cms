@@ -34,7 +34,7 @@ const UsersTable = ({ users = [] }) => {
         </CustomModal>
       )}
 
-      <table className="min-w-full font-medium bg-gray-800 rounded-md">
+      <table className="min-w-full font-medium bg-gray-800 rounded-md text-white">
         <thead>
           <tr className="bg-teal-800 border-b border-gray-600">
             <th className="py-2 px-4 text-left w-1/6">#</th>

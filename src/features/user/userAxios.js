@@ -102,3 +102,18 @@ export const editRoleAxios = async (data) => {
     showToast: true,
   });
 };
+
+// update profile update
+export const editProfileDetailAxios = (obj, name) => {
+  console.log(obj, name);
+  return axiosProcessor({
+    url:
+      name === "details"
+        ? userEP + `/profile/update`
+        : userEP + "/password/update",
+    method: "PUT",
+    data: obj,
+    isPrivate: true,
+    showToast: true,
+  });
+};

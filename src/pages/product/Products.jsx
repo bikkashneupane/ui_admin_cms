@@ -18,18 +18,18 @@ export const Products = () => {
 
   return (
     <div className="mx-auto px-4 sm:px-6 md:px-8">
-      <h2 className="text-xl font-bold mb-4">Products</h2>
-      <hr className="mb-4 " />
-      <div className="text-right">
+      <div className="flex justify-between">
+        <h2 className="text-xl font-bold">Products</h2>
         <Link
           to={"/admin/products/add"}
           onClick={() => {}}
-          className="px-4 py-3 bg-teal-700 text-white font-semibold rounded-lg shadow hover:bg-teal-600 focus:outline-none"
+          className="px-4 py-2 bg-teal-700 text-white font-semibold rounded-lg shadow hover:bg-teal-600 focus:outline-none"
         >
           Add New Product
         </Link>
       </div>
 
+      <hr className="mt-2 mb-4" />
       <ProductTable
         totalPage={totalPage}
         pageProducts={pageProducts}

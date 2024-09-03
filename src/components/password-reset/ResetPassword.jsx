@@ -47,7 +47,7 @@ export const ResetPassword = ({ handleOnPasswordReset }) => {
   ];
 
   return (
-    <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
+    <form onSubmit={handleOnSubmit}>
       <h3 className="text-center pb-2">Reset Password</h3>
       <hr className="mb-4" />
       {inputs.map((item) => (

@@ -20,8 +20,8 @@ export const RequestOTP = ({ handleOnOTPRequest }) => {
   };
 
   return (
-    <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
-      <h3 className="text-center mb-4">Request OTP</h3>
+    <form onSubmit={handleOnSubmit}>
+      <h3 className="text-center mb-4 font-bold text-base">Request OTP</h3>
       <hr className="mb-4" />
 
       <CustomInput {...inputs} />

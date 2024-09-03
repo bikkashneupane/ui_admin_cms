@@ -33,7 +33,7 @@ export const CustomModal = ({
 
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full max-w-lg p-6 mx-auto bg-gray-800 rounded-lg shadow-lg">
-          <div className="flex justify-between items-center pb-3 border-b">
+          <div className="flex justify-between items-center pb-3 border-b border-b-gray-600">
             <h3 className="text-lg font-medium text-center w-full">{title}</h3>
 
             <button
