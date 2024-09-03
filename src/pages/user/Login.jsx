@@ -51,7 +51,11 @@ export const Login = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center flex-col vh-100 bg-dark">
-      <div className="mb-8 text-sm text-red-400 text-left">
+      <p className="text-center mb-10 font-bold text-red-500">
+        <span className="font-bold">Disclaimer : </span>Edit/ Delete Feature is
+        Disabled for security purposes on certain part of webpage.{" "}
+      </p>
+      <div className="mb-8 text-sm text-orange-500 text-left">
         <h1>Email: admin@gmail.com</h1>
         <h1>Password: 11</h1>
       </div>
