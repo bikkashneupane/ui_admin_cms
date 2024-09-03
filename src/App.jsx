@@ -20,24 +20,12 @@ import { ForgetPassword } from "./pages/user/ForgetPassword";
 import { AdminLayout } from "./components/layout/AdminLayout";
 import { EditProduct } from "./pages/product/EditProduct";
 import { AddNewProduct } from "./pages/product/AddNewProduct";
-import { fetchAllOrdersAction } from "./features/order/orderAction";
-import {
-  getCategoryAction,
-  getSubCatAction,
-} from "./features/category/categoryAction";
-import { getReviewAction } from "./features/review/reviewAction";
-import { getProductAction } from "./features/product/productAction";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(autoLoginAction());
-    dispatch(getCategoryAction());
-    dispatch(getSubCatAction());
-    dispatch(getProductAction());
-    dispatch(fetchAllOrdersAction());
-    dispatch(getReviewAction());
   }, [dispatch]);
 
   return (
