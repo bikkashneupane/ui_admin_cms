@@ -13,12 +13,33 @@ import { Reviews } from "./pages/review/Reviews";
 import { Profile } from "./pages/user/Profile";
 import { Orders } from "./pages/order/Orders";
 import { Users } from "./pages/user/Users";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { autoLoginAction } from "./features/user/userAction";
 import { ForgetPassword } from "./pages/user/ForgetPassword";
 import { AdminLayout } from "./components/layout/AdminLayout";
 import { EditProduct } from "./pages/product/EditProduct";
 import { AddNewProduct } from "./pages/product/AddNewProduct";
+import { fetchAllOrdersAction } from "./features/order/orderAction";
+import {
+  getCategoryAction,
+  getSubCatAction,
+} from "./features/category/categoryAction";
+import { getReviewAction } from "./features/review/reviewAction";
+import { getProductAction } from "./features/product/productAction";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(autoLoginAction());
+    dispatch(getCategoryAction());
+    dispatch(getSubCatAction());
+    dispatch(getProductAction());
+    dispatch(fetchAllOrdersAction());
+    dispatch(getReviewAction());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
