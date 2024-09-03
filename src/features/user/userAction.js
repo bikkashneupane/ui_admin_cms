@@ -1,3 +1,7 @@
+import { getCategoryAction, getSubCatAction } from "../category/categoryAction";
+import { fetchAllOrdersAction } from "../order/orderAction";
+import { getProductAction } from "../product/productAction";
+import { getReviewAction } from "../review/reviewAction";
 import {
   editProfileDetailAxios,
   editRoleAxios,
@@ -18,7 +22,15 @@ export const fetchUserAction = () => async (dispatch) => {
 
   // get all users and update the store
   const { allUsers } = await fetchAllUsers();
-  status === "success" && dispatch(setAllUser(allUsers));
+  if (status === "success") {
+    dispatch(setAllUser(allUsers));
+
+    dispatch(getCategoryAction());
+    dispatch(getSubCatAction());
+    dispatch(getProductAction());
+    dispatch(fetchAllOrdersAction());
+    dispatch(getReviewAction());
+  }
 };
 
 // sign user action

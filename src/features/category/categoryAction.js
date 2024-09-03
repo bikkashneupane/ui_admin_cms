@@ -6,16 +6,10 @@ import {
   editCategory,
   editMaterialAxios,
   getCategory,
-  getSubCategory,
   getSubCategoryAxios,
   postCategory,
 } from "./categoryAxios";
-import {
-  setBrand,
-  setCategory,
-  setMaterial,
-  setSubCategory,
-} from "./categorySlice";
+import { setBrand, setCategory, setMaterial } from "./categorySlice";
 
 export const getCategoryAction = () => async (dispatch) => {
   const { category } = await getCategory();

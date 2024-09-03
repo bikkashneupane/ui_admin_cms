@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import OrderChart from "../../components/charts/OrderChart";
 import { FaUser } from "react-icons/fa";
 import { FcSalesPerformance } from "react-icons/fc";
@@ -10,26 +10,8 @@ import { Link } from "react-router-dom";
 import uselast7daysSales from "../../hooks/uselast7daysSales";
 import useOrderStatus from "../../hooks/useOrderStatus";
 import Last7DaysSale from "../../components/charts/Last7DaysSales";
-import { useEffect } from "react";
-import {
-  getCategoryAction,
-  getSubCatAction,
-} from "../../features/category/categoryAction";
-import { getProductAction } from "../../features/product/productAction";
-import { fetchAllOrdersAction } from "../../features/order/orderAction";
-import { getReviewAction } from "../../features/review/reviewAction";
 
 export const Dashboard = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCategoryAction());
-    dispatch(getSubCatAction());
-    dispatch(getProductAction());
-    dispatch(fetchAllOrdersAction());
-    dispatch(getReviewAction());
-  }, [dispatch]);
-
   const { product } = useSelector((state) => state.productInfo);
   const { allOrders } = useSelector((state) => state.orderInfo);
   const { allUsers } = useSelector((state) => state.userInfo);
