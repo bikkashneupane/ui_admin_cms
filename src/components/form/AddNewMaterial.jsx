@@ -1,5 +1,6 @@
 import { DynamicInputField } from "../common/CustomInput";
 import { useForm } from "../../hooks/useForm";
+import { toast } from "react-toastify";
 
 export const AddNewMaterial = ({ postCategory }) => {
   const { form, setForm, handleOnChange } = useForm({ material: [""] });
@@ -7,7 +8,7 @@ export const AddNewMaterial = ({ postCategory }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (!form.material.length) {
-      return console.log("All field must be provided");
+      return toast.errorg("All field must be provided");
     }
     postCategory(form, "addMaterial", true);
   };

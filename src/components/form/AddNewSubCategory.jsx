@@ -5,6 +5,7 @@ import {
 } from "../common/custom-input/CustomInput";
 import { useSelector } from "react-redux";
 import { useForm } from "../../hooks/useForm";
+import { toast } from "react-toastify";
 
 const initialState = {
   parentCategoryId: "",
@@ -20,7 +21,7 @@ export const AddNewSubCategory = ({ postSubCategory }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (!form.parentCategoryId || !form.brand.length || !form.material.length) {
-      return console.log("All field must be provided");
+      return toast.error("All field must be provided");
     }
     postSubCategory(form);
   };

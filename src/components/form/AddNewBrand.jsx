@@ -1,5 +1,6 @@
 import { DynamicInputField } from "../common/CustomInput";
 import { useForm } from "../../hooks/useForm";
+import { toast } from "react-toastify";
 
 export const AddNewBrand = ({ postCategory }) => {
   const { form, setForm, handleOnChange } = useForm({ brand: [""] });
@@ -7,7 +8,7 @@ export const AddNewBrand = ({ postCategory }) => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (!form.brand.length) {
-      return console.log("All field must be provided");
+      return toast.error("All field must be provided");
     }
     postCategory(form, "addBrand", true);
   };

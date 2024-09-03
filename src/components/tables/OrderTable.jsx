@@ -41,7 +41,6 @@ const OrderTable = ({ pageOrders, startIndex }) => {
   const { product } = useSelector((state) => state.productInfo);
 
   const handleOrderChange = (obj) => {
-    console.log(obj);
     dispatch(
       editOrderStatusAction(obj, () => hideModal(editOrderModalName), navigate)
     );

@@ -42,7 +42,6 @@ export const axiosProcessor = async ({
     response = await pending;
     return response.data;
   } catch (error) {
-    console.log(error);
     if (error?.response?.data?.message?.includes("jwt expired")) {
       const accessJWT = await renewAccessJwt();
       if (accessJWT) {

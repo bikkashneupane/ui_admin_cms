@@ -53,7 +53,6 @@ export const Sidebar = () => {
     },
   ];
 
-  console.log(location);
   return (
     <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-60 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
       <Link

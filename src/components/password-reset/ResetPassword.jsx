@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { CustomInput } from "../common/CustomInput";
+import { toast } from "react-toastify";
 
 export const ResetPassword = ({ handleOnPasswordReset }) => {
   const otpRef = useRef("");
@@ -13,7 +14,7 @@ export const ResetPassword = ({ handleOnPasswordReset }) => {
     const confirmPassword = confirmPasswordRef.current.value;
 
     if (password !== confirmPassword) {
-      return new Error(console.log("Password must match"));
+      return toast.error("Password must match");
     }
 
     handleOnPasswordReset(otp, password);

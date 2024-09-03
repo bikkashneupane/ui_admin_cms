@@ -10,7 +10,6 @@ export const UserVerification = () => {
   const uniqueKey = searchParam.get("uk");
   const email = searchParam.get("e");
 
-  console.log(uniqueKey, email);
   const [response, setResponse] = useState({});
   const [loading, setLoading] = useState(true);
   const shouldCall = useRef(true);
