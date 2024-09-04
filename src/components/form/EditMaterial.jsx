@@ -31,7 +31,10 @@ const EditMaterial = ({ selectedMaterial, handleOnEditMaterial }) => {
   ];
 
   return (
-    <form className="shadow-md px-4 py-8 rounded-lg" onSubmit={handleOnEdit}>
+    <form
+      className="shadow-md px-4 py-8 space-y-4 rounded-lg"
+      onSubmit={handleOnEdit}
+    >
       {inputs.map((item) => (
         <CustomInput key={item.name} {...item} />
       ))}

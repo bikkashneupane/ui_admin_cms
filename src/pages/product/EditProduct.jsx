@@ -165,13 +165,12 @@ export const EditProduct = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-      <h1 className="text-center text-2xl font-bold mt-10 mb-4">
-        Edit Product
-      </h1>
+    <div className="mx-auto px-4 sm:px-6 md:px-8">
+      <h2 className="text-xl font-bold mb-2">Edit Product</h2>
+      <hr className="mb-4" />
       <form
         onSubmit={handleOnSubmit}
-        className="space-y-4 rounded-md shadow-lg p-10 bg-gray-700"
+        className="space-y-4 rounded-md max-w-4xl mx-auto shadow-lg p-10 bg-[#1E1E1E]"
       >
         <div className="text-end">
           <Link

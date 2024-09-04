@@ -34,9 +34,9 @@ const UsersTable = ({ users = [] }) => {
         </CustomModal>
       )}
 
-      <table className="min-w-full font-medium bg-gray-800 rounded-md text-white">
+      <table className="min-w-full font-medium bg-[#1E1E1E] rounded-md text-white">
         <thead>
-          <tr className="bg-teal-800 border-b border-gray-600">
+          <tr className="bg-teal-800">
             <th className="py-2 px-4 text-left w-1/6">#</th>
             <th className="py-2 px-4 text-left w-1/6">Role</th>
             <th className="py-2 px-4 text-left w-1/6">Email</th>
@@ -48,7 +48,7 @@ const UsersTable = ({ users = [] }) => {
         <tbody>
           {users &&
             users.map((user, i) => (
-              <tr key={i} className="border-b border-gray-600 text-sm">
+              <tr key={i} className="border-b border-gray-800 text-sm">
                 <td className="py-2 px-4">{i + 1}</td>
                 <td className="py-2 px-4">
                   <div className="flex gap-2 items-center">
@@ -68,7 +68,7 @@ const UsersTable = ({ users = [] }) => {
                 <td className="py-2 px-4">{user?.firstName}</td>
                 <td className="py-2 px-4">{user?.lastName}</td>
                 <td className="py-2 px-4 flex gap-2">
-                  <button className="p-2 bg-gray-900 hover:bg-red-800 hover:text-white rounded text-red-600">
+                  <button className="p-2 bg-[#1E1E1E] hover:bg-red-800 hover:text-white rounded text-red-600">
                     <TrashIcon className="w-5 h-5" />
                   </button>
                 </td>

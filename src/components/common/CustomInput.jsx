@@ -10,14 +10,14 @@ export const CustomInput = (props) => {
           // defaultValue={value}
           ref={inputRef}
           rows={rows}
-          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-gray-600 text-white"
+          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-[#2C2C2C]  text-white"
         />
       ) : (
         <input
           {...rest}
           // defaultValue={value}
           ref={inputRef}
-          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-gray-600 text-white"
+          className="mt-2 block w-full px-3 py-2 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500 bg-[#2C2C2C]  text-white"
         />
       )}
     </>
@@ -32,7 +32,7 @@ export const CustomSelect = (props) => {
       <select
         {...rest}
         defaultValue={defaultValue}
-        className="mt-1 block w-full px-2 py-2 bg-gray-600 rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+        className="mt-1 block w-full px-2 py-2 bg-[#242424] rounded-md focus:outline-none focus:ring-teal-500 focus:border-teal-500"
       >
         <option value="">--Select--</option>
         {options?.map((item) => (
@@ -50,7 +50,7 @@ export const CustomCheck = (props) => {
   return (
     <div className="mb-3">
       {label && <label className="block font-bold ">{label}</label>}
-      <div className="flex flex-col gap-2 rounded-md shadow-lg p-3  bg-gray-600">
+      <div className="flex flex-col gap-2 rounded-md shadow-lg p-3 bg-[#2C2C2C]">
         {options?.map((option) => (
           <div key={option?.value}>
             <input

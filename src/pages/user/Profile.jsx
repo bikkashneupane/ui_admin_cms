@@ -101,14 +101,14 @@ export const Profile = () => {
             <TabList className="flex gap-2 justify-center border-b border-gray-700 p-2 rounded-md text-sm font-semibold">
               <Tab
                 onClick={resetForm}
-                className="bg-gray-700 data-[selected]:bg-purple-700 data-[selected]:text-white px-9 py-3 rounded-md "
+                className="bg-gray-700 data-[selected]:bg-teal-700 data-[selected]:text-white px-12 py-3 rounded-md "
               >
                 Details
               </Tab>
               <Tab
                 as="button"
                 onClick={resetForm}
-                className="bg-gray-700 data-[selected]:bg-purple-700 data-[selected]:text-white px-9 py-3 rounded-md "
+                className="bg-gray-700 data-[selected]:bg-teal-700 data-[selected]:text-white px-9 py-3 rounded-md "
               >
                 Password
               </Tab>
@@ -132,7 +132,7 @@ export const Profile = () => {
                   ))}
                   <button
                     type="submit"
-                    className="mt-10 flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                    className="mt-10 flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
                   >
                     Update Profile
                   </button>
@@ -156,7 +156,7 @@ export const Profile = () => {
                   ))}
                   <button
                     type="submit"
-                    className="mt-10 flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                    className="mt-10 flex w-full justify-center rounded-md bg-teal-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
                   >
                     Update Password
                   </button>

@@ -33,12 +33,12 @@ export const Dashboard = () => {
     <div className="text-gray-300 ">
       <h2 className="text-xl font-bold mb-4">Dashboard</h2>
 
-      <div className="grid grid-cols-5 bg-gray-800 rounded-lg">
+      <div className="grid grid-cols-5 bg-[#1E1E1E] rounded-lg py-2">
         <Link
           to="/admin/orders"
-          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
+          className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-800"
         >
-          <SiCashapp className="w-6 h-6 lg:w-7 lg:h-7 text-green-500" />
+          <SiCashapp className="w-6 h-6 text-green-500" />
           <div className="text-center ">
             <h1 className="text-base lg:text-lg font-semibold">
               $ {totalSales?.toLocaleString()}
@@ -51,7 +51,7 @@ export const Dashboard = () => {
           to={"/admin/orders"}
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <FcSalesPerformance className="w-6 h-6 lg:w-8 lg:h-8" />
+          <FcSalesPerformance className="w-6 h-6" />
           <div className="text-center">
             <h1 className="text-base lg:text-lg font-semibold">
               {confirmedOrder?.length?.toLocaleString()}
@@ -64,7 +64,7 @@ export const Dashboard = () => {
           to={"/admin/products"}
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <TbCube className="w-6 h-6 lg:w-8 lg:h-8 text-teal-500" />
+          <TbCube className="w-6 h-6 text-teal-500" />
           <div className="text-center">
             <h1 className="text-base lg:text-lg font-semibold">
               {product?.length?.toLocaleString()}
@@ -77,7 +77,7 @@ export const Dashboard = () => {
           to={"/admin/users"}
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
-          <FaUser className="w-6 h-6 lg:w-9 lg:h-9 text-purple-500" />
+          <FaUser className="w-6 h-6 text-purple-500" />
           <div className="text-center">
             <h1 className="text-base lg:text-lg font-semibold">
               {allUsers?.length?.toLocaleString()}
@@ -90,7 +90,7 @@ export const Dashboard = () => {
           to={"/admin/reviews"}
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2"
         >
-          <AiOutlineMessage className="w-6 h-6 lg:w-9 lg:h-9 text-green-500" />
+          <AiOutlineMessage className="w-6 h-6 text-green-500" />
           <div className="text-center">
             <h1 className="text-base lg:text-lg font-semibold">
               {reviews?.length?.toLocaleString()}

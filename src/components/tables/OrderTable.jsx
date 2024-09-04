@@ -61,9 +61,9 @@ const OrderTable = ({ pageOrders, startIndex }) => {
             />
           </CustomModal>
         )}
-        <table className="min-w-full bg-gray-800 rounded-md">
+        <table className="min-w-full bg-[#1E1E1E] rounded-md">
           <thead>
-            <tr className="bg-teal-800 border-b border-gray-600">
+            <tr className="bg-teal-800">
               <th className="py-2 px-4 text-left">#</th>
               <th className="py-2 px-4 text-left">Order Id</th>
               <th className="py-2 px-4 text-left">Payment Status</th>
@@ -78,7 +78,7 @@ const OrderTable = ({ pageOrders, startIndex }) => {
           <tbody>
             {pageOrders &&
               pageOrders?.map((order, i) => (
-                <tr key={i} className="border-b border-gray-600">
+                <tr key={i} className="border-b border-gray-800">
                   <td className="py-2 px-4">{startIndex + i + 1}</td>
                   <td className="py-2 px-4">{order?.orderId}</td>
                   <td className="py-2 px-4">

@@ -18,8 +18,8 @@ export const Orders = () => {
   return (
     <div className="mx-auto px-6">
       <h2 className="text-xl font-bold mb-2">Order History</h2>
-      <hr className="mb-10 " />
-      <div className="mb-3 font-semibold">
+      <hr className="mb-4" />
+      <div className="mb-3 font-semibold text-right">
         {allOrders?.length || 0} Orders(s) found
       </div>
 

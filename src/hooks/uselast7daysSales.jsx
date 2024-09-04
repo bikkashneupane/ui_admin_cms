@@ -1,5 +1,5 @@
 const uselast7daysSales = (confirmedOrder) => {
-  const date = new Date();
+  const date = new Date("2024/09/03");
   const sevenDaysAgo = new Date(date);
   sevenDaysAgo.setDate(date.getDate() - 7);
 

@@ -22,16 +22,16 @@ export const Reviews = () => {
   return (
     <div className="mx-auto px-6">
       <h2 className="text-xl font-bold mb-2">Reviews</h2>
-      <hr className="mb-10 " />
+      <hr className="mb-4" />
 
-      <div className="mb-3 font-semibold">
+      <div className="mb-3 font-semibold text-right">
         {reviews?.length || 0} Reviews(s) found
       </div>
 
       <div className="overflow-x-scroll mb-6 rounded-md">
-        <table className="min-w-full bg-gray-800 rounded-md">
+        <table className="min-w-full bg-[#1E1E1E] rounded-md">
           <thead>
-            <tr className="bg-teal-800 border-b border-gray-600">
+            <tr className="bg-teal-800">
               <th className="py-2 px-4 text-left">#</th>
               <th className="py-2 px-4 text-left">Status</th>
               <th className="py-2 px-4 text-center">Product</th>
@@ -43,7 +43,7 @@ export const Reviews = () => {
           </thead>
           <tbody>
             {reviews?.map((review, i) => (
-              <tr key={i} className="border-b border-gray-600">
+              <tr key={i} className="border-b border-gray-800">
                 <td className="py-2 px-4">{i + 1}</td>
                 <td className="py-2 px-4">
                   <div

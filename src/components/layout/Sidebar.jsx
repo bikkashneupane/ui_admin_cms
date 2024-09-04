@@ -54,22 +54,22 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-gray-800 text-gray-300 px-3 w-16 md:min-w-60 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
+    <div className="bg-[#1E1E1E] text-gray-300 w-16 md:min-w-60 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
       <Link
         to={"/"}
-        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center"
+        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center px-4"
       >
         <img src={watch_logo} alt="" className="w-7 h-7" />
         <span className="hidden md:inline">Admin CMS</span>
       </Link>
 
-      <div className="h-full flex flex-col justify-between pb-8 gap-8">
+      <div className="h-full flex flex-col justify-between pb-8 gap-8 px-2">
         <div className="space-y-8">
           {inputs.map(({ to, icon, title }) => (
             <Link
               key={title}
-              className={`flex p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 ${
-                location?.pathname === to ? "bg-gray-700" : ""
+              className={`flex py-2 px-3 rounded hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3 ${
+                location?.pathname === to ? "bg-[#121212]" : ""
               }`}
               to={to}
             >
@@ -80,8 +80,10 @@ export const Sidebar = () => {
         </div>
         <div className="space-y-8">
           <Link
-            className={`flex p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3 ${
-              location?.pathname === "/admin/profile" ? "bg-gray-700" : ""
+            className={`flex py-2 px-3 rounded hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3 ${
+              location?.pathname === "/admin/profile"
+                ? "hover:bg-[#121212]"
+                : ""
             }`}
             to={"/admin/profile"}
           >
@@ -90,7 +92,7 @@ export const Sidebar = () => {
             </span>
             <span className="hidden md:inline">Profile</span>
           </Link>
-          <div className="flex items-center p-2 rounded-lg hover:bg-gray-700 hover:text-orange-500 transition-colors gap-3">
+          <div className="flex items-center py-2 px-3 rounded-md hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3">
             <span className="text-xl">
               <FaUser />
             </span>

@@ -24,7 +24,7 @@ export const CustomModal = ({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto" {...rest}>
       <div
-        className="fixed inset-0 w-full h-full bg-black opacity-70"
+        className="fixed inset-0 w-full h-full bg-black opacity-40"
         onClick={() => {
           hideModal();
           setSubCat && setSubCat();
@@ -32,7 +32,7 @@ export const CustomModal = ({
       ></div>
 
       <div className="flex items-center min-h-screen px-4 py-8">
-        <div className="relative w-full max-w-lg p-6 mx-auto bg-gray-800 rounded-lg shadow-lg">
+        <div className="relative w-full max-w-lg p-6 mx-auto bg-[#1E1E1E] rounded-lg shadow-lg">
           <div className="flex justify-between items-center pb-3 border-b border-b-gray-600">
             <h3 className="text-lg font-medium text-center w-full">{title}</h3>
 

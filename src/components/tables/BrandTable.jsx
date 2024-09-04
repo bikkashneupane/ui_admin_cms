@@ -13,9 +13,9 @@ const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
       </div>
 
       <div className="overflow-x-scroll mb-6 rounded-md">
-        <table className="min-w-full font-medium bg-gray-800 rounded-md">
+        <table className="min-w-full font-medium bg-[#1E1E1E] rounded-md">
           <thead>
-            <tr className="bg-purple-800 border-b border-gray-600">
+            <tr className="bg-purple-800">
               <th className="py-2 px-4 text-left">#</th>
               <th className="py-2 px-4 text-left">Name</th>
               <th className="py-2 px-4 text-left">Slug</th>
@@ -27,7 +27,7 @@ const BrandTable = ({ showModal, setSelectedBrand, editBrandModalName }) => {
               brands?.map((item, i) => (
                 <tr
                   key={item?._id}
-                  className="border-b border-gray-600 font-medium"
+                  className="border-b border-gray-800 font-medium"
                 >
                   <td className="py-2 px-4">{i + 1}</td>
                   <td className="py-2 px-4">{item?.name}</td>

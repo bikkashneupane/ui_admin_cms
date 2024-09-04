@@ -33,9 +33,9 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
       {pageProducts?.length > 0 && (
         <>
           <div className="overflow-x-scroll mb-6 rounded-md">
-            <table className="min-w-full bg-gray-800 rounded-md">
+            <table className="min-w-full bg-[#1E1E1E] rounded-md">
               <thead>
-                <tr className="bg-teal-800 border-b border-gray-600">
+                <tr className="bg-teal-800">
                   <th className="px-4 py-2">#</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2">Thumbnail</th>
@@ -52,7 +52,7 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
               <tbody className="">
                 {pageProducts &&
                   pageProducts.map((item, i) => (
-                    <tr key={item?._id} className="border-b border-gray-600">
+                    <tr key={item?._id} className="border-b border-gray-800">
                       <td className="px-4 py-2">{startIndex + i + 1}</td>
 
                       <td>

@@ -13,7 +13,7 @@ const Last7DaysSale = ({ last7DaysSalesdata = [] }) => {
     <ResponsiveContainer
       width="100%"
       height={400}
-      className="bg-gray-800 rounded-lg text-green-500"
+      className="bg-[#1E1E1E] rounded-lg text-green-700"
     >
       <h2 className="text-lg font-semibold py-2 text-center ">
         Sales Over the Past 7 Days
@@ -26,12 +26,12 @@ const Last7DaysSale = ({ last7DaysSalesdata = [] }) => {
         <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
         <XAxis dataKey="name" />
         <YAxis
-          tick={{ fill: "green" }}
+          tick={{ fill: "gray" }}
           tickFormatter={(tick) => `$${tick}`} // Inline function to format Y-axis
         />
 
         <Tooltip />
-        <Area type="monotone" dataKey="sales" fill="#00796B" stroke="purple" />
+        <Area type="monotone" dataKey="sales" fill="#8E24AA" stroke="purple" />
       </AreaChart>
     </ResponsiveContainer>
   );

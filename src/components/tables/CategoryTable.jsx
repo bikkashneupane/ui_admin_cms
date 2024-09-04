@@ -103,7 +103,7 @@ export const CategoryTable = () => {
       <TabGroup>
         <TabList
           as="div"
-          className="bg-gray-800 flex max-w-min lg:max-w-full lg:justify-center md:gap-16 lg:flex-row  px-2 py-2 rounded-md bg-opacity-90"
+          className="bg-[#1E1E1E] flex max-w-min lg:max-w-full lg:justify-center md:gap-16 lg:flex-row  px-2 rounded-md"
         >
           <Tab className="text-teal-500 data-[selected]:bg-teal-700 data-[selected]:text-white font-semibold px-6 py-2 rounded-md">
             Categories
@@ -123,9 +123,9 @@ export const CategoryTable = () => {
               Categorie(s) found
             </div>
             <div className="overflow-x-scroll mb-6 rounded-md">
-              <table className="min-w-full font-medium bg-gray-800 rounded-md">
+              <table className="min-w-full font-medium bg-[#1E1E1E] rounded-md">
                 <thead>
-                  <tr className="bg-teal-800 border-b border-gray-600">
+                  <tr className="bg-teal-800">
                     <th className="py-2 px-4 text-left">#</th>
                     <th className="py-2 px-4 text-left">Status</th>
                     <th className="py-2 px-4 text-left">Title</th>
@@ -136,7 +136,7 @@ export const CategoryTable = () => {
                 <tbody>
                   {category &&
                     category.map((item, i) => (
-                      <tr key={item?._id} className="border-b border-gray-600">
+                      <tr key={item?._id} className="border-b border-gray-800">
                         <td className="py-2 px-4">{i + 1}</td>
                         <td>
                           <div
