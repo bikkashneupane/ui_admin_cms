@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const handleOnChange = ({ e, form, setForm }) => {
   let { name, value, checked } = e.target;
+  console.log(name, value);
+
   let newValue = value;
 
   if (name === "brand" || name === "material") {

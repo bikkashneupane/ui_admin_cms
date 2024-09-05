@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getCategoryAction } from "../../features/category/categoryAction";
 import { editProductAction } from "../../features/product/productAction";
 import { useForm } from "../../hooks/useForm";
-import { dateFormatter } from "../../helpers/dateFormatter";
 import { CustomInput, CustomSelect } from "../../components/common/CustomInput";
 
 export const EditProduct = () => {
@@ -14,17 +12,30 @@ export const EditProduct = () => {
     (state) => state.categoryInfo
   );
   const { selectedProduct } = useSelector((state) => state.productInfo);
+  // selectedProduct.salesStart = "20/01/2024";
 
   const [existingImages, setExistingImages] = useState(
     selectedProduct?.images || []
   );
   const [newImages, setNewImages] = useState([]);
   const [fileCount, setFileCount] = useState(0); // State to track the number of files
-  const { form, handleOnChange } = useForm(selectedProduct || {});
+  const { form, setForm, handleOnChange } = useForm(selectedProduct || {});
+
+  console.log(form);
 
   useEffect(() => {
-    dispatch(getCategoryAction());
-  }, [dispatch]);
+    if (selectedProduct) {
+      setForm({
+        ...selectedProduct,
+        salesStart: selectedProduct.salesStart
+          ? new Date(selectedProduct.salesStart).toISOString().split("T")[0]
+          : "",
+        salesEnd: selectedProduct.salesEnd
+          ? new Date(selectedProduct.salesEnd).toISOString().split("T")[0]
+          : "",
+      });
+    }
+  }, [selectedProduct, setForm]);
 
   const handleOnEditProduct = (obj) => {
     dispatch(editProductAction(obj, navigate));
@@ -205,23 +216,16 @@ export const EditProduct = () => {
           item.options ? (
             <CustomSelect
               key={item.name}
-              onChange={handleOnChange}
               {...item}
-              defaultValue={selectedProduct[item.name]}
-            />
-          ) : item.type === "date" ? (
-            <CustomInput
+              value={selectedProduct[item.name]}
               onChange={handleOnChange}
-              key={item.name}
-              {...item}
-              defaultValue={form[item.name] || ""}
             />
           ) : (
             <CustomInput
-              onChange={handleOnChange}
               key={item.name}
               {...item}
               value={form[item.name] || ""}
+              onChange={handleOnChange}
             />
           )
         )}

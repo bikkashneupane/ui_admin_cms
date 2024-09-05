@@ -26,7 +26,7 @@ export const Categories = () => {
   };
 
   return (
-    <div className="mx-auto  px-4 sm:px-6 md:px-8 lg:px-10">
+    <div className="mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Categories</h2>
         <div className="flex gap-2 font-semibold">
