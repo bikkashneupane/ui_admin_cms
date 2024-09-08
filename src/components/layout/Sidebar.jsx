@@ -66,15 +66,19 @@ export const Sidebar = () => {
   return (
     <div
       className={`bg-[#1E1E1E] text-gray-300 w-16 ${
-        minimiseSideBar ? "" : "min-w-60"
+        minimiseSideBar ? "w-16" : "lg:w-60"
       } fixed h-screen top-0 font-bold flex flex-col overflow-auto`}
     >
       <Link
         to={"/"}
-        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center flex justify-center lg:justify-start lg:px-4"
+        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center flex ps-3"
       >
         <img src={watch_logo} alt="" className="w-10" />
-        <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+        <span
+          className={`hidden lg:inline ${
+            minimiseSideBar ? "hidden" : "inline"
+          }`}
+        >
           Vikiasmy's
         </span>
       </Link>
@@ -91,7 +95,9 @@ export const Sidebar = () => {
               onClick={() => handleMinimizeSidebar(to)}
             >
               <span className="text-xl">{icon}</span>
-              <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+              <span
+                className={`hidden ${minimiseSideBar ? "hidden" : "lg:inline"}`}
+              >
                 {title}
               </span>
             </Link>
@@ -110,7 +116,9 @@ export const Sidebar = () => {
             <span className="text-xl">
               <FaUserSecret />
             </span>
-            <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+            <span
+              className={`hidden ${minimiseSideBar ? "hidden" : "lg:inline"}`}
+            >
               Profile
             </span>
           </Link>
@@ -120,7 +128,7 @@ export const Sidebar = () => {
             </span>
             <button
               onClick={handleSignOut}
-              className={`${minimiseSideBar ? "hidden" : "inline"}`}
+              className={`hidden ${minimiseSideBar ? "hidden" : "lg:inline"}`}
             >
               Signout
             </button>

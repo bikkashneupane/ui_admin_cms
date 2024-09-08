@@ -30,7 +30,7 @@ export const Dashboard = () => {
   const { orderChartData } = useOrderStatus(allOrders);
 
   return (
-    <div className="text-gray-300 ">
+    <div className="text-gray-300 px-6">
       <h2 className="text-xl font-bold mb-4">Dashboard</h2>
 
       <div className="grid grid-cols-5 bg-[#1E1E1E] rounded-lg py-2">

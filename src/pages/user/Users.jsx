@@ -15,7 +15,7 @@ export const Users = () => {
         <h2 className="text-xl font-bold">Users</h2>
         <Link
           to={"/admin/new"}
-          className="px-6 py-2 rounded-md bg-purple-600 hover:bg-purple-500"
+          className="px-6 py-2 rounded-md bg-purple-600 hover:bg-purple-500 font-semibold"
         >
           Add New User
         </Link>
@@ -36,13 +36,13 @@ export const Users = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <h1 className="mt-3 mb-1 font-semibold text-right">
+            <h1 className="mt-3 mb-1 font-semibold text-right px-2">
               {admins.length || 0} Admin(s) found
             </h1>{" "}
             <UsersTable users={admins} />
           </TabPanel>
           <TabPanel>
-            <h1 className="mt-3 mb-1 font-semibold text-right">
+            <h1 className="mt-3 mb-1 font-semibold text-right px-2">
               {customers.length || 0} Customer(s) found
             </h1>{" "}
             <UsersTable users={customers} />

@@ -21,8 +21,8 @@ export const AdminLayout = () => {
         <Sidebar />
         <div className="w-full">
           <div
-            className={`px-6 py-4 min-h-[100vh] ${
-              minimiseSideBar ? "ml-16" : "ml-60"
+            className={`py-4 min-h-[100vh] ml-16 ${
+              minimiseSideBar ? "" : "lg:ml-60"
             }`}
           >
             <Outlet />
