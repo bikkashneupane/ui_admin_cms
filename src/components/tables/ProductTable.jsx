@@ -26,9 +26,9 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
 
   return (
     <div>
-      <div className="mb-3 font-semibold">
+      <h1 className="mb-3 font-semibold">
         {totalProducts || 0} Product(s) found
-      </div>
+      </h1>
 
       {pageProducts?.length > 0 && (
         <>

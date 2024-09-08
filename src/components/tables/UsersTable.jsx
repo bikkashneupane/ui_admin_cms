@@ -20,7 +20,7 @@ const UsersTable = ({ users = [] }) => {
   };
 
   return (
-    <div className="overflow-x-scroll mt-4 rounded-lg">
+    <div className="overflow-x-scroll rounded-lg">
       {isModalVisible(editUserModalName) && (
         <CustomModal
           title={"Edit User Role"}

@@ -21,12 +21,12 @@ export const Reviews = () => {
   };
   return (
     <div className="mx-auto px-6">
-      <h2 className="text-xl font-bold mb-2">Reviews</h2>
+      <h1 className="text-xl font-bold mb-2">Reviews</h1>
       <hr className="mb-4" />
 
-      <div className="mb-3 font-semibold text-right">
+      <h2 className="mb-3 font-semibold text-right">
         {reviews?.length || 0} Reviews(s) found
-      </div>
+      </h2>
 
       <div className="overflow-x-scroll mb-6 rounded-md">
         <table className="min-w-full bg-[#1E1E1E] rounded-md">

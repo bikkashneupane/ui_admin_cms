@@ -19,7 +19,7 @@ export const Products = () => {
   return (
     <div className="mx-auto px-4 sm:px-6 md:px-8">
       <div className="flex justify-between">
-        <h2 className="text-xl font-bold">Products</h2>
+        <h1 className="text-xl font-bold">Products</h1>
         <Link
           to={"/admin/products/add"}
           onClick={() => {}}

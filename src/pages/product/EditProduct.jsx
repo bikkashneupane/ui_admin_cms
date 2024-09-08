@@ -6,22 +6,20 @@ import { useForm } from "../../hooks/useForm";
 import { CustomInput, CustomSelect } from "../../components/common/CustomInput";
 
 export const EditProduct = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [newImages, setNewImages] = useState([]);
+  const [fileCount, setFileCount] = useState(0); // State to track the number of files
+  const { form, setForm, handleOnChange } = useForm({});
+
+  const { selectedProduct } = useSelector((state) => state.productInfo);
   const { category, brands, materials } = useSelector(
     (state) => state.categoryInfo
   );
-  const { selectedProduct } = useSelector((state) => state.productInfo);
-  // selectedProduct.salesStart = "20/01/2024";
-
   const [existingImages, setExistingImages] = useState(
     selectedProduct?.images || []
   );
-  const [newImages, setNewImages] = useState([]);
-  const [fileCount, setFileCount] = useState(0); // State to track the number of files
-  const { form, setForm, handleOnChange } = useForm(selectedProduct || {});
 
-  console.log(form);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedProduct) {

@@ -5,19 +5,29 @@ import { PiUsersThree } from "react-icons/pi";
 import { FcSalesPerformance } from "react-icons/fc";
 import { FaUser, FaUserSecret } from "react-icons/fa";
 import { AiOutlineMessage } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../features/user/userSlice";
 import watch_logo from "../../assets/images/watch_logo.png";
+import { setMinimiseSideBar } from "../../redux-store/system/systemSlice";
 
 export const Sidebar = () => {
-  const dispatch = useDispatch();
-
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { minimiseSideBar } = useSelector((state) => state.systemInfo);
 
   const handleSignOut = () => {
     dispatch(setUser({}));
     localStorage.removeItem("refreshJWT");
     sessionStorage.removeItem("accessJWT");
+  };
+
+  const handleMinimizeSidebar = (currentPath) => {
+    console.log(currentPath);
+    console.log(location.pathname);
+
+    location.pathname === currentPath
+      ? dispatch(setMinimiseSideBar(!minimiseSideBar))
+      : dispatch(setMinimiseSideBar(false));
   };
 
   const inputs = [
@@ -54,13 +64,19 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-[#1E1E1E] text-gray-300 w-16 md:min-w-60 fixed h-screen top-0 font-bold flex flex-col overflow-auto">
+    <div
+      className={`bg-[#1E1E1E] text-gray-300 w-16 ${
+        minimiseSideBar ? "" : "min-w-60"
+      } fixed h-screen top-0 font-bold flex flex-col overflow-auto`}
+    >
       <Link
         to={"/"}
-        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center px-4"
+        className="text-lg mt-4 mb-16 md:flex md:gap-2 items-center flex justify-center lg:justify-start lg:px-4"
       >
-        <img src={watch_logo} alt="" className="w-7 h-7" />
-        <span className="hidden md:inline">Admin CMS</span>
+        <img src={watch_logo} alt="" className="w-10" />
+        <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+          Vikiasmy's
+        </span>
       </Link>
 
       <div className="h-full flex flex-col justify-between pb-8 gap-8 px-2">
@@ -72,9 +88,12 @@ export const Sidebar = () => {
                 location?.pathname === to ? "bg-[#121212]" : ""
               }`}
               to={to}
+              onClick={() => handleMinimizeSidebar(to)}
             >
               <span className="text-xl">{icon}</span>
-              <span className="hidden md:inline">{title}</span>
+              <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+                {title}
+              </span>
             </Link>
           ))}
         </div>
@@ -86,17 +105,23 @@ export const Sidebar = () => {
                 : ""
             }`}
             to={"/admin/profile"}
+            onClick={() => handleMinimizeSidebar("/admin/profile")}
           >
             <span className="text-xl">
               <FaUserSecret />
             </span>
-            <span className="hidden md:inline">Profile</span>
+            <span className={`${minimiseSideBar ? "hidden" : "inline"}`}>
+              Profile
+            </span>
           </Link>
           <div className="flex items-center py-2 px-3 rounded-md hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3">
             <span className="text-xl">
               <FaUser />
             </span>
-            <button onClick={handleSignOut} className="hidden md:inline">
+            <button
+              onClick={handleSignOut}
+              className={`${minimiseSideBar ? "hidden" : "inline"}`}
+            >
               Signout
             </button>
           </div>

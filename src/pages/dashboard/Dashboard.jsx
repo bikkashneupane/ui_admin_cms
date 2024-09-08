@@ -39,10 +39,8 @@ export const Dashboard = () => {
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-800"
         >
           <SiCashapp className="w-6 h-6 text-green-500" />
-          <div className="text-center ">
-            <h1 className="text-base lg:text-lg font-semibold">
-              $ {totalSales?.toLocaleString()}
-            </h1>
+          <div className="text-center text-sm md:text-base lg:text-lg ">
+            <h1 className="font-semibold">$ {totalSales?.toLocaleString()}</h1>
             <p>Sales</p>
           </div>
         </Link>
@@ -52,8 +50,8 @@ export const Dashboard = () => {
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
           <FcSalesPerformance className="w-6 h-6" />
-          <div className="text-center">
-            <h1 className="text-base lg:text-lg font-semibold">
+          <div className="text-center text-sm md:text-base lg:text-lg ">
+            <h1 className="font-semibold">
               {confirmedOrder?.length?.toLocaleString()}
             </h1>
             <p>Orders</p>
@@ -65,8 +63,8 @@ export const Dashboard = () => {
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2 border-r-2 border-gray-700"
         >
           <TbCube className="w-6 h-6 text-teal-500" />
-          <div className="text-center">
-            <h1 className="text-base lg:text-lg font-semibold">
+          <div className="text-center text-sm md:text-base lg:text-lg ">
+            <h1 className="font-semibold">
               {product?.length?.toLocaleString()}
             </h1>
             <p>Products</p>
@@ -79,7 +77,7 @@ export const Dashboard = () => {
         >
           <FaUser className="w-6 h-6 text-purple-500" />
           <div className="text-center">
-            <h1 className="text-base lg:text-lg font-semibold">
+            <h1 className="text-sm md:text-base lg:text-lg font-semibold">
               {allUsers?.length?.toLocaleString()}
             </h1>
             <p>Users</p>
@@ -91,8 +89,8 @@ export const Dashboard = () => {
           className="flex flex-col gap-2 justify-center items-center text-base cursor-pointer p-2"
         >
           <AiOutlineMessage className="w-6 h-6 text-green-500" />
-          <div className="text-center">
-            <h1 className="text-base lg:text-lg font-semibold">
+          <div className="text-center text-sm md:text-base lg:text-lg ">
+            <h1 className="font-semibold">
               {reviews?.length?.toLocaleString()}
             </h1>
             <p>Reviews</p>

@@ -36,9 +36,15 @@ export const Users = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
+            <h1 className="mt-3 mb-1 font-semibold text-right">
+              {admins.length || 0} Admin(s) found
+            </h1>{" "}
             <UsersTable users={admins} />
           </TabPanel>
           <TabPanel>
+            <h1 className="mt-3 mb-1 font-semibold text-right">
+              {customers.length || 0} Customer(s) found
+            </h1>{" "}
             <UsersTable users={customers} />
           </TabPanel>
         </TabPanels>
