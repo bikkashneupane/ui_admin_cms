@@ -22,9 +22,6 @@ export const Sidebar = () => {
   };
 
   const handleMinimizeSidebar = (currentPath) => {
-    console.log(currentPath);
-    console.log(location.pathname);
-
     location.pathname === currentPath
       ? dispatch(setMinimiseSideBar(!minimiseSideBar))
       : dispatch(setMinimiseSideBar(false));
@@ -66,7 +63,7 @@ export const Sidebar = () => {
   return (
     <div
       className={`bg-[#1E1E1E] text-gray-300 w-16 ${
-        minimiseSideBar ? "w-16" : "lg:w-60"
+        minimiseSideBar ? "" : "lg:w-60"
       } fixed h-screen top-0 font-bold flex flex-col overflow-auto`}
     >
       <Link
@@ -122,16 +119,18 @@ export const Sidebar = () => {
               Profile
             </span>
           </Link>
-          <div className="flex items-center py-2 px-3 rounded-md hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3">
+          <div
+            onClick={handleSignOut}
+            className="flex items-center py-2 px-3 rounded-md hover:bg-[#121212] hover:text-orange-500 transition-colors gap-3 cursor-pointer"
+          >
             <span className="text-xl">
               <FaUser />
             </span>
-            <button
-              onClick={handleSignOut}
+            <span
               className={`hidden ${minimiseSideBar ? "hidden" : "lg:inline"}`}
             >
               Signout
-            </button>
+            </span>
           </div>
         </div>
       </div>

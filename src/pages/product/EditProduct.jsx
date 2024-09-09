@@ -205,7 +205,7 @@ export const EditProduct = () => {
                   : "text-red-600 font-bold"
               }
             >
-              {form.status.toUpperCase()}
+              {form?.status?.toUpperCase()}
             </span>
           </label>
         </div>

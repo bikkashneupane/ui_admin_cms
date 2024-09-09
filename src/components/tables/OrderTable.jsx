@@ -63,16 +63,16 @@ const OrderTable = ({ pageOrders, startIndex }) => {
         )}
         <table className="min-w-full bg-[#1E1E1E] rounded-md">
           <thead>
-            <tr className="bg-teal-800">
-              <th className="py-2 px-4 text-left">#</th>
-              <th className="py-2 px-4 text-left">Order Id</th>
-              <th className="py-2 px-4 text-left">Payment Status</th>
-              <th className="py-2 px-4 text-left">Customer</th>
-              <th className="py-2 px-4 text-left">Products</th>
-              <th className="py-2 px-4 text-left">Amount</th>
-              <th className="py-2 px-4 text-left">Placed Date</th>
-              <th className="py-2 px-4 text-left">Delivery Status</th>
-              <th className="py-2 px-4 text-left w-1/8">Actions</th>
+            <tr className="bg-teal-800 text-left">
+              <th className="py-2 px-4">#</th>
+              <th className="py-2 px-4">Order Id</th>
+              <th className="py-2 px-4">Payment Status</th>
+              <th className="py-2 px-4">Customer</th>
+              <th className="py-2 px-4 min-w-[200px]">Products</th>
+              <th className="py-2 px-4">Amount</th>
+              <th className="py-2 px-4">Placed Date</th>
+              <th className="py-2 px-4">Delivery Status</th>
+              <th className="py-2 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>

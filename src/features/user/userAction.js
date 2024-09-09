@@ -64,8 +64,10 @@ export const autoLoginAction = () => async (dispatch) => {
 
   const refreshJWT = localStorage.getItem("refreshJWT");
   if (refreshJWT) {
-    const { accessJWT } = await renewAccessJwt();
-    accessJWT && dispatch(fetchUserAction());
+    const accessJWT = await renewAccessJwt();
+    accessJWT
+      ? dispatch(fetchUserAction())
+      : localStorage.removeItem("refreshJWT");
   }
 };
 

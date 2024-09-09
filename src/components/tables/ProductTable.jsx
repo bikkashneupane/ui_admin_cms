@@ -39,7 +39,7 @@ export const ProductTable = ({ pageProducts, totalProducts, startIndex }) => {
                   <th className="px-4 py-2">#</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2">Thumbnail</th>
-                  <th className="px-4 py-2">Name</th>
+                  <th className="px-4 py-2 min-w-[200px]">Name</th>
                   <th className="px-4 py-2">SKU</th>
                   <th className="px-4 py-2">Price</th>
                   <th className="px-4 py-2">Quantity</th>

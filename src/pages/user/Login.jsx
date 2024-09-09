@@ -50,34 +50,42 @@ export const Login = () => {
   ];
 
   return (
-    <div className="d-flex justify-content-center align-items-center flex-col vh-100 bg-dark">
-      <p className="text-center mb-10 font-bold text-red-500">
-        <span className="font-bold">Disclaimer : </span>Edit/ Delete Feature is
-        Disabled for security purposes on certain part of webpage.{" "}
-      </p>
-      <div className="mb-8 text-sm text-orange-500 text-left">
-        <h1>Email: admin@gmail.com</h1>
-        <h1>Password: 11</h1>
-      </div>
+    <div className="h-screen bg-dark">
+      <div className="flex items-center flex-col pt-36">
+        <div className="mb-8 text-sm text-teal-500 text-left space-y-2">
+          <h1 className="text-center text-white underline font-bold">
+            Sample User
+          </h1>
+          <h1>
+            <span className="text-white">Email</span>: admin@gmail.com
+          </h1>
+          <h1>
+            <span className="text-white">Password</span>: 11
+          </h1>
+        </div>
+        <div className="rounded" style={{ width: "450px" }}>
+          <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
+            <h3 className="text-center">Admin Login</h3>
+            {inputs.map((item) => (
+              <CustomInput key={item.name} {...item} />
+            ))}
+            <button
+              className="w-100 mt-2 py-2 bg-teal-600 text-white rounded-md shadow-2xl"
+              type="submit"
+            >
+              Login
+            </button>
 
-      <div className="bg-gray-800 rounded" style={{ width: "450px" }}>
-        <form className="shadow-lg p-4" onSubmit={handleOnSubmit}>
-          <h3 className="text-center">Admin Login</h3>
-          {inputs.map((item) => (
-            <CustomInput key={item.name} {...item} />
-          ))}
-          <button
-            className="w-100 mt-2 py-2 bg-teal-600 text-white rounded-md shadow-2xl"
-            type="submit"
-          >
-            Login
-          </button>
-
-          <div className="mt-3 text-end text-sm">
-            Forget Password?
-            <Link to={"/forget-password"}> Reset Password!</Link>
-          </div>
-        </form>
+            <div className="mt-3 text-end text-sm">
+              Forget Password?
+              <Link to={"/forget-password"}> Reset Password!</Link>
+            </div>
+          </form>
+        </div>
+        <p className="mt-10 font-bold text-teal-600">
+          <span className="font-bold">Disclaimer : </span>Edit/ Delete Feature
+          is Disabled for security purposes on certain part of webpage.{" "}
+        </p>
       </div>
     </div>
   );
