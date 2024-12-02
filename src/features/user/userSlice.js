@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   allUsers: [],
 };
+
 // create user slice
 const slice = createSlice({
   name: "User",

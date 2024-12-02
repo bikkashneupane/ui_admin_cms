@@ -1,6 +1,6 @@
 # Vikiamy's Admin CMS
 
-[Vikiamy's Admin CMS](https://vikiasmy-admin.bikashneupane.com/) is an advanced content management system designed to streamline the management of products and user data for Vikiamy's e-commerce platform. The CMS features a user-friendly interface that enables efficient content management, secure access controls, and robust backend functionalities.
+[Vikiamy's Admin CMS](https://vikiasmy-watches-admin-cms.vercel.app) is an advanced content management system designed to streamline the management of products and user data for Vikiamy's e-commerce platform. The CMS features a user-friendly interface that enables efficient content management, secure access controls, and robust backend functionalities.
 
 ## Features:
 
